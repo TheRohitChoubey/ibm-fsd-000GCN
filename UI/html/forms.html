@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Forms</title>
+    <style type="text/css">
+        input {
+            border: 1px solid #255054;
+            border-radius: 4px;
+            height: 25px;
+        }
+
+        input[type=submit] {
+            background: #b3ccea;
+        }
+        fieldset{
+            border-color: beige;
+            border: 1px solid;
+            border-radius: 3.5px;
+            margin: 10px 10px 0px 10px ;
+            width: 40%;
+            float: left;
+        }
+
+        fieldset legend{
+            font-family : Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-style: normal;
+            color: #9e4776;
+        }
+
+        label{
+            font-size: 12px;
+            font-family: 'Times New Roman', Times, serif';
+        }
+
+    </style>
+
+<body>
+    <fieldset>
+        <legend>User Details</legend>
+        <form>
+            <!--novalidate for stopping email format valiation -->
+            <table>
+                <tbody>
+                    <tr>
+                        <th>
+                            <label>First Name</label>
+                        </th>
+                        <td>
+                            <input type="text" name="fname" placeholder="First name" />
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+                        <th>
+                            <label>Last Name</label>
+                        </th>
+                        <td>
+                            <input type="text" name="lname" placeholder="Last name" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <label>Email</label>
+                        </th>
+                        <td>
+                            <input type="email" name="email" placeholder="xyz@abc.com" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <label>Age</label>
+                        </th>
+                        <td>
+                            <input type="number" name="age" placeholder="" max="50" min="18" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <label for="dob">Date Of Birth</label>
+                        </th>
+                        <td>
+                            <input type="date" name="dob" id="dob" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            Time
+                        </th>
+                        <td>
+                            <input type="time" name="time" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <label>Mobile</label>
+                        </th>
+                        <td>
+                            <input type="tel" name="phone" placeholder="your phone number" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <label>Date and time of birth</label>
+                        </th>
+                        <td>
+                            <input type="datetime" name="dotb" />
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <input type="submit" value="Save" name="btn-save" formaction="" formmethod="GET" />
+                        </td>
+                    </tr>
+                </tbody>
+
+                <tfoot>
+                    <td colspan="2" align="center">Create/Edit</td>
+                </tfoot>
+            </table>
+        </form>
+    </fieldset>
+
+    <fieldset>
+        <legend>Fields</legend>
+        <em>Hello</em>
+        <bdo dir="rtl">Hello how are you</bdo>
+        <br />
+        <hr />
+
+        It is an interesting world with every man for himself
+
+        <blockquote>
+            The poor dies, who cares
+        </blockquote>
+        <code>
+                int i=10; <br />
+                if(i==10){ <br />
+                &nbsp;System.out.println("Hello") <br />
+                }
+            </code>
+    </fieldset>
+
+</body>
+</head>
+
+</html>
