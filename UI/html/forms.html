@@ -12,30 +12,52 @@
         input[type=submit] {
             background: #b3ccea;
         }
-        fieldset{
+
+        fieldset {
             border-color: beige;
             border: 1px solid;
             border-radius: 3.5px;
-            margin: 10px 10px 0px 10px ;
+            margin: 10px 10px 0px 10px;
             width: 40%;
             float: left;
         }
 
-        fieldset legend{
-            font-family : Arial, Helvetica, sans-serif;
+        fieldset legend {
+            font-family: Arial, Helvetica, sans-serif;
             font-weight: bold;
             font-style: normal;
             color: #9e4776;
         }
 
-        label{
+        label {
             font-size: 12px;
             font-family: 'Times New Roman', Times, serif';
+
         }
 
+        nav ul li a {
+            text-decoration: none;
+            color: black;
+        }
+
+        nav ul li a:hover {
+            color : #63acc6;
+        }
     </style>
 
 <body>
+    <div>
+        <section>
+            <nav>
+                <ul>
+                    <li><a href=""> Home </a></li>
+                    <li><a href=""> About us </a></li>
+                    <li><a href="https://github.com" target="blank"> Contact us </a></li>
+                </ul>
+            </nav>
+        </section>
+
+    </div>
     <fieldset>
         <legend>User Details</legend>
         <form>
@@ -150,6 +172,9 @@
                 }
             </code>
     </fieldset>
+
+
+
 
 </body>
 </head>
