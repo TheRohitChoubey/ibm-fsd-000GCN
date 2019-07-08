@@ -1,0 +1,110 @@
+                        .form-input {
+                        display: block;
+                        width: 12em;
+                        height: 2.5em;
+                        margin: 6 4 6 10px;
+                    }
+                    
+                    .form-input-radius {
+                        border: 1px solid;
+                        border-radius: 2px;
+                    }
+                    
+                    .form-input-shadow {
+                        -webkit-box-shadow: 4px 5px 7px 0px #71898c;
+                        -moz-box-shadow: 4px 5px 7px 0px #71898c;
+                        box-shadow: 4px 5px 7px 0px #71898c;
+                    }
+                    
+                    .form-submit {
+                        cursor: pointer;
+                        /*background-image                                : linear-gradient(to right, #1f2e44, #0a596f, #088687, #5fb288, #bdd882);*/
+                        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f0b7a1+0,8c3310+50,752201+75,bf6e4e+100 */
+                        background: #f0b7a1;
+                        /* Old browsers */
+                        background: -moz-linear-gradient(top, #f0b7a1 0%, #8c3310 50%, #752201 75%, #bf6e4e 100%);
+                        /* FF3.6-15 */
+                        background: -webkit-linear-gradient(top, #f0b7a1 0%, #8c3310 50%, #752201 75%, #bf6e4e 100%);
+                        /* Chrome10-25,Safari5.1-6 */
+                        background: linear-gradient(to bottom, #f0b7a1 0%, #8c3310 50%, #752201 75%, #bf6e4e 100%);
+                        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                        filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#f0b7a1', endColorstr='#bf6e4e', GradientType=0);
+                        /* IE6-9 */
+                    }
+                    
+                    .form-submit:hover {
+                        background-color: hsla(190, 54%, 19%, 0.6);
+                    }
+                    
+                    body {
+                        /*  background: linear-gradient(red 0%, orange 10%, green 75%, blue 100%);
+*/
+                        background: linear-gradient(0deg, orange, orange 60%, cyan);
+                    }
+                    
+                    tr:nth-child(even) {
+                        background-color: #c1eeff;
+                    }
+                    
+                    .table-1 {
+                        margin-top: 20px;
+                        border: 1px solid black;
+                        border-radius: 4px;
+                        /*background-color: aliceblue;*/
+                        text-align: center;
+                        display: inline-block;
+                    }
+                    
+                    .table-1 tbody tr:first-child th:first-child {
+                        width: 0.5em;
+                    }
+                    
+                    .head-1 {
+                        background: linear-gradient(1deg, #00ffd0, #00adff 60%, #00dcff);
+                    }
+                    
+                    .head-1-2 {
+                        background: linear-gradient(1deg, #00ffd0, #00adff 60%, #00dcff);
+                        padding: 1 1 1 1px;
+                        width: 20px;
+                    }
+                    
+                    .coloum-1 {
+                        /*text-shadow: 1px 2px green;*/
+                        padding: 1 1 1 1px;
+                    }
+                    
+                    .coloum-1-2 {
+                        /*text-shadow: 1px 2px green;*/
+                        padding: 1 1 1 1px;
+                    }
+                    
+                    .table-2 {
+                        margin-top: 20px;
+                        border: 1px solid black;
+                        border-radius: 4px;
+                        /*background-color: aliceblue;*/
+                        text-align: center;
+                        display: inline-block;
+                    }
+                    
+                    .table-2 tr {
+                        height: 1em;
+                    }
+                    
+                    .row-2,
+                    .row-1 {
+                        vertical-align: top;
+                    }
+                    
+                    .row-1 th:first-child {
+                        width: 30px;
+                    }
+                    
+                    .head-2 {
+                        background: linear-gradient(1deg, #8400ff, #ff1500 60%, #00ff0d);
+                    }
+                    
+                    .coloum-2 {
+                        /*text-shadow: 1px 2px green;*/
+                        padding: 1 1 1 1px;
