@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <title>Employee</title>
+    <script type="text/javascript" src="employee.js"></script>
+    <style>
+        input {
+            display: block;
+            border: 1px solid #ade6de;
+            border-radius: 2px;
+            margin-top: 3px;
+            height: 2em;
+            width: 15em;
+        }
+        
+        input[type=button] {
+            cursor: pointer;
+        }
+        
+        input[type=button]:hover {
+            background-color: #8adfff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="details">
+        <input type="text" name="id" id="eid" placeholder="Enter Id" />
+        <input type="text" name="name" id="name" placeholder="Enter name" />
+        <input type="text" name="email" id="email" placeholder="Enter Email" />
+        <input type="text" name="Organization" id="org" placeholder="Enter Organization" />
+        <input type="button" name="add" value="Add" onclick="localStore()" />
+        <input type="button" name="loademployee" onclick="loadEmp()" value="Load Employees" />
+        <input type="button" name="loademployee" onclick="findById()" value="Delete Employee" />
+    </div>
+    <div id="div-emps">
+    </div>
+    <!--
+    <input type="text" name="search" id="search" placeholder="Org is.." />
+    <input type="text" name="findById" id="findById" placeholder="Find by Id" />
+    <input type="button" name="findById" onclick="findById()" value="Find By Id" />
+    <input type="button" name="locate" onclick="filterEmps()" value="Search by Organization" />
+    <input type="button" name="localStore" onclick="localStore()" value="Local Storage" />
+    <input type="button" name="sessionStore" onclick="sessionStore()" value="Session Storage" />
+    
+    <div id="div-emps">
+    </div>
+-->
+</body>
+
+</html>
