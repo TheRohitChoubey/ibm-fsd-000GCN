@@ -15,10 +15,10 @@ class Calc {
         localStorage.setItem("var2", JSON.stringify(val));
     }
     uNum(val) {
-        const obj = new Calc();
 
+        let var1 = JSON.parse(localStorage.getItem("var1"));
         if (localStorage.getItem("var1") == undefined && (val != '=')) {
-            localStorage.setItem("var1", JSON.stringify(var1));
+            localStorage.setItem("var1", JSON.stringify(val));
         } else if ((val == '+' || val == '-' || val == '/' || val == '*')) {
             localStorage.setItem("op1", JSON.stringify(val));
             if (localStorage.getItem("var2") != undefined) {
@@ -34,13 +34,14 @@ class Calc {
             let var1 = JSON.parse(localStorage.getItem("var1"));
 
             if (localStorage.getItem("equal") == undefined) {
+
                 document.getElementById("eval").value = var1;
                 localStorage.setItem("equal", JSON.stringify(val));
                 console.log(var1);
             } else {
                 let var2 = JSON.parse(localStorage.getItem("var2"));
                 this.operation(var2);
-                var1 = JSON.parse(localStorage.getItem("var1"));
+                let var1 = JSON.parse(localStorage.getItem("var1"));
                 document.getElementById("eval").value = var1;
             }
 
