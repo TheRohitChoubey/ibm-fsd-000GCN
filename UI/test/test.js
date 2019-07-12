@@ -204,5 +204,53 @@ const saveDetails = () => {
     console.log(mTime);
     console.log(mSub);
     console.log(tname);
+    alert("Record Added");
+
+}
+
+const printRows = (det, clas) => {
+    console.log(det, clas);
+    let rows = '';
+    det.forEach((d) => {
+        rows += `<tr>
+        <td>${clas}</td>
+        <td>${d[0]}</td>
+        <td>${d[1]}</td>
+        <td>${d[2]}</td>
+        </tr> `;
+    });
+    return printTable(rows);
+}
+const printTable = (rows) => {
+    let records = `<table>
+                    <tr>
+                        <th>Class</th>
+                        <th>Time</th>
+                        <th>Subject</th>
+                        <th>Trainer</th>
+                    </tr>
+                    ${rows}    
+                </table>`;
+    return records;
+}
+
+const loadDetails = () => {
+    let det = [];
+
+    if (localStorage.getItem("ClassA") != undefined) {
+        det = JSON.parse(localStorage.getItem("ClassA"));
+    } else {
+        document.getElementById('div-empsA').innerText = "No Time Table Available";
+    }
+
+    document.getElementById('div-empsA').innerHTML = printRows(det, "ClassA");
+
+    if (localStorage.getItem("ClassB") != undefined) {
+        det = JSON.parse(localStorage.getItem("ClassB"));
+    } else {
+        document.getElementById('div-empsB').innerText = "No Time Table Available";
+    }
+
+    document.getElementById('div-empsB').innerHTML = printRows(det, "ClassB");
 
 }
