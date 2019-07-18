@@ -1,0 +1,151 @@
+<html>
+
+<head>
+    <script src="jquery-3.41.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js" type="text/javascript"></script>
+    <script type="text/javascript" src="validation-jquery.js">
+    </script>
+    <script type="text/javascript">
+        //onload function
+        $(document).ready(() => {
+            console.log('jquery onload/ready called');
+
+            $('#save-log').click(() => {
+                let email = $('#email').val();
+                let pass = $('#pass').val();
+
+                console.log(email);
+                console.log(pass);
+            });
+
+            $('#save-reg').click(() => {
+                let email = $('#email').val();
+                let fname = $('#fname').val();
+                let lname = $('#lname').val();
+
+                console.log(email);
+                console.log(fname);
+                console.log(lname);
+            });
+            $('#frm-emp-slidetoggle-signup').hide();
+            $('#frm-emp-slidetoggle-login').hide();
+
+            $('#btn-emp-slide-toggle-login').click(() => {
+                $('#frm-emp-slidetoggle-signup').hide();
+                $('#frm-emp-slidetoggle-login').slideToggle('fast', () => {
+                    //$('#login').show();
+                });
+
+            });
+
+            $('#btn-emp-slide-toggle-signup').click(() => {
+                $('#frm-emp-slidetoggle-login').hide();
+                $('#frm-emp-slidetoggle-signup').slideToggle('fast', () => {
+                    // $('#signup').show();
+                });
+            });
+            $('#save-log').click(() => {
+                $.validator.addMethod('emailValidator', (value, elem) => {
+                    let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                    return regex.test(value);
+                });
+
+                $.validator.addMethod('passValidator', (value, elem) => {
+                    let regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{4,8}$/;
+                    return regex.test(value);
+                });
+
+                $('#frm-register-login').validate({
+                    rules: {
+                        email: {
+                            emailValidator: true
+                        },
+                        pass: {
+                            passValidator: true
+                        }
+                    },
+                    messages: {
+                        email: {
+                            emailValidator: 'Invalid Email your@email.com'
+                        },
+                        pass: {
+                            passValidator: "Password pattern wrong"
+                        }
+                    }
+                });
+            });
+
+
+            $('#save-reg').click(() => {
+                $.validator.addMethod('emailValidator', (value, elem) => {
+                    let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                    return regex.test(value);
+                });
+
+
+                $('#frm-register-signup').validate({
+                    rules: {
+                        email: {
+                            emailValidator: true
+                        },
+                        fname: {
+                            required: true
+                        },
+
+                        lname: {
+                            required: true
+                        }
+                    },
+                    messages: {
+                        email: {
+                            emailValidator: 'Invalid Email your@email.com'
+                        },
+                        fname: {
+                            required: "First name is required"
+                        },
+                        lname: {
+                            required: "Last name is required"
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div>
+
+        <input type="button" id='btn-emp-slide-toggle-login' value="Login" />
+        <input type="button" id='btn-emp-slide-toggle-signup' value="SignUp" />
+        <div id="login">
+            <form action="" id="frm-register-login">
+                <fieldset id='frm-emp-slidetoggle-login'>
+                    <legend>Login</legend>
+                    <input type="email" name="email" id="email" placeholder="Enter email" />
+                    <input type="password" id="pass" name="pass" placeholder="Enter password">
+                    <input type="submit" id="save-log" value="Save" />
+                </fieldset>
+            </form>
+        </div>
+        <div id="signup">
+            <form action="" id="frm-register-signup">
+                <fieldset id='frm-emp-slidetoggle-signup'>
+                    <legend>SignUp</legend>
+                    <input type="text" id="email" name="email" placeholder="Enter email" />
+                    <input type="text" id="fname" name="fname" placeholder="Enter First name">
+                    <input type="text" id="lname" name="lname" placeholder="Enter Last name">
+                    <input type="submit" id="save-reg" value="Save" />
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>
