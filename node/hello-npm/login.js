@@ -23,4 +23,4 @@ const server = http.createServer((req, res) => {
 // port
 server.listen(5544, () => {
     console.log(`Server Started at 5544`);
-});
+}); 
