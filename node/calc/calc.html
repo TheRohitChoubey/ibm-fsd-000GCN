@@ -12,7 +12,7 @@
             const _url = `http://localhost:1224/calculator`;
             // make call to fetch api 
             // interact with nodejs server
-            fetch("http://localhost:1224/calculator", {
+            fetch(_url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -24,7 +24,7 @@
                     })
                 }).then(res => res.json())
                 .then(res => {
-                    console.log(res);
+                    console.log(res.opr);
                 })
         }
     </script>

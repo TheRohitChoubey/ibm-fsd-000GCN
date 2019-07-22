@@ -1,0 +1,206 @@
+<html>
+
+<head>
+    <title>
+        Projects Page
+    </title>
+    <script type="text/javascript">
+        const getProjects = () => {
+            const _url = 'http://localhost:1269/projects';
+            fetch(_url, {
+                    headers: {
+                        'username': 'tech',
+                        'password': 'tech'
+                    }
+                })
+                .then(res => res.json())
+                .then(projects => {
+                    createTable(projects);
+                    createDropProject(projects);
+                    getUsers();
+                })
+        }
+
+        const getUsers = () => {
+            const _url = 'http://localhost:1269/users';
+            fetch(_url, {
+                    headers: {
+                        'username': 'tech',
+                        'password': 'tech'
+                    }
+                })
+                .then(res => res.json())
+                .then(users => {
+                    fetch('http://localhost:1269/projects_users/', {
+                            headers: {
+                                'username': 'tech',
+                                'password': 'tech'
+                            }
+                        })
+                        .then(res => res.json())
+                        .then(userandcomp => {
+                            createDropUser(users.users, userandcomp.user_comp);
+                        })
+                })
+        }
+        const saveProjects = () => {
+            const baseUrl = 'http://localhost:1269/projects/';
+            // api to get the next user id
+            fetch(baseUrl + '/nextId', {
+                    headers: {
+                        'username': 'tech',
+                        'password': 'tech',
+                        'content-type': 'application/json'
+                    }
+                })
+                .then(res => res.json())
+                .then(res => {
+                    const id = res.nextId;
+                    const name = document.getElementById('name').value;
+                    const decrp = document.getElementById('decrp').value;
+                    // create user
+                    fetch(baseUrl + '/add', {
+                            method: 'POST',
+                            headers: {
+                                'username': 'tech',
+                                'password': 'tech',
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id: id,
+                                name: name,
+                                description: decrp
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            createTable(data);
+                        });
+                })
+        }
+        const createTable = (data) => {
+            let rows = '';
+            data.projects.forEach(u => {
+                rows += `<tr>
+                            <td>${u.id}</td>
+                            <td>${u.name}</td>
+                            <td>${u.description}</td>
+                        </tr>`
+            });
+            const _table = `<table>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                                ${rows}
+                            </table>`
+            document.getElementById('projects').innerHTML = _table;
+        }
+
+        const saveUserCompany = () => {
+            const baseUrl = 'http://localhost:1269/projects_users';
+
+            const user = document.getElementById('user').value;
+            const comp = document.getElementById('company').value;
+            // create user
+            fetch(baseUrl + '/add', {
+                    method: 'POST',
+                    headers: {
+                        'username': 'tech',
+                        'password': 'tech',
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user: user,
+                        company: comp
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    createUserCompTable(data);
+                });
+
+        }
+
+        const createUserCompTable = (data) => {
+            let rows = '';
+            data.user_comp.forEach(u => {
+                rows += `<tr>
+                            <td>${u.user}</td>
+                            <td>${u.company}</td>
+                        </tr>`
+            });
+            const _table = `<table>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Company</th>
+                                </tr>
+                                ${rows}
+                            </table>`
+            document.getElementById('user-comp').innerHTML = _table;
+        }
+
+        const createDropProject = (data) => {
+            let options = '';
+            data.projects.forEach(u => {
+                options += `<option>
+                            ${u.name}
+                        </option>`
+            });
+
+            const _select = `<select id="company">
+                            ${options}
+                            </select>`
+
+            document.getElementById('proj').innerHTML = _select;
+        }
+
+        const createDropUser = (users, user_comp) => {
+            let findUser = '';
+            user_comp.forEach((user_name) => {
+                findUser = users.find((u) => {
+                    return u.name == user_name.user;
+                });
+            });
+
+            if (findUser != undefined) {
+                user_comp.forEach((user_name) => {
+                    users = users.filter((u) => {
+                        return u.name != user_name.user;
+                    });
+                });
+            }
+            console.log(users);
+            console.log(user_comp);
+            console.log(findUser);
+            let options = '';
+            users.forEach(u => {
+                options += `<option>
+                            ${u.name}
+                        </option>`
+            });
+
+            const _select = `<select id="user">
+                            ${options}
+                            </select>`
+
+            document.getElementById('users').innerHTML = _select;
+        }
+    </script>
+</head>
+
+<body onload="getProjects()">
+    <input type="text" id="name" placeholder="Name..." />
+    <input type="text" id="decrp" placeholder="Description..." />
+    <input type="button" id="save" onclick="saveProjects()" value="SAVE" />
+    <div id="projects">
+    </div>
+    <div id="proj"></div>
+    <div id="users"></div>
+    <input type="button" id="saveUserCompany" onclick="saveUserCompany()" value="SAVE" />
+    <div id="user-comp">
+    </div>
+</body>
+
+</html>
