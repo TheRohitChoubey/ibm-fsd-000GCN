@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Template
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Places</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Cities
+                                  </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Bhopal</a>
+                            <a class="dropdown-item" href="#">Indore</a>
+                            <a class="dropdown-item" href="#">Gwalior</a>
+                            <a class="dropdown-item" href="#">Jabalpur</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <br><br><br><br><br>
+                <div class="row">
+
+                    <input type="button" class="btn btn-primary" data-target="#popup" data-toggle="modal" value="Click here to know More" />
+                    <div class="modal" role="dialog" id="popup">
+                        <div class="modal-dialog ">
+                            <!-- add class modal-lg for wider & bigger popup-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    Here's some more information
+                                    <button type="button" class="close" data-dismiss="modal">
+                                            <span>&times;</span>
+                                        </button>
+                                </div>
+                                <div class="modal-body">
+                                    The area covered by the present-day Madhya Pradesh includes the area of the ancient Avanti Mahajanapada, whose capital Ujjain (also known as Avantika) arose as a major city during the second wave of Indian urbanisation in the sixth century BCE. Subsequently,
+                                    the region was ruled by the major dynasties of India. By the early 18th century, the region was divided into several small kingdoms which were captured by the British and incorporated into Central Provinces and Berar
+                                    and the Central India Agency.
+                                </div>
+                                <div class="modal-footer">
+                                    <small>copyright @ XYZ</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row offset-2">
+                    <div class="card border-primary">
+                        <h6 class="card-header bg-secondary">Heart of India</h6>
+                        <div class="card-body text-success">
+                            <div id="test" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="mp-1.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="mp-2.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-3">
+            </div>
+        </div>
+        <div class="row">
+            <div class="alert alert-primary">
+                Introduction
+            </div>
+            Madhya Pradesh meaning "Central Province") is a state in central India. Its capital is Bhopal, and the largest city is Indore, with Jabalpur, Gwalior, Ujjain and Sagar being the other major cities. Nicknamed the "Heart of India" due to its geographical
+            location, Madhya Pradesh is the second largest Indian state by area and the fifth largest state by population with over 75 million residents. It borders the states of Uttar Pradesh to the northeast, Chhattisgarh to the southeast, Maharashtra
+            to the south, Gujarat to the west, and Rajasthan to the northwest. Its total area is 308,252 km2. Before 2000, when Chhattisgarh was a part of Madhya Pradesh, Madhya Pradesh was the largest state in India and the distance between the two furthest
+            points inside the state, Singoli and Konta, was 1500 km. Konta is presently in Sukma district of Chhattisgarh state.
+        </div>
+    </div>
+    <style>
+        .fixed {
+            max-width: 300px;
+            max-height: 200px;
+            min-width: 200px;
+            min-height: 200px;
+        }
+        
+        .carousel-control-next {
+            margin-left: 200px;
+            right: inherit;
+        }
+    </style>
+
+</body>
+
+</html>
