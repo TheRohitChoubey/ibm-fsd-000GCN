@@ -31,6 +31,28 @@ class Service {
             });
         } // end of add user
 
+    update(email, callback) {
+
+        const _url = UserConstants.mongo.url + UserConstants.mongo.port;
+        client.connect(_url, (err, connection) => {
+            connection.db(UserConstants.mongo.db).collection(UserConstants.mongo.collections.user)
+                .updateOne({ email: email }, { $set: { status: "valid" } }, (err, response) => {
+                    callback(err, response);
+                });
+        });
+    }
+
+    updatePassword(credentials, callback) {
+
+        const _url = UserConstants.mongo.url + UserConstants.mongo.port;
+        client.connect(_url, (err, connection) => {
+            connection.db(UserConstants.mongo.db).collection(UserConstants.mongo.collections.user)
+                .updateOne({ email: credentials.email, status: "valid" }, { $set: { password: credentials.password }, }, { upsert: true }, (err, response) => {
+                    callback(err, response);
+                });
+        });
+    }
+
     email(user) {
         let userObj = {
             subject: "User Registration",

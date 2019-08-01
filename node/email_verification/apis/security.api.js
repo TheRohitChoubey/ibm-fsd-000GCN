@@ -14,7 +14,7 @@ server.post('/register', (rq, rs) => {
     let _user = rq.body;
 
     let date = new Date();
-    let end_Time = date.getTime() + 3000000;
+    let end_Time = date.getMilliseconds() + 200000;
 
     let endTime = {
         endTime: end_Time
@@ -26,7 +26,11 @@ server.post('/register', (rq, rs) => {
         varcode: code
     }
 
-    _user = Object.assign(_user, endTime, varCode);
+    let status = {
+        status: "invalid"
+    }
+
+    _user = Object.assign(_user, endTime, varCode, status);
     console.log(_user);
 
     userService.addUser(_user, (err, res) => {
@@ -48,7 +52,7 @@ server.post('/register', (rq, rs) => {
 
 
 // generate new password
-server.post('/password', (rq, rs) => {
+server.post('/otp', (rq, rs) => {
     let email = rq.body.email;
     let code = rq.body.code;
     userService.fetchUser(email, (err, res) => {
@@ -59,14 +63,16 @@ server.post('/password', (rq, rs) => {
             });
         } else {
             let date = new Date();
-            let currtim = date.getTime();
+            let currtim = date.getMilliseconds();
             console.log(res[0].varcode);
             console.log(code);
             if (res[0].varcode == code) {
                 if (parseInt(res[0].endTime) >= parseInt(currtim)) {
-                    rs.status(200).json({
-                        message: 'Verification successfull',
-                        users: res
+                    userService.update(res[0].email, (err, response) => {
+                        rs.status(200).json({
+                            message: 'Verification successfull',
+                            users: res
+                        })
                     });
                 } else {
                     rs.status(402).json({
@@ -80,7 +86,16 @@ server.post('/password', (rq, rs) => {
             }
         }
     });
+});
 
+//set the password
+server.post('/password', (rq, rs) => {
+    userService.updatePassword(rq.body, (err, response) => {
+        rs.status(200).json({
+            message: 'Password set successfull',
+            users: response
+        })
+    });
 });
 
 
