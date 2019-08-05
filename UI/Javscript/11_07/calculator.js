@@ -34,7 +34,6 @@ class Calc {
             let var1 = JSON.parse(localStorage.getItem("var1"));
 
             if (localStorage.getItem("equal") == undefined) {
-
                 document.getElementById("eval").value = var1;
                 localStorage.setItem("equal", JSON.stringify(val));
                 console.log(var1);

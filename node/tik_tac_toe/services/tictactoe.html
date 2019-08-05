@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<head>
+    <title>TIC-TAC-TOE</title>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        const compare = (entry) => {
+            if (entry[9].v == 'o') {
+                $('input[id="winner"]').val('Turn of X');
+            } else if (entry[9].v == 'x') {
+                $('input[id="winner"]').val('Turn of O');
+            }
+            let win = -1;
+            if (entry[0].v == entry[1].v && entry[1].v == entry[2].v)
+                win = 1;
+            else if (entry[3].v == entry[4].v && entry[4].v == entry[5].v)
+                win = 1;
+            else if (entry[6].v == entry[7].v && entry[7].v == entry[8].v)
+                win = 1;
+            else if (entry[0].v == entry[3].v && entry[3].v == entry[6].v)
+                win = 1;
+            else if (entry[1].v == entry[4].v && entry[4].v == entry[7].v)
+                win = 1;
+            else if (entry[2].v == entry[5].v && entry[5].v == entry[8].v)
+                win = 1;
+            else if (entry[0].v == entry[4].v && entry[4].v == entry[8].v)
+                win = 1;
+            else if (entry[2].v == entry[4].v && entry[4].v == entry[6].v)
+                win = 1;
+            else if (entry[0].v != '1' && entry[1].v != '2' && entry[2].v != '3' && entry[3].v != '4' &&
+                entry[4].v != '5' && entry[5].v != '6' && entry[6].v != '7' &&
+                entry[7].v != '8' && entry[8].v != '9')
+                win = 0;
+
+            if (win == 1) {
+                if (entry[9].v == 'o') {
+                    $('input[id="winner"]').val('Player O wins');
+                } else if (entry[9].v == 'x') {
+                    $('input[id="winner"]').val('Player X wins');
+                }
+            } else if (win == 0) {
+                $('input[id="winner"]').val('Rohit Choubey wins');
+            }
+        }
+
+
+        const start = () => {
+
+            const _baseUrl = `http://localhost:1234/api/users`;
+
+            fetch(_baseUrl)
+                .then(res => res.json())
+                .then(data => {
+                    let entry = data.entries;
+                    if (entry[0].v != "1") {
+                        $('input[id="0"]').val(entry[0].v);
+                        $('input[id="0"]').prop('disabled', true);
+                    }
+                    if (entry[1].v != "2") {
+                        $('input[id="1"]').val(entry[1].v);
+                        $('input[id="1"]').prop('disabled', true);
+                    }
+                    if (entry[2].v != "3") {
+                        $('input[id="2"]').val(entry[2].v);
+                        $('input[id="2"]').prop('disabled', true);
+                    }
+                    if (entry[3].v != "4") {
+                        $('input[id="3"]').val(entry[3].v);
+                        $('input[id="3"]').prop('disabled', true);
+                    }
+                    if (entry[4].v != "5") {
+                        $('input[id="4"]').val(entry[4].v);
+                        $('input[id="4"]').prop('disabled', true);
+                    }
+                    if (entry[5].v != "6") {
+                        $('input[id="5"]').val(entry[5].v);
+                        $('input[id="5"]').prop('disabled', true);
+                    }
+                    if (entry[6].v != "7") {
+                        $('input[id="6"]').val(entry[6].v);
+                        $('input[id="6"]').prop('disabled', true);
+                    }
+                    if (entry[7].v != "8") {
+                        $('input[id="7"]').val(entry[7].v);
+                        $('input[id="7"]').prop('disabled', true);
+                    }
+                    if (entry[8].v != "9") {
+                        $('input[id="8"]').val(entry[8].v);
+                        $('input[id="8"]').prop('disabled', true);
+                    }
+
+                    compare(entry);
+
+                })
+        }
+
+        const newGame = () => {
+
+            const _baseUrl = `http://localhost:1234/api/users`;
+            let v = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+            let id = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+            fetch(_baseUrl + '/updateTable', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _id: id,
+                        v: v
+                    })
+                }).then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                })
+        }
+
+
+        const submit = (id) => {
+            const indVal = document.getElementById(id).value;
+
+            $(`input[id=${id}]`).prop('disabled', true);
+
+            const _baseUrl = `http://localhost:1234/api/users`;
+            fetch(_baseUrl + '/update', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _id: id,
+                        v: indVal
+                    })
+                }).then(res => res.json())
+                .then(res => {
+                    fetch(_baseUrl + '/updatePlayer', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                _id: id,
+                                v: indVal
+                            })
+                        }).then(res => res.json())
+                        .then(res => {
+                            fetch(_baseUrl)
+                                .then(res => res.json())
+                                .then(data => {
+                                    let entry = data.entries;
+                                    compare(entry);
+                                })
+                        })
+                })
+        }
+    </script>
+</head>
+
+<body onload="start()">
+
+
+
+    <div>
+
+    </div>
+    <div class="row offset-2">
+        <div class="card border-primary">
+            <h6 class="card-header bg-secondary">TIC-TAC-TOE</h6>
+            <div class="card-body text-success">
+                <!--<h6 class="card-title">Hola</h6>-->
+                <p class="card-text">
+                    <div class="row">
+                        <div class="form-group">
+                            <input type="text" id="0" placeholder="Enter" onchange="submit('0')" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="1" placeholder="Enter" onchange="submit('1')" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="2" placeholder="Enter" onchange="submit('2')" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <input type="text" id="3" placeholder="Enter" onchange="submit('3')" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="4" placeholder="Enter" onchange="submit('4')" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="5" placeholder="Enter" onchange="submit('5')" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <input type="text" id="6" placeholder="Enter" onchange="submit('6')" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="7" placeholder="Enter" onchange="submit('7')" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="8" placeholder="Enter" onchange="submit('8')" />
+                        </div>
+                    </div>
+
+                </p>
+                <div class="card-footer">
+                    <input type="text" id="winner" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <input type="button" id="newGame" value="New Game" onclick="newGame()" class="btn-primary" />
+</body>
+
+</html>

@@ -1,37 +1,49 @@
-const express = require('express');
-const server = express();
+const server = require('express').Router();
 const parser = require('body-parser');
 const cors = require('cors');
+
+const validate = require('./security.service').validate;
+
 // inject parser in express server
 server.use(parser.json());
 server.use(cors());
-// status api
 
-// calculate api
-
-/*
-server.get('/calculator/:operand/:num1/:num2', (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('content-type', 'application/json');
-    
-    res.end(JSON.stringify({
-        result: parseInt(req.params.num1) + parseInt(req.params.num2)
-    }));
+server.use('/calc', (rq, rs, next) => {
+    validate(rq, rs, next);
 });
-*/
 
-server.post('/calculator', (req, res) => {
+server.post('/calc', (req, res) => {
     res.setHeader('content-type', 'application/json');
-    console.log(req.body.numo + "---" + req.body.numt);
     const opr = req.body.opro;
     if (opr == '+') {
         res.end(JSON.stringify({
             opr: parseInt(req.body.numo) + parseInt(req.body.numt)
         }));
+    } else if (opr == '-') {
+        res.end(JSON.stringify({
+            opr: parseInt(req.body.numo) - parseInt(req.body.numt)
+        }));
+    } else if (opr == '*') {
+        res.end(JSON.stringify({
+            opr: parseInt(req.body.numo) * parseInt(req.body.numt)
+        }));
+    } else if (opr == '/') {
+        res.end(JSON.stringify({
+            opr: parseInt(req.body.numo) / parseInt(req.body.numt)
+        }));
+    } else if (opr == '^') {
+        console.log(opr);
+        res.end(JSON.stringify({
+
+            opr: Math.pow(parseInt(req.body.numo), parseInt(req.body.numt))
+        }));
+    } else if (opr == 'sqrt') {
+        res.end(JSON.stringify({
+            opr: Math.sqrt(parseInt(req.body.numo))
+        }));
     }
 });
-// PORT Binding
-const PORT = 1224;
-server.listen(PORT, () => {
-    console.log(`Server Started at ${PORT}`);
-});
+
+
+
+module.exports.calcRoutes = server;

@@ -10,9 +10,10 @@ class Service {
     fetchUser(_email, callback) {
             const _url = UserConstants.mongo.url + UserConstants.mongo.port;
             client.connect(_url, (err, connection) => {
-                connection.db(UserConstants.mongo.db).collection(UserConstants.mongo.collections.user).find({ email: _email }).toArray((err, response) => {
-                    callback(err, response);
-                });
+                connection.db(UserConstants.mongo.db).collection(UserConstants.mongo.collections.user)
+                    .find({ email: _email }).toArray((err, response) => {
+                        callback(err, response);
+                    });
             });
         }
         // generate hash
@@ -57,7 +58,7 @@ class Service {
         let userObj = {
             subject: "User Registration",
             body: `<div>Dear <b>${user.name}</b></div>
-                <div><br> Your Verification Code is : #${user.name[0]+'@'+user.email[0]}!</div>
+                <div><br> Your Verification Code is : ${user.varCode}</div>
                         <div><br>Thank you for registering</div>`,
             from: null,
             to: user.email

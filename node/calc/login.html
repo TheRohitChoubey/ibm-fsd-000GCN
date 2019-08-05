@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Login </title>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        const login = () => {
+            const uname = document.getElementById('uname').value;
+            const upass = document.getElementById('upass').value;
+            const _baseUrl = `http://localhost:1234/users`;
+            // make call to fetch api 
+            // interact with nodejs server
+            fetch(_baseUrl + '/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user: uname,
+                        pass: upass
+                    })
+                }).then(res => res.json())
+                .then(res => {
+                    localStorage.setItem("token", JSON.stringify(res.token));
+                    document.location.href = "D:\\ibm-fsd-000GCN\\node\\calc\\calc.html";
+                })
+        }
+    </script>
+</head>
+
+<body>
+
+
+
+    <div>
+
+    </div>
+    <div class="row offset-2">
+        <div class="card border-primary">
+            <h6 class="card-header bg-secondary">LOGIN</h6>
+            <div class="card-body text-success">
+                <!--<h6 class="card-title">Hola</h6>-->
+                <p class="card-text">
+                    <div class="form-group">
+                        <input type="text" id="uname" placeholder="Enter username..." />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="upass" placeholder="Enter password..." />
+                    </div>
+                    <input type="button" class="btn btn-primary" value="Login" id="login" onclick="login()" />
+                </p>
+                <div class="card-footer">
+                    <small>Please login here</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

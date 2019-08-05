@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <title>
+        Bill
+    </title>
+    <script type="text/javascript">
+        const createTable = () => {
+            const _url = 'http://localhost:1269/cart';
+            let total = 0;
+            fetch(_url)
+                .then(res => res.json())
+                .then(cart => {
+                    let items = cart.cart;
+                    let rows = '';
+                    items.forEach((c) => {
+                        rows += `<tr>
+                            <td>${c.id}</td>
+                            <td>${c.name}</td>
+                            <td>${c.price}</td>
+                            <td>${c.quantity}</td>
+                        </tr>`
+                        total = total + (c.price) * (c.quantity);
+                    });
+                    const _table = `<table id="data">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                </tr>
+                                ${rows}
+                            </table>`
+                    document.getElementById('cart').innerHTML = _table;
+                    document.getElementById('last').value = total;
+                    let email = document.getElementById('email').value;
+                    let cont = _table + "<br>Grand Total =" + total;
+                    fetch(_url + '/email', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                email: email,
+                                data: cont
+                            })
+                        })
+                        .then(res => res.json())
+                        .then(res => {
+                            alert("Invoice Sent to you resgistered Email Id ");
+                        })
+                })
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <h1>Rohit Choubey</h1>
+        <h2>rohitc.choubey@gmail.com</h2>
+        <h2>Banglore, Karnataka</h2>
+    </div>
+    Enter Email =
+    <input type="text" id="email" placeholder="Enter email" />
+    <input type="button" id="save" onclick="createTable()" value="Print Bill" />
+    <div class="center" id="cart">
+    </div>
+    <div class="center">
+        Grand Total =<input type="text" id="last" value="" />
+    </div>
+</body>
+
+</html>

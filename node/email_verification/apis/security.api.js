@@ -40,7 +40,7 @@ server.post('/register', (rq, rs) => {
                 trace: err
             });
         } else {
-            userService.email(rq.body);
+            userService.email(_user);
             rs.status(200).json({
                 message: 'User created successfully',
                 users: res

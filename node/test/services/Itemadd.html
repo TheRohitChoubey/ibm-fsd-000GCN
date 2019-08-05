@@ -1,0 +1,103 @@
+<html>
+
+<head>
+    <title>
+        Add Item
+    </title>
+    <script type="text/javascript">
+        const getItems = () => {
+            const _url = 'http://localhost:1269/items';
+            fetch(_url)
+                .then(res => res.json())
+                .then(items => {
+                    createTable(items);
+                })
+        }
+        const saveItems = () => {
+            const baseUrl = 'http://localhost:1269/items/';
+            // api to get the next user id
+            fetch(baseUrl + '/nextId')
+                .then(res => res.json())
+                .then(res => {
+                    const id = res.nextId;
+                    const name = document.getElementById('name').value;
+                    const quant = document.getElementById('quantity').value;
+                    const price = document.getElementById("price").value;
+                    // create user
+                    fetch(baseUrl + '/add', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id: id,
+                                name: name,
+                                quantity: quant,
+                                price: price
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            createTable(data);
+                        });
+                })
+        }
+
+        const saveQuantity = (id) => {
+            const baseUrl = 'http://localhost:1269/items';
+            const quant = document.getElementById(id).value;
+            fetch(baseUrl + '/addQuan', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: id,
+                        quantity: quant
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+
+                });
+        }
+
+        const createTable = (data) => {
+            let rows = '';
+            let quant = '';
+            data.items.forEach(i => {
+                rows += `<tr>
+                            <td>${i.id}</td>
+                            <td>${i.name}</td>
+                            <td>${i.price}</td>
+                            <td><input type="number" id="${i.id}" value="${i.quantity}"/></td>
+                         <td><input type="button" value="save" onclick="saveQuantity(${i.id})"/></td>
+                        </tr>`
+            });
+            const _table = `<table>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                </tr>
+                                ${rows}
+                            </table>`
+            document.getElementById('items').innerHTML = _table;
+        }
+    </script>
+</head>
+
+<body onload="getItems()">
+    <input type="text" id="name" placeholder="Name..." />
+    <input type="text" id="price" placeholder="Price..." />
+    <input type="text" id="quantity" placeholder="Quantity..." />
+    <input type="button" id="save" onclick="saveItems()" value="SAVE" />
+    <div id="items">
+    </div>
+    <div>
+        <a href="Shop.html">Go to Shopping></a>
+    </div>
+</body>
+
+</html>

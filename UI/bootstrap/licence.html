@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Licence
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <style>
+        .nationemblem {
+            background: white;
+            width: 40px;
+            height: 60px;
+        }
+        
+        .h2 {
+            color: white;
+            font-size: 30px;
+            display: inline;
+        }
+    </style>
+    <script type="text/javascript">
+        const edit = () => {
+            $("input").prop('disabled', false);
+        }
+
+        const save = () => {
+            $("input").prop('disabled', true);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-2">
+            <button class="btn btn-primary" onclick="edit()" type="submit">Edit</button>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-5">
+
+            <div class="card border-primary">
+                <h6 class="card-header h2" style="background: blue"><img class="nationemblem" src="ne.jpg">&nbsp; &nbsp; &nbsp;INDIAN UNION DRIVING LICENCE</h6>
+                <div class="card-body bg-primary text-success">
+                    <h6 class="card-title text-primary text-center">MADHYA PRADESH STATE</h6>
+                    <p class="card-text">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-3">
+                                    <img src="chipp.jpg" class="text-center">
+                                </div>
+                                <div class="col-5">
+                                    <table>
+
+                                        <tr>
+                                            <td style="color: black; font-size: 12px"><b>Number</b></td>
+                                            <td style="color: black; font-size: 12px"><input type="text" class="bg-primary" style="color: black" value="MP08 ME 5258" id="num" disabled></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="color: black; font-size: 12px"><b>Name</b></td>
+                                            <td style="color: black; font-size: 12px"><input type="text" class="bg-primary" style="color: black" value="ROHIT CHOUBEY" id="num" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: black; font-size: 12px"><b>S/D/W of</b></td>
+                                            <td style="color: black; font-size: 12px"><input type="text" class="bg-primary" style="color: black" value="HARIOM CHOUBEY" id="num" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: black; font-size: 12px"><b>Address</b></td>
+                                            <td style="color: black; font-size: 12px"><input type="text" class="bg-primary" style="color: black" value="I-16, Vivek Colony, Cantt, Guna (M.P)" id="num" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: black; font-size: 12px"><b>Issued on</b></td>
+                                            <td style="color: black"><input type="text" class="bg-primary" style="color: black" value="26/07/2019" id="num" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: black; font-size: 12px"><b>DOB</b></td>
+                                            <td style="color: black; font-size: 12px"><input type="text" class="bg-primary" style="color: black" value="20/06/1996" id="num" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: black; font-size: 12px"><b>BG</b></td>
+                                            <td style="color: black; font-size: 12px"><input type="text" class="bg-primary" style="color: black" value="O+ive" id="num" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: black; font-size: 12px"><b>is Licence to drive</b></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-4">
+                                    <img src="rohit.jpeg"><br><br><img src="signature.jpg">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    <table class="table">
+
+                                        <tr>
+                                            <td style="color: black; font-size: 8px"><b>Vehicle Number</b></td>
+                                            <td style="color: black; font-size: 8px">MP08 ME 5258</td>
+                                            <td style="color: black; font-size: 8px"><b>GCN2</b></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="color: black; font-size: 8px"><b>Valid till</b></td>
+                                            <td style="color: black; font-size: 8px">26-07-2029</td>
+                                            <td style="color: black; font-size: 8px">Rohit</td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <button class="btn btn-primary" onclick="save()" type="submit">Save</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

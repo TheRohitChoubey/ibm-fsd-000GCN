@@ -1,0 +1,210 @@
+<html>
+
+<head>
+    <title>
+        Shopping
+    </title>
+    <script type="text/javascript">
+        const getItems = () => {
+            const _url = 'http://localhost:1269/items';
+            const baseUrl = 'http://localhost:1269/cart';
+            fetch(_url)
+                .then(res => res.json())
+                .then(items => {
+
+                    fetch(baseUrl)
+                        .then(res => res.json())
+                        .then(cart => {
+                            let cartItems = cart.cart;
+                            let allitems = items.items;
+                            let findItem;
+                            cartItems.forEach((c) => {
+                                findItem = allitems.find((i) => {
+                                    return i.id == c.id;
+                                });
+                            })
+
+                            if (findItem != undefined) {
+                                cartItems.forEach((c) => {
+                                    allitems = allitems.filter((i) => {
+                                        return i.id != c.id;
+                                    });
+                                })
+                            }
+                            createDropItem(allitems);
+                        })
+                })
+        }
+
+        const saveQuantity = (id, price) => {
+            const baseUrl = 'http://localhost:1269/cart';
+            const quant = document.getElementById(id).value;
+            fetch(baseUrl + '/addQuan', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: id,
+                        quantity: quant
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    let cart = data.cart;
+                    document.getElementById('p' + id).value = parseInt(price) * parseInt(quant);
+
+                    if (parseInt(quant) == 0) {
+                        cart = cart.filter((c) => {
+                            return c.id != id;
+                        });
+
+                        fetch(baseUrl + '/removeId', {
+                                method: 'POST',
+                                headers: {
+                                    'content-type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    id
+                                })
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                const _url = 'http://localhost:1269/items';
+                                fetch(_url)
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        let allitems;
+                                        allitems = data.items;
+
+                                        cart.forEach((c) => {
+                                            allitems = allitems.filter((e) => {
+                                                return e.id != c.id;
+                                            })
+                                        })
+                                        createDropItem(allitems);
+                                    })
+                            })
+                        createTable(cart);
+                    }
+                    total(cart);
+                });
+        }
+
+        const saveItems = () => {
+
+            const _url = 'http://localhost:1269/items';
+            const baseUrl = 'http://localhost:1269/cart';
+            let allitems = [];
+            let item = document.getElementById("item").value;
+            // api to get the next user id
+            fetch(_url)
+                .then(res => res.json())
+                .then(items => {
+                    allitems = items.items;
+
+                    let findItem = allitems.find((i) => {
+                        return i.name == item;
+                    });
+
+                    fetch(baseUrl + '/add', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id: findItem.id,
+                                name: findItem.name,
+                                quantity: 1,
+                                price: parseInt(findItem.price),
+                                oquantity: findItem.quantity
+                            })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            let items = data.cart;
+                            items.forEach((n) => {
+                                allitems = allitems.filter((i) => {
+                                    return i.name != n.name;
+                                });
+                            });
+
+                            createDropItem(allitems);
+                            createTable(items);
+                            total(items);
+                        });
+                })
+
+        }
+
+
+        const createTable = (cart) => {
+            let rows = '';
+            cart.forEach((c, i) => {
+                let price = parseInt(c.price) * parseInt(c.quantity);
+                rows += `<tr>
+                            <td>${c.id}</td>
+                            <td>${c.name}</td>
+                            <td><input type="number" id="p${c.id}" value="${price}" readonly/></td>
+                            <td><input type="number" id="${c.id}" value="${c.quantity}" max="${c.oquantity}"
+                                 onchange="saveQuantity(${c.id},${c.price})"/></td>
+                        </tr>`
+            });
+            const _table = `<table id="cart">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Add Items</th>
+                                </tr>
+                                ${rows}
+                            </table>`
+            document.getElementById('cart').innerHTML = _table;
+        }
+
+
+        const createDropItem = (items) => {
+
+            let options = '';
+            items.forEach(i => {
+                options += `<option>
+                            ${i.name}
+                        </option>`
+            });
+
+            const _select = `<select id="item">
+                            ${options}
+                            </select>`
+
+            document.getElementById('items').innerHTML = _select;
+        }
+
+        const total = (cart) => {
+
+            let len = cart.length;
+            let sum = 0;
+            for (i = 1; i <= parseInt(len); i++) {
+                sum = sum + parseInt(document.getElementById('p' + cart[i - 1].id).value);
+            }
+            document.getElementById('total').value = sum;
+            document.getElementById('len').innerText = len;
+
+        }
+    </script>
+</head>
+
+<body onload="getItems()">
+    <div id="items"></div>
+    <input type="button" id="save" onclick="saveItems()" value="Add to Cart" />
+    </div>
+    <div id="cart">
+    </div>
+    Total <input type="text" id="total" value="0" />
+
+    <a href="#" style="float: right">
+        <h2 id="count" style="display: inline; text-decoration: none;"></h2>
+        <p id="len"></p><img src="cart.jpg" height="100px" width="100px">
+        <br><a href="Print.html">Print Bill</a>
+</body>
+
+</html>
