@@ -10,17 +10,18 @@ server.get('/status', (rq, rs) => {
     });
 });
 // sign up
+
 server.post('/register', (rq, rs) => {
     let _user = rq.body;
 
     let date = new Date();
-    let end_Time = date.getMilliseconds() + 200000;
+    let end_Time = date.getTime() + 3000;
 
     let endTime = {
         endTime: end_Time
     }
 
-    let code = '#' + _user.name[0] + '@' + _user.email[0] + '!';
+    let code = '#' + _user.name[0] + '@' + _user.email[0] + '!' + Math.floor(Math.random() * Math.floor(100));
 
     let varCode = {
         varcode: code
@@ -53,6 +54,7 @@ server.post('/register', (rq, rs) => {
 
 // generate new password
 server.post('/otp', (rq, rs) => {
+    console.log(rq.params.email);
     let email = rq.body.email;
     let code = rq.body.code;
     userService.fetchUser(email, (err, res) => {
@@ -63,9 +65,9 @@ server.post('/otp', (rq, rs) => {
             });
         } else {
             let date = new Date();
-            let currtim = date.getMilliseconds();
+            let currtim = date.getTime();
             console.log(res[0].varcode);
-            console.log(code);
+            console.log(currtim);
             if (res[0].varcode == code) {
                 if (parseInt(res[0].endTime) >= parseInt(currtim)) {
                     userService.update(res[0].email, (err, response) => {
@@ -75,8 +77,40 @@ server.post('/otp', (rq, rs) => {
                         })
                     });
                 } else {
-                    rs.status(402).json({
-                        message: 'Unable to proceess the request Time Limit Expired'
+                    let _user = rq.body;
+
+                    let date = new Date();
+                    let end_Time = date.getTime() + 3000;
+
+                    let endTime = {
+                        endTime: end_Time
+                    }
+
+                    let code = '#' + _user.name[0] + '@' + Math.floor(Math.random() * Math.floor(100)) + _user.email[0] + '!';
+
+                    let varCode = {
+                        varcode: code
+                    }
+
+                    let status = {
+                        status: "invalid"
+                    }
+
+                    _user = Object.assign(_user, endTime, varCode, status);
+                    userService.email(_user);
+                    userService.updateVarCode(_user, (err, res) => {
+                        if (err) {
+                            rs.status(402).json({
+                                message: 'Unable to proceess the request',
+                                trace: err
+                            });
+                        } else {
+                            userService.email(_user);
+                            rs.status(200).json({
+                                message: 'Unable to proceess the request.. Time Limit Expired New Opt Sent',
+                                users: res
+                            });
+                        }
                     });
                 }
             } else {

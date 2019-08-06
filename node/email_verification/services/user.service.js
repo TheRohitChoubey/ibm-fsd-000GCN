@@ -54,11 +54,23 @@ class Service {
         });
     }
 
+    updateVarCode(details, callback) {
+
+        const _url = UserConstants.mongo.url + UserConstants.mongo.port;
+        client.connect(_url, (err, connection) => {
+            connection.db(UserConstants.mongo.db).collection(UserConstants.mongo.collections.user)
+                .updateOne({ email: details.email }, { $set: { varcode: details.varcode, endTime: details.endTime }, }, { upsert: true }, (err, response) => {
+                    callback(err, response);
+                });
+        });
+    }
+
     email(user) {
         let userObj = {
             subject: "User Registration",
             body: `<div>Dear <b>${user.name}</b></div>
-                <div><br> Your Verification Code is : ${user.varCode}</div>
+                <div><br> Your Verification Code is :http://localhost:46767/auth/otp?=${user.email}?=${user.varcode}</div>
+                <div><br><a href="#">Click Here</a>
                         <div><br>Thank you for registering</div>`,
             from: null,
             to: user.email
