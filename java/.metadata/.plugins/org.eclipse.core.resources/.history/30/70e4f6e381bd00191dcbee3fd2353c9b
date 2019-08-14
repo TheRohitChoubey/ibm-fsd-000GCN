@@ -1,0 +1,51 @@
+package comm.example;
+
+public class Line extends Model {
+
+	private int startPoint;
+	private int endPoint;
+	
+	public Line(int sP,int eP) {
+		this.startPoint=sP;
+		this.endPoint = eP;
+	}
+	
+	public int getStartPoint() {
+		return startPoint;
+	}
+
+	public void setStartPoint(int startPoint) {
+		this.startPoint = startPoint;
+	}
+
+	public int getEndPoint() {
+		return endPoint;
+	}
+
+	public void setEndPoint(int endPoint) {
+		this.endPoint = endPoint;
+	}
+
+	@Override
+	public boolean isGreater(obj2) {
+		Line l1 = (Line)obj2;
+		return this.calculateLength()>obj2.calculateLength();
+	}
+
+	@Override
+	public boolean isLesser() {
+		return false;
+	}
+
+	@Override
+	public boolean isEquals() {
+		return false;
+	}
+	
+	public int calculateLength() {
+		return this.getEndPoint()-this.getStartPoint();
+	}
+	
+	
+
+}

@@ -1,0 +1,15 @@
+package ProductProject;
+
+public class Tv extends Electronic {
+	private String brand;
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+	
+	
+}

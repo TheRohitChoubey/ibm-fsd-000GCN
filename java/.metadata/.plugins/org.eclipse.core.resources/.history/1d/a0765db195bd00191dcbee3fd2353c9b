@@ -1,0 +1,15 @@
+package comm.singleton;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Messaging m =Messaging.createMessagingObject();
+		System.out.println(m);
+		
+		m.createMessagingObject("Rohit");
+		System.out.println(m);
+		
+
+	}
+
+}

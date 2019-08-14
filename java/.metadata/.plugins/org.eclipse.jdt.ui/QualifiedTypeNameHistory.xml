@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="comm.example.MyDate"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="comm.example.p1.MyDate"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="Emps.Employee"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="Emps.PermanentEmployee"/>
+<fullyQualifiedTypeName name="Emps.ContractualEmployee"/>
+<fullyQualifiedTypeName name="java.awt.Point"/>
+<fullyQualifiedTypeName name="EqualCheck.Account"/>
+<fullyQualifiedTypeName name="ProductProject.Electronic"/>
+<fullyQualifiedTypeName name="ProductProject.Product"/>
+<fullyQualifiedTypeName name="ProductProject.Book"/>
+<fullyQualifiedTypeName name="comm.example.Superman"/>
+<fullyQualifiedTypeName name="comm.example.Model"/>
+<fullyQualifiedTypeName name="comm.living.LivingThings"/>
+<fullyQualifiedTypeName name="comm.living.Dog"/>
+<fullyQualifiedTypeName name="comm.singleton.Messaging"/>
+<fullyQualifiedTypeName name="comm.array.ArrayDemo"/>
+<fullyQualifiedTypeName name="comm.example2.Model.Square"/>
+</qualifiedTypeNameHistroy>

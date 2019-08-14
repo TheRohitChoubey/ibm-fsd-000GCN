@@ -1,0 +1,48 @@
+package comm.example;
+
+public class MyDate {
+	private int day;
+	private int month;
+	private int year;
+	
+	public void createDate(int d,int m,int y) {
+		
+		if(m>12) {
+			System.out.println("Month can't be greater than 12");
+			System.exit(0);
+		}
+		if(y<1990&&y>2019) {
+			System.out.println("Wrong Year");
+			System.exit(0);
+		}
+		
+		day=d;
+		month=m;
+		year=y;
+	}
+	
+	public int getDay() {
+		return day;
+	}
+	
+	public int getMonth() {
+		return month;
+	}
+	
+	public int getYear() {
+		return year;
+	}
+	
+	public boolean setDay(int d) {
+		day=d;
+		if(d>30) {
+			return false;
+		}
+		else
+		{
+			day=d;
+			return true;
+		}
+	}
+
+}

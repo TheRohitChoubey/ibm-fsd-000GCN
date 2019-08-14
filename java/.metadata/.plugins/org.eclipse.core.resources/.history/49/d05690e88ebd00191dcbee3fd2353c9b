@@ -1,0 +1,14 @@
+package comm.living;
+
+public class Dog implements LivingThings {
+	public String name,breed;
+	public Dog(String nm,String brd) {
+		this.name = nm;
+		this.breed = brd;
+	}
+	@Override
+	public void walk() {
+		
+	}
+
+}

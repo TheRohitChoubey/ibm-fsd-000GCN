@@ -1,0 +1,49 @@
+package comm.example7;
+
+public class ArrayDemo {
+	public int[] a= {
+			100,1,-20,30,0
+	},b;
+	
+	
+	public void mergesort(int low, int high){
+		if(low<high) {
+			int mid= (low+high)/2;
+			mergesort(low,mid);
+			mergesort(mid+1,high);
+			merges(low,mid,high);
+		}
+	}
+	
+	public void merges(int low, int mid, int high){
+		int i= low;
+		int j= mid;
+		int k = low;
+		
+		while(i<=mid&&j+1<=high) {
+			if(a[i]<a[j]) {
+				b[k++]=a[i++];
+			}
+			else {
+				b[k++]=a[j++];
+			}
+		}
+		
+		while(i<=mid) {
+			b[k++]=a[i++];
+		}
+		
+		while(j<=high) {
+			b[k++]=a[j++];
+		}
+		
+		for(i=0; i<a.length; i++) {
+			a[i]=b[i];
+		}
+	}
+	
+	public void useSort() {
+		this.mergesort(0,4);
+		System.out.println(a.toString());
+	}
+}

@@ -1,0 +1,41 @@
+package comm.example7;
+
+public class ArrayDemo {
+	
+	public void mergesort(int low, int high,int[] arr){
+		if(low<high) {
+			int mid= (low+high)/2;
+			this.mergesort(low,mid,arr);
+			this.mergesort(mid+1,high,arr);
+			this.merges(low,mid,high,arr);
+		}
+	}
+	
+	public void merges(int low, int mid, int high,int[] arr){
+		int i= low;
+		int j= mid;
+		int k = low;
+		int[] b = null;
+		
+		while(i<=mid&&j+1<=high) {
+			if(a[i]<a[j]) {
+				b[k++]=arr[i++];
+			}
+			else {
+				b[k++]=arr[j++];
+			}
+		}
+		
+		while(i<=mid) {
+			b[k++]=arr[i++];
+		}
+		
+		while(j<=high) {
+			b[k++]=arr[j++];
+		}
+		
+		for(i=0; i<arr.length; i++) {
+			arr[i]=b[i];
+		}
+	}
+}
