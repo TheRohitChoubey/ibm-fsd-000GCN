@@ -1,7 +1,0 @@
-package comm.example;
-
-public abstract class Model {
-	public abstract boolean isGreater();
-	public abstract boolean isLesser();
-	public abstract boolean isEquals();
-}
