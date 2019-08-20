@@ -2,14 +2,14 @@ package com.example3;
 
 import java.util.Scanner;
 
-class CRUD {
+class Menu {
 
 	public static void main(String[] args) {
 		int choice;
 		String name;
 		String id;
 		double gpa;
-		Student student = new Student();
+		Data data = new Data();
 		Scanner scanner = new Scanner(System.in);
 		do {
 		System.out.println("Enter your Choice: \n"
@@ -27,18 +27,18 @@ class CRUD {
 			name = scanner.next();
 			System.out.println("enter GPA:");
 			gpa = scanner.nextDouble();
-			student.addStudent(id, name, gpa);
+			data.addStudent(id, name, gpa);
 			System.out.println("added!!!");
 			break;
 			
 		case 2:
-			student.viewStudents();
+			data.viewStudents();
 			break;
 		case 3:
 			System.out.println("enter id to delete: ");
 			id = scanner.next();
 			try {
-				student.deleteStudent(id);
+				data.deleteStudent(id);
 			} catch (ObjectNotFoundException e) {
 				System.err.println(e.getMessage());
 			}
@@ -51,7 +51,7 @@ class CRUD {
 			System.out.println("enter GPA:");
 			gpa = scanner.nextDouble();
 			try {
-				student.updateStudent(id,name,gpa);
+				data.updateStudent(id,name,gpa);
 			} catch (ObjectNotFoundException e) {
 				System.err.println(e.getMessage());
 			}

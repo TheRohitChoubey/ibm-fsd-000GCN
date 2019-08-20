@@ -3,17 +3,17 @@ package com.example3;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class Student  implements Comparable<Object>{
+public class Data  implements Comparable<Object>{
 	private String id;
 	private String name;
 	private double gpa;
-	Set<Student> list = new TreeSet<Student>();
+	Set<Data> list = new TreeSet<Data>();
 
-	public Student() {
+	public Data() {
 		super();
 	}
 
-	public Student(String id, String name, double gpa) {
+	public Data(String id, String name, double gpa) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -51,17 +51,17 @@ public class Student  implements Comparable<Object>{
 	}
 	
 	public void addStudent(String id, String name, double gpa) {
-		list.add(new Student(id,name,gpa));
+		list.add(new Data(id,name,gpa));
 	}
 
 	public void viewStudents() {
-		for(Student s: list)
+		for(Data s: list)
 		System.out.println(s);
 	}
 	
 	public void deleteStudent(String id) throws ObjectNotFoundException {
 		boolean flag = false;
-		for(Student s: list) {
+		for(Data s: list) {
 			if(s.getId().equals(id))
 				{
 				list.remove(s);
@@ -82,7 +82,7 @@ public class Student  implements Comparable<Object>{
 	
 	public void updateStudent(String id, String name, double gpa) throws ObjectNotFoundException {
 		boolean flag = false;
-		for(Student s: list) {
+		for(Data s: list) {
 			if(s.getId().equals(id))
 				{
 				s.setName(name);
@@ -105,7 +105,7 @@ public class Student  implements Comparable<Object>{
 	
 	@Override
 	public int compareTo(Object o) {
-		Student s = (Student)o;
+		Data s = (Data)o;
 		if(this.getGpa() == s.getGpa()) {
 			return 0;
 		}
