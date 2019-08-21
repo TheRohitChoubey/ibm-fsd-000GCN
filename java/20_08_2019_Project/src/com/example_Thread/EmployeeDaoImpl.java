@@ -61,6 +61,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
+	public Employee delEmployeeById(int id) {
+		Employee e = new Employee();
+		try {
+			pStatement = connection.prepareStatement("delete from employee where id = ?");
+			pStatement.setInt(1, id);
+			pStatement.executeUpdate();
+		} catch (SQLException ex) {
+
+			ex.printStackTrace();
+		}
+		return e;
+	}
+	
+	@Override
 	public void createEmployee(Employee employee) {
 		try {
 			pStatement = connection.prepareStatement("insert into employee values(?,?,?,?)");

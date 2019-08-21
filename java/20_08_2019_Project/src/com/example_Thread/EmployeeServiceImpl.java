@@ -29,5 +29,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		return dao.getEmployeeById(id);
 	}
+	
+	@Override
+	public Employee delEmployeeById(int id) {
+
+		return dao.delEmployeeById(id);
+	}
 
 }

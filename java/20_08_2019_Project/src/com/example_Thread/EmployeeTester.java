@@ -13,7 +13,8 @@ public class EmployeeTester {
 		do {
 			System.out.println("1.create employee.");
 			System.out.println("2.display all employee");
-			System.out.println("3.Get employee by Id");
+			System.out.println("3.Delete by Id");
+			System.out.println("4.Get employee by Id");
 			System.out.println("0:exit");
 			System.out.print("Your Choice: ");
 			choice = scanner.nextInt();
@@ -38,7 +39,13 @@ public class EmployeeTester {
 			case 3:
 				System.out.print("EMployee ID: ");
 				id = scanner.nextInt();
-				Employee e = service.getEmployeeById(id);
+				Employee e = service.delEmployeeById(id);
+				System.out.println("1 row Deleted");
+				break;
+			case 4:
+				System.out.print("EMployee ID: ");
+				id = scanner.nextInt();
+				e = service.getEmployeeById(id);
 				System.out.printf("\n%d\t%s\t%s\t%s", e.getId(), e.getFirstName(), e.getLastName(), e.getEmail());
 				break;
 			case 0:

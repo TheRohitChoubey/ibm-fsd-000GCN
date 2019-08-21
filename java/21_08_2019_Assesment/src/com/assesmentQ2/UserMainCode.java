@@ -15,6 +15,9 @@ public class UserMainCode {
 	
 	public static boolean checkPassword(String pass) {
 	    boolean inMatch = true;
+	    if(pass.length() < 8) {
+	    	return false;
+	    }
 	    for (Pattern i : pattern) {
 	        if (!i.matcher(pass).matches()) {
 	            inMatch = false;
