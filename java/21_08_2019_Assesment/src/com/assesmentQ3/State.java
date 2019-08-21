@@ -1,6 +1,6 @@
 package com.assesmentQ3;
 
-public class State {
+public class State implements Comparable<State> {
 	private String stateName;
 
 	public State(String stateName) {
@@ -16,24 +16,31 @@ public class State {
 		this.stateName = stateName;
 	}
 
-	public String[] sortState(String[] s) {
-		int j;
-		boolean flag = true; // will determine when the sort is finished
-		String temp;
-
-		while (flag) {
-			flag = false;
-			for (j = 0; j < s.length - 1; j++) {
-				if (s[j].compareToIgnoreCase(s[j + 1]) > 0) { // ascending sort
-					temp = s[j];
-					s[j] = s[j + 1]; // swapping
-					s[j + 1] = temp;
-					flag = true;
-				}
-			}
-		}
-		
-		return s;
+	@Override
+	public int compareTo(State o) {
+		String str1 = this.getStateName();
+		String str2 = o.getStateName();
+		int l1 = str1.length(); 
+        int l2 = str2.length(); 
+        int lmin = Math.min(l1, l2); 
+  
+        for (int i = 0; i < lmin; i++) { 
+            int str1_ch = (int)str1.charAt(i); 
+            int str2_ch = (int)str2.charAt(i); 
+  
+            if (str1_ch != str2_ch) { 
+                return str1_ch - str2_ch; 
+            } 
+        } 
+        if (l1 != l2) { 
+            return l1 - l2; 
+        } 
+        else { 
+            return 0; 
+        } 
 	}
 
+	
+
+	
 }
