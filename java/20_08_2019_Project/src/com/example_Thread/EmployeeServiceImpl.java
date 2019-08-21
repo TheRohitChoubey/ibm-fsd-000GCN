@@ -1,5 +1,6 @@
 package com.example_Thread;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<Employee> getAllEmployees() {
+	public ResultSet getAllEmployees() {
 
 		return dao.getAllEmployees();
 	}

@@ -31,10 +31,10 @@ public class EmployeeTester {
 				service.createEmployee(new Employee(id, firstName, lastName, email));
 				break;
 			case 2:
-				List<Employee> list = service.getAllEmployees();
-				for (Employee e : list) {
-					System.out.printf("\n%d\t%s\t%s\t%s", e.getId(), e.getFirstName(), e.getLastName(), e.getEmail());
-				}
+				//List<Employee> list = service.getAllEmployees();
+				//for (Employee e : list) {
+				//	System.out.printf("\n%d\t%s\t%s\t%s", e.getId(), e.getFirstName(), e.getLastName(), e.getEmail());
+				//}
 				break;
 			case 3:
 				System.out.print("EMployee ID: ");

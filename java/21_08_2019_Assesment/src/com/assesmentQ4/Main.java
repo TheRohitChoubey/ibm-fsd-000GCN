@@ -2,6 +2,7 @@ package com.assesmentQ4;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,6 +37,10 @@ public class Main {
 		
 		System.out.println("Contact list after sort by mobile number in descending order");
 		Collections.sort(cons);
+		Iterator<Contact> i = cons.iterator();
+	      while (i.hasNext()) {
+	         System.out.println(i.next());
+	      }
 
 	}
 }

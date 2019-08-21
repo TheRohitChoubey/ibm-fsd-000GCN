@@ -36,6 +36,7 @@ public class LoginReset extends JFrame {
 	 */
 	private static EmployeeService service;
 	private JButton btnDelete_1;
+	private JButton btnShowTable;
 	public static void main(String[] args) throws SQLException {
 		service = new EmployeeServiceImpl();
 		EventQueue.invokeLater(new Runnable() {
@@ -136,6 +137,24 @@ public class LoginReset extends JFrame {
 		});
 		btnDelete_1.setBounds(117, 237, 89, 23);
 		contentPane.add(btnDelete_1);
+		
+		btnShowTable = new JButton("Show Table");
+		btnShowTable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ViewEmployeeData();
+			}
+		});
+		btnShowTable.setBounds(310, 227, 89, 23);
+		contentPane.add(btnShowTable);
+		
+		JButton btnShowTwoTable = new JButton("Show two Table");
+		btnShowTwoTable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new ViewTwoTable();
+			}
+		});
+		btnShowTwoTable.setBounds(281, 113, 89, 23);
+		contentPane.add(btnShowTwoTable);
 
 		
 	}

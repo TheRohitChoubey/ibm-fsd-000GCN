@@ -26,20 +26,17 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public List<Employee> getAllEmployees() {
+	public ResultSet getAllEmployees() {
 		List<Employee> list = new ArrayList<Employee>();
 		try {
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery("select * from employee");
-			while (resultSet.next()) {
-				list.add(new Employee(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
-						resultSet.getString(4)));
-			}
+			
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
-		return list;
+		return resultSet;
 	}
 
 	@Override

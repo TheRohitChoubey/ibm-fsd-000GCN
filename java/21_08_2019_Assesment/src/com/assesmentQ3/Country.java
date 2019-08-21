@@ -20,8 +20,8 @@ public class Country {
 		this.name = name;
 	}
 
-	public List<State> getStateList() {
-		Collections.sort(this.stateList);
+	public List<State> getStateList(String[] s) {
+		
 		return stateList;
 	}
 
