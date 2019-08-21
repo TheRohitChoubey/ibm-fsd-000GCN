@@ -41,4 +41,10 @@
 <fullyQualifiedTypeName name="com.example1.MyConnectionFactory"/>
 <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
+<fullyQualifiedTypeName name="com.example1.Employee"/>
+<fullyQualifiedTypeName name="com.example2.MyThreadDemo1"/>
+<fullyQualifiedTypeName name="com.example2.MyThread3"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="com.example2.StackProducer"/>
+<fullyQualifiedTypeName name="java.lang.Thread"/>
 </qualifiedTypeNameHistroy>
