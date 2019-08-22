@@ -150,7 +150,6 @@ public class LoginReset extends JFrame {
 		JButton btnShowTwoTable = new JButton("Show two Table");
 		btnShowTwoTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new ViewTwoTable();
 			}
 		});
 		btnShowTwoTable.setBounds(281, 113, 89, 23);
