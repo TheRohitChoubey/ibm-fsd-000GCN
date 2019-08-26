@@ -45,8 +45,8 @@ public class EmployeeTester {
 			case 4:
 				System.out.print("EMployee ID: ");
 				id = scanner.nextInt();
-				e = service.getEmployeeById(id);
-				System.out.printf("\n%d\t%s\t%s\t%s", e.getId(), e.getFirstName(), e.getLastName(), e.getEmail());
+				//e = service.getEmployeeById(id);
+				//System.out.printf("\n%d\t%s\t%s\t%s", e.getId(), e.getFirstName(), e.getLastName(), e.getEmail());
 				break;
 			case 0:
 				System.out.println("Bye!");

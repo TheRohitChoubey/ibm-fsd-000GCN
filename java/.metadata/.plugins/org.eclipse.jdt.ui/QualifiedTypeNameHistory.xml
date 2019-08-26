@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="EqualCheck.Account"/>
-<fullyQualifiedTypeName name="ProductProject.Electronic"/>
-<fullyQualifiedTypeName name="ProductProject.Product"/>
-<fullyQualifiedTypeName name="ProductProject.Book"/>
-<fullyQualifiedTypeName name="comm.example.Superman"/>
-<fullyQualifiedTypeName name="comm.example.Model"/>
-<fullyQualifiedTypeName name="comm.living.LivingThings"/>
-<fullyQualifiedTypeName name="comm.living.Dog"/>
 <fullyQualifiedTypeName name="comm.singleton.Messaging"/>
 <fullyQualifiedTypeName name="comm.array.ArrayDemo"/>
 <fullyQualifiedTypeName name="comm.example2.Model.Square"/>
@@ -48,7 +40,6 @@
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="java.util.TreeMap"/>
 <fullyQualifiedTypeName name="com.assesmentQ5.LetterSequence"/>
-<fullyQualifiedTypeName name="java.sql.ResultSet"/>
 <fullyQualifiedTypeName name="net.proteanit.sql.DbUtils"/>
 <fullyQualifiedTypeName name="com.example1_SwingDemo.ViewEmployeeData"/>
 <fullyQualifiedTypeName name="com.example1_SwingDemo.ViewTwoTable"/>
@@ -60,4 +51,13 @@
 <fullyQualifiedTypeName name="java.lang.Comparable"/>
 <fullyQualifiedTypeName name="java.util.Comparator"/>
 <fullyQualifiedTypeName name="com.assesmentQ3.State"/>
+<fullyQualifiedTypeName name="com.example_1_Client_Server.NetworkingClient"/>
+<fullyQualifiedTypeName name="java.io.OutputStream"/>
+<fullyQualifiedTypeName name="com.example_Thread.EmployeeServiceImpl"/>
+<fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
+<fullyQualifiedTypeName name="com.example_Thread.Employee"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="java.io.ObjectInputStream"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
 </qualifiedTypeNameHistroy>
