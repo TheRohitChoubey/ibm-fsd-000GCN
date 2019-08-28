@@ -44,7 +44,29 @@ public class AddEmployee extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.println("<head>" + 
+				"<title>Add Employee</title>" + 
+				"</head>" + 
+				"<body>" + 
+				"<h1>Add Employee</h1>" + 
+				"	<form action=\"add_employee.dao\" method=\"post\">\r\n" + 
+				"\r\n" + 
+				"		Name:<input type=\"text\" name=\"uName\" /><br />\r\n" + 
+				"		<br /> Password:<input type=\"password\" name=\"uPass\" /><br />\r\n" + 
+				"		<br /> Email Id:<input type=\"text\" name=\"uEmail\" /><br />\r\n" + 
+				"		<br /> Country: <select name=\"uCountry\">\r\n" + 
+				"			<option>India</option>\r\n" + 
+				"			<option>Pakistan</option>\r\n" + 
+				"			<option>other</option>\r\n" + 
+				"		</select> <br />\r\n" + 
+				"		<br /> <input type=\"submit\" value=\"register\" />\r\n" + 
+				"\r\n" + 
+				"	</form>\r\n" + 
+				"	<br>\r\n" + 
+				"	<a href =\"employee_list.view\">View Employee List</a>\r\n" + 
+				"</body>");
 	}
 
 	/**
@@ -55,6 +77,8 @@ public class AddEmployee extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
+			
+			
 			doProcess(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -66,7 +90,7 @@ public class AddEmployee extends HttpServlet {
 			throws ServletException, IOException, SQLException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-
+		
 		name = request.getParameter("uName");
 		email = request.getParameter("uEmail");
 		password = request.getParameter("uPass");
