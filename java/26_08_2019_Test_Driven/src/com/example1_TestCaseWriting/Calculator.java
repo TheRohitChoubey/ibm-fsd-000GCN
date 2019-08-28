@@ -1,7 +1,7 @@
 package com.example1_TestCaseWriting;
 
 public class Calculator {
-	private int x = 5;
+	private int x = 50;
 	private int y = 7;
 
 	public Calculator() {

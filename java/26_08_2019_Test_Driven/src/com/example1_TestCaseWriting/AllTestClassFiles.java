@@ -4,16 +4,13 @@ import static org.junit.Assert.*;
 
 import junit.framework.*;
 
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+@RunWith(Suite.class)
+
+@Suite.SuiteClasses({ TestCalculator.class })
 
 public class AllTestClassFiles extends TestCase {
-	
-	public static TestSuite createTestSuite() {
-		TestSuite testSuite = new TestSuite("TestCalculator");
-		testSuite.addTest(new TestCalculator("add"));
-		return testSuite;
-	}
-	
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(createTestSuite());
-	}
+
 }
