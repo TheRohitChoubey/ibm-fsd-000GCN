@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Login </title>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        const addDetails = () => {
+            const name = document.getElementById('name').value;
+            let subject = [];
+            subject[0] = document.getElementById("maths").checked;
+            subject[1] = document.getElementById("eng").checked;
+            subject[2] = document.getElementById("com").checked;
+
+            if (subject[0] == true) {
+                _user = [{
+                    subject: "maths",
+                    name: name
+                }];
+            }
+            if (subject[1] == true) {
+                _user.push({
+                    subject: "english",
+                    name: name
+                })
+            }
+
+            if (subject[2] == true) {
+                _user.push({
+                    subject: "computer",
+                    name: name
+                })
+            }
+            console.log(_user);
+            const _baseUrl = `http://localhost:1234/users`;
+            // make call to fetch api 
+            // interact with nodejs server
+            fetch(_baseUrl + '/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user: _user
+                    })
+                }).then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                })
+        }
+    </script>
+</head>
+
+<body>
+
+
+
+    <div>
+
+    </div>
+    <div class="row offset-2">
+        <div class="card border-primary">
+            <h6 class="card-header bg-secondary">LOGIN</h6>
+            <div class="card-body text-success">
+                <!--<h6 class="card-title">Hola</h6>-->
+                <p class="card-text">
+                    <div class="form-group">
+                        <input type="checkbox" name="maths" id="maths" value="Maths">Maths
+                        <input type="checkbox" name="english" id="eng" value="English">English
+                        <input type="checkbox" name="com" id="com" value="Computer">Computer<br>
+
+                        <input type="text" name="name" id="name" placeholder="Enter Teacher Name" />
+
+                    </div>
+                    <input type="button" name="add" id="add" value="Add" onclick="addDetails()" /><br>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

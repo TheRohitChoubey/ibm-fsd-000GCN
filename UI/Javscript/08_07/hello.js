@@ -135,7 +135,7 @@ for (let m of messages) {
 for (let m in messages) {
     console.log(messages[m]);
 }
-get
+
 vals = {
     one: 'One Value',
     two: 'Two Value'

@@ -1,0 +1,22 @@
+<p>employee works!</p>
+<input type="button" (click)="addEmp()" value="Add" />
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Status</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let e of emps">
+            <td>{{e.id}}</td>
+            <td>{{e.name}}</td>
+            <td>{{e.age}}</td>
+            <td>{{e.stat}}</td>
+            <td><input type="button" (click)="delEmp(e.id)" value="Delete" /></td>
+        </tr>
+    </tbody>
+</table>

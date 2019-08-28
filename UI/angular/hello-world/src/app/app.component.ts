@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Emp } from './structures/Emp';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'hello-world';
+  heading:string = 'hello-world';
+  _msg:string = "Welcome to Employees";
+  detailsFromEmp:Emp;
+
+  getDetailsFromEmp($event){
+    this.detailsFromEmp = $event;
+  }
 }

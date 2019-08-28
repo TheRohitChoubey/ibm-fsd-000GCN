@@ -1,0 +1,9 @@
+<fieldset>
+    <legend>ADD NEW USER</legend>
+    <form #AddFrm="ngForm" (submit)="addUser(AddFrm.value)">
+        <input type="number" placeholder="Enter Id" name="id" ngModel /> <br/>
+        <input type="text" placeholder="Enter Name" name="name" ngModel /> <br/>
+        <input type="number" placeholder="Enter Age" name="age" ngModel /> <br/>
+        <input type="submit" value="Add Users" />
+    </form>
+</fieldset>

@@ -1,0 +1,30 @@
+<head> </head>
+
+<body>
+    <div class="row offset-2">
+        <div class="card border-primary">
+            <h6 class="card-header bg-secondary">ADD NEW USER</h6>
+            <div class="card-body text-success">
+                <form [formGroup]="newUserForm" (ngSubmit)="submit()" novalidate>
+                    <div formGroupName="subjects">
+                        <div class="form-group">
+                            <input type="checkbox" formControlName="maths" value="Maths" />Maths<br />
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" formControlName="eng" value="English" />English<br />
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" formControlName="com" value="Computer" />Computer<br />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" formControlName="name" placeholder="Enter Teacher Name" /><br />
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Add Users" />
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

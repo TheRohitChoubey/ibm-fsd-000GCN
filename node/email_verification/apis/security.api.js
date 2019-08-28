@@ -15,13 +15,13 @@ server.post('/register', (rq, rs) => {
     let _user = rq.body;
 
     let date = new Date();
-    let end_Time = date.getTime() + 3000;
+    let end_Time = date.getTime() + 300000;
 
     let endTime = {
         endTime: end_Time
     }
 
-    let code = '#' + _user.name[0] + '@' + _user.email[0] + '!' + Math.floor(Math.random() * Math.floor(100));
+    let code = _user.name[0] + '!' + _user.email[0] + '@' + Math.floor(Math.random() * Math.floor(100)) + '$';
 
     let varCode = {
         varcode: code
@@ -53,10 +53,11 @@ server.post('/register', (rq, rs) => {
 
 
 // generate new password
-server.post('/otp', (rq, rs) => {
-    console.log(rq.params.email);
-    let email = rq.body.email;
-    let code = rq.body.code;
+server.get('/otp/:email/:name/:code', (rq, rs) => {
+    let email = rq.params.email;
+    let code = rq.params.code;
+    let name = rq.params.name;
+    console.log(email, "VarCodeURL=" + code);
     userService.fetchUser(email, (err, res) => {
         if (err) {
             rs.status(402).json({
@@ -66,27 +67,27 @@ server.post('/otp', (rq, rs) => {
         } else {
             let date = new Date();
             let currtim = date.getTime();
-            console.log(res[0].varcode);
+            console.log("VarcodeDB=" + res[0].varcode);
             console.log(currtim);
             if (res[0].varcode == code) {
                 if (parseInt(res[0].endTime) >= parseInt(currtim)) {
                     userService.update(res[0].email, (err, response) => {
-                        rs.status(200).json({
-                            message: 'Verification successfull',
-                            users: res
-                        })
+                        rs.redirect('D:\\ibm-fsd-000GCN\\node\\email_verification\\services\\passwordSet.html');
+
                     });
                 } else {
-                    let _user = rq.body;
-
+                    let _user = {
+                        email: rq.params.email,
+                        name: name
+                    }
                     let date = new Date();
-                    let end_Time = date.getTime() + 3000;
+                    let end_Time = date.getTime() + 300000;
 
                     let endTime = {
                         endTime: end_Time
                     }
 
-                    let code = '#' + _user.name[0] + '@' + Math.floor(Math.random() * Math.floor(100)) + _user.email[0] + '!';
+                    let code = _user.name[0] + '!' + _user.email[0] + '@' + Math.floor(Math.random() * Math.floor(100)) + '$';
 
                     let varCode = {
                         varcode: code
@@ -107,8 +108,7 @@ server.post('/otp', (rq, rs) => {
                         } else {
                             userService.email(_user);
                             rs.status(200).json({
-                                message: 'Unable to proceess the request.. Time Limit Expired New Opt Sent',
-                                users: res
+                                message: 'Unable to proceess the request.. Time Limit Expired New Opt Sent'
                             });
                         }
                     });

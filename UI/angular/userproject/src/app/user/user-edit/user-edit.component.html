@@ -1,0 +1,22 @@
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let e of users">
+            <td>{{e.id}}</td>
+            <td>{{e.name}}</td>
+            <td>{{e.age}}</td>
+            <td><input type="button" (click)="delUser(e.id)" value="Delete" /></td>
+            <td><input type="button" (click)="editUser(e.id)" value="Edit" /></td>
+        </tr>
+    </tbody>
+
+
+</table>

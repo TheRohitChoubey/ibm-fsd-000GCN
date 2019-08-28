@@ -1,0 +1,8 @@
+<fieldset>
+    <legend>Two Way Binding</legend>
+    <form #registerForm="ngForm" (submit)="editData()">
+        <input type="text" placeholder="Name" name="name" [(ngModel)]="user.name" /> <br/>
+        <input type="number" placeholder="Age" name="age" [(ngModel)]="user.age" /> <br/>
+        <input type="submit" value="Save" />
+    </form>
+</fieldset>

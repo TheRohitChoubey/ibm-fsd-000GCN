@@ -69,8 +69,8 @@ class Service {
         let userObj = {
             subject: "User Registration",
             body: `<div>Dear <b>${user.name}</b></div>
-                <div><br> Your Verification Code is :http://localhost:46767/auth/otp?=${user.email}?=${user.varcode}</div>
-                <div><br><a href="#">Click Here</a>
+                <div><br> Your Verification Code is : ${user.varcode}</div>
+                <div><br><a href="http://localhost:46767/auth/otp/${user.email}/${user.name}/${user.varcode}">Click Here</a>
                         <div><br>Thank you for registering</div>`,
             from: null,
             to: user.email
