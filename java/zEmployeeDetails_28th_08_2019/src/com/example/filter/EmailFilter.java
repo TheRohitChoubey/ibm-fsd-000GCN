@@ -12,7 +12,7 @@ import comm.example.factory.MyConnectionFactory;
  * Servlet Filter implementation class EmailFilter
  */
 @WebFilter(dispatcherTypes = { DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE,
-		DispatcherType.ERROR }, urlPatterns = { "/add_employee.dao" })
+		DispatcherType.ERROR }, urlPatterns = { "/verify_employee.dao" })
 public class EmailFilter implements Filter {
 	private String email;
 	private String password;
@@ -38,12 +38,14 @@ public class EmailFilter implements Filter {
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		email = request.getParameter("email").toString();
+		password = request.getParameter("pass").toString();
 
 		Connection connection = MyConnectionFactory.getMySqlConnectionForHR();
 
 		PreparedStatement pst;
 		try {
-			pst = connection.prepareStatement("select * from employee where email ='" + email + "'");
+			pst = connection.prepareStatement(
+					"select * from employee where email ='" + email + "' AND password ='" + password + "'");
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				chain.doFilter(request, response);

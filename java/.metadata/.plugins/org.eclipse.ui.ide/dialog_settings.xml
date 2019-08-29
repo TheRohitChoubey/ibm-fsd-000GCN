@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="E:\eclipse-workspace\ibm-fsd-000GCN\java\zEmployeeDetails_28th_08_2019"/>
+		<item value="E:\eclipse-workspace\ibm-fsd-000GCN\java\jsp_demo_29th_08"/>
+		<item value="E:\gitSir\java_fsd_2\jsp_demo_29th_08"/>
 		<item value="E:\eclipse-workspace\ibm-fsd-000GCN\java\Servers"/>
 		<item value="E:\eclipse-workspace\ibm-fsd-000GCN\java\soccer_league_27th_08"/>
 		<item value="E:\gitSir\java_fsd_2\soccer_league_27th_08"/>

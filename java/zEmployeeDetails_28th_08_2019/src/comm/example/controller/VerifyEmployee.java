@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -16,21 +17,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import comm.example.factory.MyConnectionFactory;
+import comm.example.model.Employee;
 
 /**
  * Servlet implementation class AddEmployee
  */
-@WebServlet("/add_employee.dao")
-public class AddEmployee extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@WebServlet("/verify_employee.dao")
+public class VerifyEmployee extends HttpServlet {
 	private String country, name, email, password;
 	private int id;
-	private List<String> errMsgs;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AddEmployee() {
+	public VerifyEmployee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -42,7 +42,7 @@ public class AddEmployee extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
@@ -52,44 +52,28 @@ public class AddEmployee extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-
-		name = request.getParameter("uName");
-		email = request.getParameter("uEmail");
-		password = request.getParameter("uPass");
-		country = request.getParameter("uCountry");
-
-		ResultSet rs;
 		try {
-			Connection connection = MyConnectionFactory.getMySqlConnectionForHR();
-			PreparedStatement pst = connection.prepareStatement("select max(id) from employee");
-			rs = pst.executeQuery();
-
-			if (rs.next()) {
-				id = rs.getInt(1);
-				out.println("No id found");
-			} else {
-				id = 0;
-			}
-			id++;
-			out.println(id);
-			pst = connection.prepareStatement("insert into employee(id,name,email,password,country) values(?,?,?,?,?)");
-
-			pst.setInt(1, id);
-			pst.setString(2, name);
-			pst.setString(3, email);
-			pst.setString(4, password);
-			pst.setString(5, country);
-
-			pst.executeUpdate();
+			
+			
+			doProcess(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
 
-		System.out.println("Record Added succesfully");
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
+		response.setContentType("text/html");
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		
+		name = request.getParameter("email");
+		password = request.getParameter("pass").toString();
+	
+		request.setAttribute("SUCCESS", new Employee(name, password));
 		RequestDispatcher view = request.getRequestDispatcher("AddEmployee.jsp");
-		view.forward(request, response);
+		 view.forward(request, response);
 	}
 
 }
