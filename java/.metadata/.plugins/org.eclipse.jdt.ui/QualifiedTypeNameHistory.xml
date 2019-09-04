@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.assesment.AgeComparator"/>
-<fullyQualifiedTypeName name="java.util.regex.Pattern"/>
 <fullyQualifiedTypeName name="com.assesmentQ2.UserMainCode"/>
 <fullyQualifiedTypeName name="java.awt.HeadlessException"/>
 <fullyQualifiedTypeName name="javax.swing.JLabel"/>
@@ -60,4 +58,6 @@
 <fullyQualifiedTypeName name="com.IBM.fsd.second_maven_demo.Dao.PetDao"/>
 <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
 <fullyQualifiedTypeName name="javax.persistence.Table"/>
+<fullyQualifiedTypeName name="com.mycompany._hb_one_to_one_bi.Instructor"/>
+<fullyQualifiedTypeName name="org.hibernate.cfg.Configuration"/>
 </qualifiedTypeNameHistroy>
