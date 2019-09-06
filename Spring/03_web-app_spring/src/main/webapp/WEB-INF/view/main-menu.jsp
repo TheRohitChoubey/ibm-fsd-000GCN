@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-Hello welcome to spring-mvc!!!!<br>
-<a href ="showView">Click Here</a>
+	Hello welcome to spring-mvc!!!!
+	<br>
+	<a href="showView">Click Here</a>
 </body>
 </html>

@@ -1,11 +1,16 @@
 package com.example.spring;
 
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @Controller
 @RequestMapping("/student")
@@ -26,6 +31,20 @@ public class StudentController {
 	@PostMapping("/processForm")
 	public String processForm(@ModelAttribute("student") Student theStudent,Model theModel) {
 		theModel.addAttribute("tempStudent",theStudent);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		StudentDao dao = context.getBean("eDao", StudentDao.class);
+		dao.createStudent(theStudent);
+		return "student-process";
+	}
+	
+	@GetMapping("/getData")
+	public String getDetails(Model theModel) {
+		 List<Map<String, Object>> studentsList;
+		Student student = new Student();
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		StudentDao dao = context.getBean("eDao", StudentDao.class);
+		studentsList = dao.getStudents();
+		theModel.addAttribute("studentList",studentsList);
 		return "student-detail";
 	}
 }
