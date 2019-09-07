@@ -10,15 +10,24 @@
 <title>Student Details</title>
 </head>
 <body>
-	Student FirstName:${tempStudent.firstName}
-	<br /> Student LastName:${tempStudent.lastName}
+	<h1>Data</h1>
+	<br />
+	<form:form action="processForm" modelAttribute="student">
+		<table>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+			</tr>
+			<c:forEach items="${studentList}" var="map">
+				<tr>
+					<c:forEach items="${map}" var="entry">
+						<td><c:out value="${entry.value}" /><br /></td>
+					</c:forEach>
+					<td><form:input path="firstName" item="${entry.value}"/></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</form:form>>
 
-	<br /> Student Language:${tempStudent.language}
-
-	<br /> Student Country:${tempStudent.country}
-	
-	<br/>Operating System : <c:forEach var="osList" items="${tempStudent.os}">
-		<c:out value="${osList}" />
-	</c:forEach>
 </body>
 </html>

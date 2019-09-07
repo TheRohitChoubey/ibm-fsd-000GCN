@@ -29,6 +29,6 @@
 		<br />
 	</form:form>
 	
-	<a href = "/student/getData">
+	<a href = "/student/getData">Click here</a>
 </body>
 </html>

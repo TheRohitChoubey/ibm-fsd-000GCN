@@ -27,7 +27,6 @@ public class StudentDao {
 	public void createStudent(Student student) {
 		String query = "insert into student(firstname) values(?)";
 		Object obj[] = { student.getFirstName() };
-		System.out.println(jdbcTemplate.toString());
 		jdbcTemplate.update(query, obj);
 		System.out.println("done");
 	}

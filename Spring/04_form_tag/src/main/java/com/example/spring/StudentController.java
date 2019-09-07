@@ -40,7 +40,16 @@ public class StudentController {
 	@GetMapping("/getData")
 	public String getDetails(Model theModel) {
 		 List<Map<String, Object>> studentsList;
-		Student student = new Student();
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		StudentDao dao = context.getBean("eDao", StudentDao.class);
+		studentsList = dao.getStudents();
+		theModel.addAttribute("studentList",studentsList);
+		return "student-detail";
+	}
+	
+	@PostMapping("/getName")
+	public String getByName(@ModelAttribute("student") Student theStudent,Model theModel) {
+		 List<Map<String, Object>> studentsList;
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		StudentDao dao = context.getBean("eDao", StudentDao.class);
 		studentsList = dao.getStudents();
