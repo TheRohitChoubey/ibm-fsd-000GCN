@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<bean name="theCoach"
+		class="com.IBm._myfirstSpring_Project.beans.BaseballCoach">
+
+		<constructor-arg name="id" value="100"></constructor-arg>
+		<constructor-arg name="name" value="Rohit"></constructor-arg>
+
+	</bean>
+
+	<bean name="thelucky"
+		class="com.IBm._myfirstSpring_Project.beans.FortuneServiceImpl">
+
+		<constructor-arg name="fortune"
+			value="Initialized Fortune"></constructor-arg>
+		<constructor-arg name="bs" ref="theCoach"></constructor-arg>
+
+	</bean>
+	<context:property-placeholder
+		location="classpath:classDetails.properties" />
+	<bean name="theCricket"
+		class="com.IBm._myfirstSpring_Project.beans.CricketCoach">
+		<property name="email" value="${foo.email}" />
+		<property name="teamName" value="${foo.team}" />
+	</bean>
+</beans>

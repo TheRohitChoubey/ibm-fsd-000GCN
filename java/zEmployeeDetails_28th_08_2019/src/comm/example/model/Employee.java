@@ -12,7 +12,12 @@ public class Employee implements Serializable {
 	public Employee() {
 		super();
 	}
-
+	public Employee(String name, String password) {
+		super();
+		this.name = name;
+		this.password = password;
+	}
+	
 	public Employee(String name, String password, String email, String country) {
 		super();
 		this.name = name;

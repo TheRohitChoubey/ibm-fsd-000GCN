@@ -84,7 +84,7 @@ public class AddLeagueController extends HttpServlet {
 		}
 		else {
 			request.setAttribute("ERROR", errMsgs);
-			RequestDispatcher view=request.getRequestDispatcher("add_league.view");
+			RequestDispatcher view=request.getRequestDispatcher("AddLeague.jsp");
 			view.forward(request, response);
 		}
 		
