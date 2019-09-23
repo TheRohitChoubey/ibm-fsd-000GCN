@@ -10,24 +10,23 @@
 <title>Student Details</title>
 </head>
 <body>
+	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 	<h1>Data</h1>
 	<br />
-	<form:form action="processForm" modelAttribute="student">
-		<table>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+		</tr>
+		<c:forEach items="${studentList}" var="map" varStatus="status">
 			<tr>
-				<th>Id</th>
-				<th>Name</th>
+				<c:forEach items="${map}" var="entry">
+					<td><c:out value="${entry.value}" /><br /></td>
+				</c:forEach>
+				<td><a
+					href="${contextPath}/student/getName?order=${studentList[status.index].id} ">Delete</a></td>
 			</tr>
-			<c:forEach items="${studentList}" var="map">
-				<tr>
-					<c:forEach items="${map}" var="entry">
-						<td><c:out value="${entry.value}" /><br /></td>
-					</c:forEach>
-					<td><form:input path="firstName" item="${entry.value}"/></td>
-				</tr>
-			</c:forEach>
-		</table>
-	</form:form>>
-
+		</c:forEach>
+	</table>
 </body>
 </html>
