@@ -1,0 +1,138 @@
+<div class="image">
+  <div class="row">
+    <div class="col-3">
+      <div class="sidebar-container">
+        <div class="sidebar-img">
+          <img src="https://icon-library.net/images/letters-icon/letters-icon-24.jpg"
+            style="width: 140px; height: 140px; 
+                        border-radius: 50%; margin-left: 27px; margin-top: 3px;">
+        </div>
+        <div class="sidebar-logo">
+          Admin-{{admin}}
+        </div>
+        <ul class="sidebar-navigation">
+
+          <li class="header">DashBoard</li>
+          <li><a [routerLink]="['/adminhome']">
+              <i class="fa fa-home" aria-hidden="true"></i> Home
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/userService/add']">
+              <i class="fa fa-tachometer" aria-hidden="true"></i>Add-User
+            </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/projectService/add']">
+              <i class="fa fa-home" aria-hidden="true"></i> Add-Project
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/projectService/view']">
+              <i class="fa fa-home" aria-hidden="true"></i> Project-List
+            </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/userService/view']">
+              <i class="fa fa-users" aria-hidden="true"></i>User-List
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/home']">
+              <i class="fa fa-users" aria-hidden="true"></i>LogOut
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="row">
+        <br>
+        <br>
+      </div>
+      <div class="row">
+        <table class="table  table-striped ">
+
+
+          <tbody class="table table-light table-hover">
+            <div class="bg-secondary" style="border-radius: 50px;"><br>
+              <h3 class="text-center text-white">Employee-Details</h3>
+              <br>
+            </div>
+            <div class="row"><br><br>
+            </div>
+            <tr *ngFor="let u of users">
+
+              <div class="row tbody">
+                <td class="col-4">
+                  <div class="row">
+                <td>
+                  <h5>Employee-Name :</h5>
+                </td>
+                <td>
+                  <p class="text-center"> {{u.username}} </p>
+                </td>
+              </div>
+              <div class="row">
+                <td>
+                  <h5>Employee-Email :</h5>
+                </td>
+                <td>
+                  <p class="text-center"> {{u.email}} </p>
+                </td>
+              </div>
+              </td>
+              <td class="col-4">
+                <div class="row">
+              <td>
+                <h5>Location :</h5>
+              </td>
+              <td>
+                <p class="text-center"> {{u.ulocation}} </p>
+              </td>
+      </div>
+      <div class="row">
+        <td>
+          <h5>Domain:</h5>
+        </td>
+        <td>
+          <p class="text-center"> {{u.udomain}} </p>
+        </td>
+      </div>
+      </td>
+      <td class="col-4">
+        <div class="row">
+      <td>
+        <h5>Previous-Project :</h5>
+      </td>
+      <td>
+        <p class="text-center"> {{u.previous_project}} </p>
+      </td>
+    </div>
+    <div class="row">
+      <td>
+        <h5>Employee-Type:</h5>
+      </td>
+      <td>
+        <p class="text-center"> {{u.userType}} </p>
+      </td>
+    </div>
+    </td>
+  </div>
+  <div class="row tbody">
+    <td><button class="btn btn-danger btn-lg" (click)="delete(u.email)">Remove</button></td>
+  </div>
+  <br>
+  <div class="row bg-info" style="border-radius: 50px;">
+    <br><br>
+  </div>
+  </tr>
+  </tbody>
+
+  </table>
+</div>
+</div>
+</div>
+</div>

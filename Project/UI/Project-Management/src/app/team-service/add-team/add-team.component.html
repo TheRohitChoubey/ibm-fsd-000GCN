@@ -1,0 +1,107 @@
+<body>
+  <div class="container-fluid image">
+    <div class="row">
+      <div class="col-3">
+
+        <div class="sidebar-container">
+          <div class="sidebar-img">
+            <img src="https://cdn3.iconfinder.com/data/icons/ringtone-music-instruments/512/letter-m-key-keyboard-2-512.png"
+              style="width: 140px; height: 140px; 
+                            border-radius: 50%; margin-left: 27px; margin-top: 3px;">
+          </div>
+          <div class="sidebar-logo">
+            Manager-{{manager}}
+          </div>
+          <ul class="sidebar-navigation">
+
+            <li class="header">DashBoard</li>
+            <li><a [routerLink]="['/managerhome']">
+                <i class="fa fa-home" aria-hidden="true"></i> Home
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/taskService/add']">
+                <i class="fa fa-home" aria-hidden="true"></i> Add-Task
+              </a>
+            </li>
+            <li>
+                <a [routerLink]="['/teamService/add']">
+                  <i class="fa fa-tachometer" aria-hidden="true"></i>Add-Member
+                </a>
+              </li>
+            <li>
+              <a [routerLink]="['/taskService/view']">
+                <i class="fa fa-home" aria-hidden="true"></i> Task-List
+              </a>
+            </li>
+            
+            <li>
+              <a [routerLink]="['/teamService/view']">
+                <i class="fa fa-users" aria-hidden="true"></i>Team-Memember-List
+              </a>
+            </li>
+
+            <li>
+              <a [routerLink]="['/home']">
+                <i class="fa fa-users" aria-hidden="true"></i>LogOut
+              </a>
+            </li>
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class="col-9">
+        <div class="row">
+          <div class="col-8">
+            <div class="card">
+              <div class="card-header bg-info" style="border-radius: 20px;">
+                <h3 class="bg1 text-center text-white">ADD NEW TEAM-MEMBER</h3>
+              </div>
+              <div class="card-body">
+                <!-- form -->
+                <form [formGroup]="newTeamForm" (ngSubmit)="submit()" novalidate>
+
+
+                  <div class="row">
+
+                    <div class="col-1"></div>
+                    <div class="form-group col-4">
+                      <label for="uassigndate">Assigndate:</label>
+                      <input type="text" formControlName="uassigndate" class="form-control form-control-lg"
+                        id="uassigndate" aria-describedby="uassigndate" placeholder="Enter Assigndate">
+                    </div>
+                  </div>
+                  <div class=" row form-group">
+                    <div class="col-5">
+                      <label for="uemail">Task Name:</label>
+                      <select formControlName="taskName" class="form-control form-control-lg" id="taskName"
+                        aria-placeholder="Task Name">
+                        <option *ngFor="let name of tName" [ngValue]="name.taskId">
+                          {{ name.taskName }}
+                        </option>
+                      </select>
+                    </div><br>
+                  </div>
+                  <div class=" row form-group">
+                    <div class="col-5">
+                      <label for="uemail">Email:</label>
+                      <select formControlName="uemail" class="form-control form-control-lg" id="uemail"
+                        aria-placeholder="Email">
+                        <option *ngFor="let name of uNames" [ngValue]="name.email">
+                          {{ name.name }}
+                        </option>
+                      </select>
+                    </div><br>
+                  </div>
+                  <input type="submit" class="btn btn-primary" value="Add-Member" />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

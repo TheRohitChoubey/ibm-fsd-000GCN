@@ -1,0 +1,172 @@
+
+        <div class="image">
+            <div class="row">
+              <div class="col-3">
+              <div class="sidebar-container">
+                  <div class="sidebar-img">
+                      <img src="https://cdn3.iconfinder.com/data/icons/ringtone-music-instruments/512/letter-m-key-keyboard-2-512.png" style="width: 140px; height: 140px; 
+                      border-radius: 50%; margin-left: 27px; margin-top: 3px;">
+                    </div>
+              <div class="sidebar-logo">
+                Manager-{{manager}}
+              </div>
+              <ul class="sidebar-navigation">
+                
+                <li class="header">DashBoard</li>
+                <li><a>
+                      <i class="fa fa-home" aria-hidden="true"></i> Home
+                      </a>
+                  </li>
+                  <li>
+                    <a  [routerLink]="['/taskService/add']">
+                      <i class="fa fa-home" aria-hidden="true"></i> Add-Task
+                    </a>
+                  </li>
+                  <li>
+                      <a [routerLink]="['/teamService/add']">
+                        <i class="fa fa-tachometer" aria-hidden="true"></i>Add-Member
+                      </a>
+                    </li>
+                    
+                <li>
+                  <a  [routerLink]="['/taskService/view']">
+                    <i class="fa fa-home" aria-hidden="true"></i> Task-List
+                </a>
+                </li>
+              
+                <li>
+                  <a [routerLink]="['/teamService/view']">
+                    <i class="fa fa-users" aria-hidden="true"></i>Team-Memember-List
+                  </a>
+                </li>
+                <li>
+                    <a data-toggle="modal" data-target="#updateModal">
+                      Update_Profile
+                    </a>
+                  </li>
+                  <li>
+                      <a [routerLink]="['/home']">
+                        <i class="fa fa-users" aria-hidden="true"></i>LogOut
+                      </a>
+                    </li>
+              </ul>
+              </div>
+              </div>
+
+            <div class="col-9">
+
+              <div class="row bg-info" style="border-radius: 40px;"><br>
+                <h1 class="text-center text-white" style="margin-left: 620px">Hello {{manager}}</h1>
+              </div>
+              <br>
+               <div class="row">
+                 <div class="col-1">
+                 </div>
+                 <div class="col-4"><h5>Name : </h5>{{userData.username}}</div>
+                 <div class="col-1"></div>
+                 <div class="col-4"><h5>Location : </h5>{{userData.ulocation}}</div>
+               </div>
+               <br>
+               <br>
+               <div class="row">
+                  <div class="col-1">
+                  </div>
+                  <div class="col-4"><h5>Project-Name: </h5>{{project.pname}}</div>
+                  <div class="col-1"></div>
+                  <div class="col-4"><h5>Project-Location : </h5>{{project.plocation}}</div>
+                </div>
+                <br>
+                <br>
+               <div class="row">
+              
+                <div class="col-6">
+
+                    <div class="card">
+                        <div class="card-header bg-danger"><h4 class="text-center text-white">Pie-Chart</h4></div>
+                        <div class="card-body"> <canvas baseChart
+                          [data]="pieData"
+                          [labels]="pieLabels"
+                          [chartType]="pieChartType"></canvas>
+                        
+                      
+                      </div></div>
+
+                </div>
+                <div class="col-6">
+                  <div class="card-header bg-primary"><h4 class="text-center text-white">Project-Status</h4></div>
+                  <div class="card-body"> <canvas baseChart
+                    [data]="doughnutData"
+                    [labels]="doughnutLables"
+                    [chartType]="doughnutChartType">
+                  </canvas>
+                 </div>
+                 </div>
+              
+                </div>
+
+            </div>
+
+            </div>
+            </div>
+
+
+            <!-- Update Modal -->
+            <!-- The Modal -->
+<div class="modal" id="updateModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+        
+
+            <form #registerForm="ngForm" (submit)="update()" validate>
+                <div class=" row form-group">
+                  <div class="col-4">
+                    <input type="text" class="form-control text-dark" name="username" [(ngModel)]="userData.username"
+                      placeholder="Enter Name" /><br />
+                  </div>
+                  <div class="col-4 ">
+                    <input type="text" class="form-control text-dark" name="password" [(ngModel)]="userData.password"
+                      placeholder="Enter Password" /><br />
+                  </div>
+                </div>
+                <div class="row form-group ">
+                  <div class="col-4">
+                    <input type="text" readonly class="form-control text-dark" name="udomain" [(ngModel)]="userData.udomain"
+                      placeholder="Domain" /><br />
+                  </div>
+                  <div class="col-4">
+                    <input type="text" class="form-control text-dark" name="ulocation" [(ngModel)]="userData.ulocation"
+                      placeholder="Location" /><br />
+                  </div>
+                </div>
+                <div class=" row form-group">
+                  <div class="col-4">
+                    <input type="email" class="form-control text-dark" readonly name="email"
+                      [(ngModel)]="userData.email" placeholder="Email" /><br />
+                  </div>
+                </div>
+    
+                <input type="submit" class="btn btn-danger btn-lg" value="Update" />
+    
+              </form>
+
+
+
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" id="close" style="display: none" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,92 @@
+<div class="image">
+    <div class="row">
+        <div class="col-3">
+                <div class="sidebar-container">
+                    <div class="sidebar-img">
+                        <img src="https://icon-library.net/images/letters-icon/letters-icon-24.jpg" style="width: 140px; height: 140px; 
+                        border-radius: 50%; margin-left: 27px; margin-top: 3px;">
+                      </div>
+                <div class="sidebar-logo">
+                  Admin_Name
+                </div>
+                <ul class="sidebar-navigation">
+                  
+                  <li class="header">DashBoard</li>
+                  <li><a [routerLink]="['/adminhome']">
+                        <i class="fa fa-home" aria-hidden="true"></i> Home
+                        </a>
+                    </li>
+                    <li>
+                      <a  [routerLink]="['/projectService/add']">
+                        <i class="fa fa-home" aria-hidden="true"></i> Add-Project
+                      </a>
+                    </li>
+                  <li>
+                    <a  [routerLink]="['/projectService/view']">
+                      <i class="fa fa-home" aria-hidden="true"></i> Project-List
+                  </a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['/userService/add']">
+                      <i class="fa fa-tachometer" aria-hidden="true"></i>Add-User
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a [routerLink]="['/userService/view']">
+                      <i class="fa fa-users" aria-hidden="true"></i>User-List
+                    </a>
+                  </li>
+                    <li>
+                        <a [routerLink]="['/home']">
+                          <i class="fa fa-users" aria-hidden="true"></i>LogOut
+                        </a>
+                      </li>
+                </ul>
+                </div>
+                </div>
+                <div class="col-9">
+    <div class="row">
+
+
+    </div>
+    <div class="row">
+        <div class="col-8">
+        <div class="formheader border-primary">
+            <h4 class="card-header bg-warning text-dark text-center">Update-Project</h4>
+            <div class="formbody">
+                <form [formGroup]="newProjectForm" (ngSubmit)="update()" novalidate>
+                    <div class=" row form-group">
+                        <div class="col-5">
+                        <input type="text" readonly class="form-control text-dark" formControlName="pname" placeholder="Enter Project Name" /><br />
+                    </div>
+                    <div class="col-5 ">
+                        <input type="text" class="form-control text-dark" formControlName="plocation" placeholder="Enter Project Location" /><br />
+                    </div>
+                    </div>
+                    <div class="row form-group ">
+                        <div class="col-5">
+                        <input type="text" class="form-control text-dark" formControlName="start_date" placeholder="Enter Start Date" /><br />
+                    </div>
+                    <div class="col-5">
+                        <input type="text" class="form-control text-dark" formControlName="end_date" placeholder="Enter End Date" /><br />
+                    </div>
+                    </div>
+                    <div class=" row form-group">
+                        
+                            <div class="col-5">
+                                <input type="text" readonly class="form-control text-dark" formControlName="pmanagerEmail" placeholder="Enter End Date" /><br />
+                            </div>
+                        
+                    </div>
+
+                    <input type="submit" class="btn btn-danger btn-lg" value="Update-Project" />
+
+                </form>
+                </div>
+                </div>
+                </div>
+            </div>
+            </div>
+    </div>
+</div>

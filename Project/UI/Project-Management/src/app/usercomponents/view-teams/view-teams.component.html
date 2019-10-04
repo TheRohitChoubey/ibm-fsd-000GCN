@@ -1,0 +1,96 @@
+<div class="image">
+    <div class="row">
+        <div class="col-3">
+                <div class="sidebar-container">
+                    <div class="sidebar-img">
+                        <img src="https://cdn3.iconfinder.com/data/icons/ringtone-music-instruments/512/letter-u-key-keyboard-2-512.png" style="width: 140px; height: 140px; 
+                        border-radius: 50%; margin-left: 27px; margin-top: 3px;">
+                      </div>
+                <div class="sidebar-logo">
+                   Hello {{user.username}}
+                </div>
+                <ul class="sidebar-navigation">
+        
+                    <li class="header">DashBoard</li>
+                    <li><a [routerLink]="['/userhome']">
+                          <i class="fa fa-home" aria-hidden="true"></i> Home
+                          </a>
+                      </li>
+                      <li>
+                        <a  [routerLink]="['/usercomponents/viewprojectdetails']">
+                          <i class="fa fa-home" aria-hidden="true"></i> Project-Details
+                        </a>
+                      </li>
+                      <li>
+                        <a [routerLink]="['/usercomponents/viewtasklist']">
+                          <i class="fa fa-tachometer" aria-hidden="true"></i> Task-Details
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a [routerLink]="['/usercomponents/viewteamslist']">
+                          <i class="fa fa-users" aria-hidden="true"></i> Project-Team
+                        </a>
+                      </li>
+                    
+                        <li>
+                            <a [routerLink]="['/home']">
+                              <i class="fa fa-users" aria-hidden="true"></i>LogOut
+                            </a>
+                          </li>
+                  </ul>
+                </div>
+                </div>
+                <div class="col-9">
+                  <br><br>
+    <table class="table  table-striped ">
+
+
+        <tbody class="table table-light table-hover">
+          <div class="bg-info" style="border-radius: 50px;"><br>
+            <h3 class="text-center text-white">Project-Team-Member</h3>
+            <br>
+          </div>
+          <div class="row"><br><br>
+          </div>
+            <tr *ngFor="let u of users">   
+                    
+              <div class="row tbody">
+               <td class="col-4">
+                <div class="row">
+                    <td><h5>Name :</h5></td> <td><p class="text-center"> {{u.username}} </p></td> 
+                </div>
+                <div class="row">
+                    <td><h5>Email :</h5></td> <td><p class="text-center"> {{u.email}} </p></td> 
+                </div>
+               </td>
+               <td class="col-4">
+                  <div class="row">
+                      <td><h5>Location :</h5></td> <td><p class="text-center"> {{u.ulocation}} </p></td> 
+                  </div>
+                  <div class="row">
+                      <td><h5>Domain:</h5></td> <td><p class="text-center"> {{u.udomain}} </p></td> 
+                  </div>
+                 </td>
+                 <td class="col-4">
+                    <div class="row">
+                        <td><h5>Task-Status :</h5></td> <td><p class="text-center"> {{u.status}} </p></td> 
+                    </div>
+                   </td>
+              </div>
+                <br>
+                <div class="row bg-info" style="border-radius: 50px;">
+                  <br><br>
+                </div>
+            </tr>
+        </tbody>
+        
+        </table>
+
+
+
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,117 @@
+<div class="image">
+  <div class="row">
+    <div class="col-3">
+      <div class="sidebar-container">
+        <div class="sidebar-img">
+          <img src="https://icon-library.net/images/letters-icon/letters-icon-24.jpg"
+            style="width: 140px; height: 140px; 
+                  border-radius: 50%; margin-left: 27px; margin-top: 3px;">
+        </div>
+        <div class="sidebar-logo">
+          Admin-{{admin}}
+        </div>
+        <ul class="sidebar-navigation">
+
+          <li class="header">DashBoard</li>
+          <li><a [routerLink]="['/adminhome']">
+              <i class="fa fa-home" aria-hidden="true"></i> Home
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/userService/add']">
+              <i class="fa fa-tachometer" aria-hidden="true"></i>Add-User
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/projectService/add']">
+              <i class="fa fa-home" aria-hidden="true"></i> Add-Project
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/projectService/view']">
+              <i class="fa fa-home" aria-hidden="true"></i> Project-List
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/userService/view']">
+              <i class="fa fa-users" aria-hidden="true"></i>User-List
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/home']">
+              <i class="fa fa-users" aria-hidden="true"></i>LogOut
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="signupForm">
+    <div class="formheader">
+      <div class="card-header bg-primary" style="border-radius: 40px;">
+        <h3 class="text-white text-center ">Add-User</h3>
+      </div>
+      <div class="formbody bg-light">
+        <form [formGroup]="newAddUserForm" (ngSubmit)="submit()" novalidate>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="name" class="text-white">Name</label>
+              <input type="text" formControlName="username" class="form-control" placeholder="Name" required>
+            </div>
+            <div class=" col-md-6">
+              <label for="city" class="text-white">City</label>
+              <select formControlName="ulocation" class="form-control" required>
+                <option *ngFor="let c of cities" [ngValue]="c">
+                  {{ c.city }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class=" col-md-6">
+              <label for="age" class="text-white">Previous_Project</label>
+              <input type="text" formControlName="previous_project" class="form-control " placeholder="Previous_Project"
+                required />
+            </div>
+            <div class=" col-md-6">
+              <label for="domain" class="text-white">Domain</label>
+              <input type="text" formControlName="udomain" class="form-control " placeholder="Domain" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label for="inputEmail4" class="text-white">Email</label>
+              <input type="email" formControlName="email" class="form-control" placeholder="Email" required>
+            </div>
+            <div class=" col-md-6">
+              <label for="inputPassword4" class="text-white">Password</label>
+              <input type="password" formControlName="password" class="form-control" placeholder="Password" required>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class=" col-md-6">
+              <label class="text-white" aria-placeholder="User-Type">UserType</label>
+              <select formControlName="userType" class="form-control">
+                <option *ngFor="let role of roles" [ngValue]="role">
+                  {{ role.type }}
+                </option>
+              </select>
+            </div>
+            <div class=" col-md-6">
+              <label for="domain" class="text-white">Availability</label>
+              <select formControlName="availability" class="form-control" required>
+                <option *ngFor="let a of available" [ngValue]="a">
+                  {{ a.status }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <input type="submit" [disabled]="!newAddUserForm.valid" class="btn btn-success btn-lg" value="Add-User" />
+
+        </form>
+      </div>
+    </div>
+  </div>

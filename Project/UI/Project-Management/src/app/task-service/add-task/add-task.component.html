@@ -1,0 +1,94 @@
+<div class="image container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <div class="sidebar-container">
+        <div class="sidebar-img">
+          <img src="https://cdn3.iconfinder.com/data/icons/ringtone-music-instruments/512/letter-m-key-keyboard-2-512.png"
+            style="width: 140px; height: 140px; 
+              border-radius: 50%; margin-left: 27px; margin-top: 3px;">
+        </div>
+        <div class="sidebar-logo">
+          Manager-{{manager}}
+        </div>
+        <ul class="sidebar-navigation">
+
+          <li class="header">DashBoard</li>
+          <li><a [routerLink]="['/managerhome']">
+              <i class="fa fa-home" aria-hidden="true"></i> Home
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/taskService/add']">
+              <i class="fa fa-home" aria-hidden="true"></i> Add-Task
+            </a>
+          </li>
+          <li>
+              <a [routerLink]="['/teamService/add']">
+                <i class="fa fa-tachometer" aria-hidden="true"></i>Add-Member
+              </a>
+            </li>
+  
+          <li>
+            <a [routerLink]="['/taskService/view']">
+              <i class="fa fa-home" aria-hidden="true"></i> Task-List
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/teamService/view']">
+              <i class="fa fa-users" aria-hidden="true"></i>Team-Memember-List
+            </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/home']">
+              <i class="fa fa-users" aria-hidden="true"></i>LogOut
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="col-9">
+      <div class="TaskForm" style="margin-top: 130px; width:67%; margin-left: 40px;">
+        <div class="card">
+          <div class="card-header bg-primary" style="border-radius: 25px;">
+            <h3 class="text-white text-center">Add-New task</h3>
+          </div>
+          <div class="card-body bg-light">
+            <form [formGroup]="newTaskForm" (ngSubmit)="submit()" novalidate>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="TaskName" class="text-dark">Task-Name</label>
+                  <input formControlName="taskName" id="taskName" class="form-control" placeholder="Task-Name" required>
+                </div>
+                
+              </div>
+              <div class="row">
+                <div class=" col-md-6">
+                  <label for="startDate" class="text-dark">Start-Date</label>
+                  <input type="date" formControlName="startDate" id="startDate" class="form-control " placeholder="Start-date" required/>
+                </div>
+                <div class=" col-md-6">
+                  <label for="endDate" class="text-dark">End-Date</label>
+                  <input type="date" formControlName="endDate" id="endDate" class="form-control " placeholder="End-date" required/>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="status" class="text-dark">Status</label>
+                  <input formControlName="status" class="form-control" id="status" placeholder="Status" required>
+                </div>
+
+              </div>
+              <input type="submit" [disabled]="!newTaskForm.valid" class="btn btn-success btn-lg" style="border-radius: 40px;" value="Add-Task" />
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

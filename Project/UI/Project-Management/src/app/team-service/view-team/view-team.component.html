@@ -1,0 +1,191 @@
+<div class="container-fluid">
+<div class="row">
+
+    <div class="col-3">
+
+            <div class="sidebar-container">
+                    <div class="sidebar-img">
+                        <img src="https://cdn3.iconfinder.com/data/icons/ringtone-music-instruments/512/letter-m-key-keyboard-2-512.png" style="width: 140px; height: 140px; 
+                        border-radius: 50%; margin-left: 27px; margin-top: 3px;">
+                      </div>
+                <div class="sidebar-logo">
+                Manager-{{manager}}
+                </div>
+                <ul class="sidebar-navigation">
+                      
+                  <li class="header">DashBoard</li>
+                  <li><a [routerLink]="['/managerhome']">
+                        <i class="fa fa-home" aria-hidden="true"></i> Home
+                        </a>
+                    </li>
+                    <li>
+                      <a  [routerLink]="['/taskService/add']">
+                        <i class="fa fa-home" aria-hidden="true"></i> Add-Task
+                      </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/teamService/add']">
+                          <i class="fa fa-tachometer" aria-hidden="true"></i>Add-Member
+                        </a>
+                      </li>
+                  <li>
+                    <a  [routerLink]="['/taskService/view']">
+                      <i class="fa fa-home" aria-hidden="true"></i> Task-List
+                  </a>
+                  </li>
+                  
+                  <li>
+                    <a [routerLink]="['/teamService/view']">
+                      <i class="fa fa-users" aria-hidden="true"></i>Team-Memember-List
+                    </a>
+                  </li>
+                
+                    <li>
+                        <a [routerLink]="['/home']">
+                          <i class="fa fa-users" aria-hidden="true"></i>LogOut
+                        </a>
+                      </li>
+                </ul>
+               
+                </div>
+
+    </div>
+
+    <div class="col-9">
+
+
+        <div class="row">
+            <br>
+            <br>
+          </div>
+          <div class="row">
+            <table class="table table-hover table-striped table-light">
+    
+              <tbody class="table table-light">
+                <div class="bg-danger" style="border-radius: 50px;"><br>
+                  <h3 class="text-center text-white">Team-List</h3>
+                  <br>
+                </div>
+                <div class="row"><br><br>
+                </div>
+    
+                <tr *ngFor="let u of users;let i= index">
+    
+                  <div class="row tbody">
+                    <td class="col-4">
+                      <div class="row">
+                    <td>
+                      <h5>Task-Name :</h5>
+                    </td>
+                    <td>
+                      <p class="text-center">{{tasks[i].taskName}}</p>
+                    </td>
+                  </div>
+                  </td>
+                  <td class="col-4">
+                    <div class="row">
+                  <td>
+                    <h5>Team Member Name :</h5>
+                  </td>
+                  <td>
+                    <p class="text-center"> {{u.username}}</p>
+                  </td>
+          </div>
+          <div class="row">
+            <td>
+              <h5>Team Member Status</h5>
+            </td>
+            <td>
+              <p class="text-center"> {{u.uStatus}} </p>
+            </td>
+          </div>
+          </td>
+          <td class="col-4">
+            <div class="row">
+          <td>
+            <h5>Team Member Domain</h5>
+          </td>
+          <td>
+            <p class="text-center"> {{u.udomain}}</p>
+          </td>
+        </div>
+        </td>
+      </div>
+      <div class="row tbody">
+        
+        <td><button class="btn btn-danger btn-lg" style="border-radius: 50px;" (click)="delete(u.email)">
+            <h4>Remove</h4>
+          </button></td>
+      </div>
+      <br>
+      <div class="row bg-info" style="border-radius: 50px;">
+        <br><br>
+      </div>
+      </tr>
+      </tbody>
+      </table>
+      </div>
+    </div>
+    </div>
+</div>
+    
+    
+    
+    
+    
+    
+    
+      <div class="modaldetails">
+        <button type="button" id="toggle" class="btn btn-primary" data-toggle="modal" data-target="#updateModal"
+          style="display: none">
+        </button>
+    
+        <!-- Modal -->
+        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update-Project</h5>
+                <button type="button" id="cross" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form #registerForm="ngForm" (submit)="update()" novalidate>
+                  <div class=" row form-group">
+                    <div class="col-5">
+                      <input type="text" class="form-control text-dark" name="taskName" [(ngModel)]="task.taskName"
+                        placeholder="Enter task Name" readonly /><br />
+                    </div>
+    
+                  </div>
+                  <div class="row form-group ">
+                    <div class="col-5">
+                      <input type="text" class="form-control text-dark" name="startDate" [(ngModel)]="task.startDate"
+                        placeholder="Enter Start Date" /><br />
+                    </div>
+                    <div class="col-5">
+                      <input type="text" class="form-control text-dark" name="endDate" [(ngModel)]="task.endDate"
+                        placeholder="Enter End Date" /><br />
+                    </div>
+                  </div>
+                  <div class=" row form-group">
+                    <div class="col-5">
+                      <input type="text" class="form-control text-dark" name="status" [(ngModel)]="task.status"
+                        placeholder="status" /><br />
+                    </div>
+                  </div>
+    
+                  <input type="submit" class="btn btn-danger btn-lg" value="update task" />
+    
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="updateclose" class="btn btn-secondary" data-dismiss="modal"
+                  style="display: none">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

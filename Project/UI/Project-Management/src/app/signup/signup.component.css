@@ -1,0 +1,38 @@
+.image{
+    background-image: url("https://wallpaperplay.com/walls/full/c/5/e/101329.jpg");
+    background-attachment: fixed;
+    width: 100%;
+    height: 650px;
+    }
+    .sign{
+    margin-left: 130px;
+    margin-top: 20px;
+    width: 76%;
+    height: 100%;
+    }
+    h1{
+    margin-top: 20px;
+    margin-left: 410px;
+     color:  #00ff00;
+    }
+    .btn{
+    background: linear-gradient(to bottom right, #3366ff 7%, #ff0066 102%);
+    width: 25%;
+    height: 50px;
+    margin-left: 285px;
+    margin-top: 39px;
+    }
+    .form-control{
+    opacity: 0.9;
+    background: linear-gradient(to bottom right, #ccffff 7%, #ffffff 102%);
+    margin-left: 1px;
+    width: 100%;
+     height: 60px;
+     
+    }
+    .card{
+        width: 50%;
+        height: 500px;
+        margin-left: 380px;
+        margin-top: 29px;
+    }

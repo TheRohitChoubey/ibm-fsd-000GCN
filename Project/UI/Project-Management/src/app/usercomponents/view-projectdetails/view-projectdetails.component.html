@@ -1,0 +1,129 @@
+<div class="image">
+    <div class="row">
+        <div class="col-3">
+                <div class="sidebar-container">
+                    <div class="sidebar-img">
+                        <img src="https://cdn3.iconfinder.com/data/icons/ringtone-music-instruments/512/letter-u-key-keyboard-2-512.png" style="width: 140px; height: 140px; 
+                        border-radius: 50%; margin-left: 27px; margin-top: 3px;">
+                      </div>
+                <div class="sidebar-logo">
+                  Hello {{users.username}}
+                </div>
+                <ul class="sidebar-navigation">
+        
+                    <li class="header">DashBoard</li>
+                    <li><a [routerLink]="['/userhome']">
+                          <i class="fa fa-home" aria-hidden="true"></i> Home
+                          </a>
+                      </li>
+                      <li>
+                        <a  [routerLink]="['/usercomponents/viewprojectdetails']">
+                          <i class="fa fa-home" aria-hidden="true"></i> Project-Details
+                        </a>
+                      </li>
+                      <li>
+                        <a [routerLink]="['/usercomponents/viewtasklist']">
+                          <i class="fa fa-tachometer" aria-hidden="true"></i> Task-Details
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a [routerLink]="['/usercomponents/viewteamslist']">
+                          <i class="fa fa-users" aria-hidden="true"></i> Project-Team
+                        </a>
+                      </li>
+                      
+                        <li>
+                            <a [routerLink]="['/home']">
+                              <i class="fa fa-users" aria-hidden="true"></i>LogOut
+                            </a>
+                          </li>
+                  </ul>
+                </div>
+                </div>
+                <div class="col-9">
+    <div class="row">
+   <br>
+    </div>
+    <div class=" row  bg-info text-center" style="border-radius: 30px;">
+          <br>
+        <h4 class="text-center text-white" style="margin-left: 450px;">Project-Details</h4>
+        <br>
+      </div>
+    <div class="row">
+      <div class="col-6">
+      <div class="col-1"></div>
+        <div class=" col-4">
+            <h3 style="border-color: rgb(18, 216, 216);" class="text-center text-md">Project-Name</h3>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-4">
+          <h4 class="text-center text-dark border-primary" style="border-radius: 40px;">{{projects.pname}}</h4>
+        </div>
+      </div>
+      <div class="col-6">
+          <div class="col-1"></div>
+            <div class=" col-4">
+                <h3 style="border-color: rgb(18, 216, 216);" class="text-center text-md">Project-Location</h3>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-4">
+              <h4 class="text-center text-dark border-primary" style="border-radius: 40px;">{{projects.plocation}}</h4>
+            </div>
+          </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                    <div class="col-1"></div>
+                      <div class=" col-4">
+                          <h3 style="border-color: rgb(18, 216, 216);" class="text-center text-md">Project-Manager</h3>
+                      </div>
+                      <div class="col-1"></div>
+                      <div class="col-4">
+                        <h4 class="text-center text-dark border-primary" style="border-radius: 40px;">{{manager.username}}</h4>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="col-1"></div>
+                          <div class=" col-4">
+                              <h3 style="border-color: rgb(18, 216, 216);" class="text-center text-md">Project-Email</h3>
+                          </div>
+                          <div class="col-1"></div>
+                          <div class="col-4">
+                            <h4 class="text-center text-dark border-primary" style="border-radius: 40px;">{{projects.pmanagerEmail}}</h4>
+                          </div>
+                        </div>
+                     </div>
+
+
+                     <div class="row">
+                        <div class="col-6">
+                        <div class="col-1"></div>
+                          <div class=" col-4">
+                              <h3 style="border-color: rgb(18, 216, 216);" class="text-center text-md">Start-Date</h3>
+                          </div>
+                          <div class="col-1"></div>
+                          <div class="col-4">
+                            <h4 class="text-center text-dark border-primary" style="border-radius: 40px;">{{projects.start_date}}</h4>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="col-1"></div>
+                              <div class=" col-4">
+                                  <h3 style="border-color: rgb(18, 216, 216);" class="text-center text-md">End-Date</h3>
+                              </div>
+                              <div class="col-1"></div>
+                              <div class="col-4">
+                                <h4 class="text-center text-dark border-primary" style="border-radius: 40px;">{{projects.end_date}}</h4>
+                              </div>
+                            </div>
+                         </div>
+
+
+
+            </div>
+        </div>
+    </div>

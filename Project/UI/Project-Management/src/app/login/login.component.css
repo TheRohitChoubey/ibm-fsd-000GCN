@@ -1,0 +1,28 @@
+.card{
+    margin-top: 70px;
+    margin-left: 510px;
+    width: 35%;
+    height: 430px;
+}
+.form-control{
+    opacity: 0.9;
+    margin-left: 40px;
+    width: 100%;
+     height: 60px;
+     
+    }
+    .btn{
+        
+        width: 25%;
+        height: 50px;
+        margin-left: 60px;
+        margin-top: 10px;
+        }
+.image{
+    background: url('http://hdwpro.com/wp-content/uploads/2018/12/Desktop-Cool-HD-Background.jpg') no-repeat;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 1610px 740px;
+    width: 100%;
+    height: 680px;
+}        

@@ -1,0 +1,238 @@
+<div class="image">
+  <div class="row">
+    <div class="col-3">
+      <div class="sidebar-container">
+        <div class="sidebar-img">
+          <img src="https://cdn3.iconfinder.com/data/icons/ringtone-music-instruments/512/letter-u-key-keyboard-2-512.png"
+            style="width: 140px; height: 140px; 
+              border-radius: 50%; margin-left: 27px; margin-top: 3px;">
+        </div>
+        <div class="sidebar-logo">
+          Hello {{userRecord.username}}
+        </div>
+        <ul class="sidebar-navigation">
+
+          <li class="header">DashBoard</li>
+          <li><a>
+              <i class="fa fa-home" aria-hidden="true"></i> Home
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/usercomponents/viewprojectdetails']">
+              <i class="fa fa-home" aria-hidden="true"></i> Project-Details
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/usercomponents/viewtasklist']">
+              <i class="fa fa-tachometer" aria-hidden="true"></i> Task_Details
+            </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/usercomponents/viewteamslist']">
+              <i class="fa fa-users" aria-hidden="true"></i> Teams
+            </a>
+          </li>
+          <li>
+            <a data-toggle="modal" data-target="#updateModal">
+              <i class="fa fa-users" aria-hidden="true"></i>Update_Profile
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/home']">
+              <i class="fa fa-users" aria-hidden="true"></i>LogOut
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-9">
+      <div class="header bg-info" style="border-radius: 40px;"><br>
+        <br></div>
+      <div class="row">
+        <div class="col-1">&nbsp;</div>
+        <div class="col-4">
+
+          <div class="row">
+            <div class="col-6">
+              <h3> Developer-Name: </h3>
+            </div>
+            <div class="col-6">
+              <h4>{{userRecord.username}}</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-4">
+
+          <div class="row">
+            <div class="col-6">
+              <h3> Email: </h3>
+            </div>
+            <div class="col-6">
+              <h4>{{userRecord.email}}</h4>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="row"><br><br></div>
+      <div class="row">
+        <div class="col-1">&nbsp;</div>
+        <div class="col-4">
+
+          <div class="row">
+            <div class="col-6">
+              <h3> Location : </h3>
+            </div>
+            <div class="col-6">
+              <h4>{{userRecord.ulocation}}</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-4">
+
+          <div class="row">
+            <div class="col-6">
+              <h3> Domain : </h3>
+            </div>
+            <div class="col-6">
+              <h4>{{userRecord.udomain}}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row"><br><br></div>
+      <div class="row">
+        <div class="col-1">&nbsp;</div>
+        <div class="col-4">
+
+          <div class="row">
+            <div class="col-6">
+              <h3> Availability : </h3>
+            </div>
+            <div class="col-6">
+              <h4>{{userRecord.availability}}</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-4">
+
+          <div class="row">
+            <div class="col-6">
+              <h3> Manager : </h3>
+            </div>
+            <div class="col-6">
+              <h4>{{userProject.pmanagerEmail}}</h4>
+            </div>
+          </div>
+        
+        </div>
+
+      </div>
+  
+  <div class="row"><br><br></div>
+  <div class="row">
+    <div class="col-1">&nbsp;</div>
+      <div class="col-4">
+        
+        <div class="row">
+          <div class="col-6">
+          <h2> Current-Project : </h2>
+        </div>
+        <div class="col-6"><h3>{{userProject.pname}}</h3></div>
+        </div>
+      </div>
+      <div class="col-2"></div>
+      <div class="col-4">
+        
+          <div class="row">
+              <div class="col-6">
+              <h2> Current-Task : </h2>
+            </div>
+            <div class="col-6"><h3>{{userTask.taskName}}</h3></div>
+            </div>
+     </div>
+
+</div>
+<div class="row">
+<br><br><br>
+  <div class="col-8">
+
+    <div class="card">
+      <div class="card-header bg-primary"><h4 class="text-center text-white">Task-Status</h4></div>
+      <div class="card-body">
+         <canvas baseChart
+        [data]="doughnutData"
+        [labels]="doughnutLables"
+        [chartType]="doughnutChartType">
+         </canvas>
+     
+      <button type="button" class="btn btn-md btn-danger" data-target="#statusModal" data-toggle="modal" style="margin-left: 410px; margin-top: 40px;"  >Update</button>
+      
+     </div>
+    
+    </div>
+
+
+
+  </div>
+
+</div>
+
+
+
+  
+  </div>
+  </div>
+  </div>
+
+      <!-- Update-Profile-Modal -->
+  
+  <div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <form #registerForm="ngForm" (submit)="updateStatus()" novalidate>
+                  <div class=" row form-group">
+                      <div class="col-5">
+                      <input type="text" readonly class="form-control text-dark" name="TaskName" [(ngModel)]="userTask.taskName" placeholder="TaskName" /><br />
+                  </div>
+                  <div class="col-5 ">
+                      <select [(ngModel)]="userTask.status" name="status" class="form-control">
+                           
+                          <option  [ngValue]="10">10%</option>
+                          <option  [ngValue]="20">20%</option>
+                          <option  [ngValue]="30">30%</option>
+                          <option  [ngValue]="40">40%</option>
+                          <option  [ngValue]="50">50%</option>
+                          <option  [ngValue]="60">60%</option>
+                          <option  [ngValue]="70">70%</option>
+                          <option  [ngValue]="80">80%</option>
+                          <option  [ngValue]="90">90%</option>
+                          <option  [ngValue]="100">100%</option>
+                      </select>
+                  </div>
+                  </div>
+                
+                  <input type="submit" class="btn btn-danger btn-lg" value="Update-Status" />
+  
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="closeStatus" class="btn btn-secondary" data-dismiss="modal" style="display: none;">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>

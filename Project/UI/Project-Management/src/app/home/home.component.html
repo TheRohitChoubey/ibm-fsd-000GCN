@@ -1,0 +1,104 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="image">
+        <header>
+                <nav class="navbar navbar-dark bg-primary  navbar-expand-lg">
+                  <ul class="navbar-nav nav-right mr-auto">
+                      <li class="nav-item active">
+                          <h4 class="text-white trade">Global-Thinkers-Project-Management</h4>
+                        </li>
+                    <li class="nav-item  active">
+                        <a class="nav-link nav-right" data-toggle="modal" data-target="#exampleModal">LogIn</a>
+                      </li>
+                   
+                        <li class="nav-item  active">
+                            <a class="nav-link " [routerLink]="['/home']">AboutUs</a>
+                          </li>
+                  </ul>
+                </nav>
+        </header>
+        <br>
+        <br>
+    
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-5">
+        <br><br><br>
+        <h2 class=" text-dark" >LogIn </h2>
+        <br>
+        <form [formGroup]="newLoginForm" class="needs-validation" (ngSubmit)="submit()" novalidate>
+
+          <div class="row">
+            <div class="col-md-8">
+              <label for="inputEmail4" class="text-dark">Email</label>
+              <span id="errEmail" style="display: none"><h6 class="text-danger text-center">Enter Valid Email</h6></span>
+              <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+              <input type="email" formControlName="email" class="form-control" placeholder="Email" required autofocus>
+            </div>
+          </div>
+          <div class="row">
+            <div class=" col-md-8">
+              <label for="inputPassword4" class="text-dark">Password</label>
+              
+              <input type="password" formControlName="password" class="form-control" placeholder="Password" required>
+            
+            </div>
+          </div>
+          <hr>
+          <input type="submit" [disabled]="!newLoginForm.valid"  class="btn btn-info" style="border-radius: 50px; width: 35%;" value="GO->" />
+        </form>
+      </div>
+      <div class="col-1">
+
+      </div>
+      <div class="col-5">
+        <div style="width:100%;height:100%" class="react-player-video-component"><video src="https://dapulse-res.cloudinary.com/video/upload/f_auto/remote_mondaycom_static/video/main/three-board-views-with-shadow/three-board-views-with-shadow.mp4" style="width:100%;height:100%" preload="auto" muted="" loop="" poster="https://dapulse-res.cloudinary.com/image/upload/f_auto/remote_mondaycom_static/video/main/three-board-views-with-shadow/three-board-views-with-shadow.jpg" playsinline="" webkit-playsinline="" autoplay=""></video></div>
+      </div>
+      <br>
+      <div class="row">
+        
+      </div>
+
+    </div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade"  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-success text-center" id="exampleModalLabel">LogIn !!</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body bg-light">
+            <form [formGroup]="newLoginForm" class="needs-validation" (ngSubmit)="submit()" novalidate>
+
+                <div class="row">
+                  <div class="col-md-8">
+                    <label for="inputEmail4" class="text-dark">Email</label>
+                    <span id="errEmail" style="display: none"><h6 class="text-danger text-center">Enter Valid Email</h6></span>
+                    <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                    <input type="email" formControlName="email" class="form-control" placeholder="Email" required autofocus>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class=" col-md-8">
+                    <label for="inputPassword4" class="text-dark">Password</label>
+                    
+                    <input type="password" formControlName="password" class="form-control" placeholder="Password" required>
+                  
+                  </div>
+                </div>
+                <hr>
+                <input type="submit" [disabled]="!newLoginForm.valid"  class="btn btn-info" style="border-radius: 50px; width: 35%;" value="GO->" />
+              </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal" style="display: none;">Close</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+</div>

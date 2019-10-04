@@ -1,0 +1,105 @@
+<div class="image">
+  <div class="row">
+    <div class="col-3">
+      <div class="sidebar-container">
+        <div class="sidebar-img">
+          <img src="https://icon-library.net/images/letters-icon/letters-icon-24.jpg" style="width: 140px; height: 140px; 
+                        border-radius: 50%; margin-left: 27px; margin-top: 3px;">
+        </div>
+        <div class="sidebar-logo">
+          Admin-{{admin}}
+        </div>
+        <ul class="sidebar-navigation">
+
+          <li class="header">DashBoard</li>
+          <li><a [routerLink]="['/adminhome']">
+              <i class="fa fa-home" aria-hidden="true"></i> Home
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/userService/add']">
+              <i class="fa fa-tachometer" aria-hidden="true"></i>Add-User
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/projectService/add']">
+              <i class="fa fa-home" aria-hidden="true"></i> Add-Project
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/projectService/view']">
+              <i class="fa fa-home" aria-hidden="true"></i> Project-List
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/userService/view']">
+              <i class="fa fa-users" aria-hidden="true"></i>User-List
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/home']">
+              <i class="fa fa-users" aria-hidden="true"></i>LogOut
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="row">
+
+
+      </div>
+      <div class="row">
+        <div class="col-8">
+          <div class="formheader bg-light border-primary">
+            <h4 class="card-header bg-info text-white text-center" style="border-radius: 40px">ADD NEW PROJECT</h4>
+            <div class="formbody  bg-light">
+              <form [formGroup]="newProjectForm" class="bg-light" (ngSubmit)="submit()" novalidate>
+                <div class=" row form-group">
+                  <div class="col-5">
+                    <input type="text" class="form-control text-dark" formControlName="pname"
+                      placeholder="Enter Project Name" required /><br />
+                  </div>
+                  <div class="col-5 ">
+                      <select formControlName="plocation" class="form-control" required>
+                          <option *ngFor="let c of cities" [ngValue]="c">
+                            {{ c.city }}
+                          </option>
+                        </select><br />
+                  </div>
+                </div>
+                <div class="row form-group ">
+
+                  <div class=" col-5">
+                    <input type="date" formControlName="start_date" id="startDate" class="form-control "
+                      placeholder="Start-date" required />
+                  </div>
+                  <div class=" col-5">
+                    <input type="date" formControlName="end_date" id="endDate" class="form-control "
+                      placeholder="End-date" required />
+                  </div>
+                </div>
+                <div class=" row form-group">
+                  <div class="col-5">
+                    <select formControlName="pmanagerEmail" class="form-control" placeholder="Manager">
+
+                      <option *ngFor="let name of uNames" [ngValue]="name">
+                        {{ name.name }}
+                      </option>
+                    </select>
+                  </div><br>
+                </div>
+
+                <input type="submit" [disabled]="!newProjectForm.valid" class="btn btn-success btn-lg"
+                  value="Add Project" />
+
+              </form>
+            </div>
+            <br>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
