@@ -95,7 +95,7 @@ export class ManagerhomeComponent implements OnInit {
               .then(tas => {
 
                 this.tasks = tas;
-
+                console.log(this.tasks);
                 this.firstinit();
 
               })
@@ -129,7 +129,7 @@ export class ManagerhomeComponent implements OnInit {
 
     for (let i = 0; i < this.tasks.length; i++) {
       this.pieLabels.push(this.tasks[i].taskName);
-      fetch(`http://b4ibmjava21.iiht.tech:8001/${this.tasks[i].taskName}`, {
+      fetch(`http://b4ibmjava21.iiht.tech:8001/getAllTeam/${this.tasks[i].taskId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"

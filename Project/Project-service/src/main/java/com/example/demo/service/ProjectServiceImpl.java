@@ -32,14 +32,16 @@ import javassist.expr.NewArray;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
-	
+
 	private ProjectRepository projectRepository;
 	@Autowired
 	private ProjectFeignClient projectFeignClient;
 	@Autowired
 	private UserFeignClient userFeignClient;
-	
-	
+
+	@Autowired
+	RabbitMqService rabbitMqService;
+
 	@Autowired
 	public ProjectServiceImpl(ProjectRepository projectRepository, ProjectFeignClient projectFeignClient,
 			UserFeignClient userFeignClient) {
@@ -70,15 +72,16 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public ProjectDto saveProject(ProjectDto projectDto) throws ParseException {
 		// TODO Auto-generated method stub
-		//projectDto.setStart_date(date.parse(projectDto.getsDate()));
-		//projectDto.setEnd_date(date.parse(projectDto.geteDate()));
-		
+		// projectDto.setStart_date(date.parse(projectDto.getsDate()));
+		// projectDto.setEnd_date(date.parse(projectDto.geteDate()));
+
 		ModelMapper model = new ModelMapper();
 		model.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		Project project = model.map(projectDto, Project.class);
 		projectRepository.save(project);
 		System.out.println(project.toString());
-		ProjectIdRequestModel projectDetail = new ProjectIdRequestModel(project.getProjectId(),project.getPlocation(),project.getPmanagerEmail());
+		ProjectIdRequestModel projectDetail = new ProjectIdRequestModel(project.getProjectId(), project.getPlocation(),
+				project.getPmanagerEmail());
 		userFeignClient.projectAssignedUserDetail(projectDetail);
 		ProjectDto proDto = model.map(project, ProjectDto.class);
 		return proDto;
@@ -87,35 +90,36 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public void deleteProject(Long id) {
 		Project project = projectRepository.findById(id).get();
-		ProjectIdRequestModel projectDetail= new ProjectIdRequestModel(project.getProjectId(),project.getPlocation(),project.getPmanagerEmail());
+		ProjectIdRequestModel projectDetail = new ProjectIdRequestModel(project.getProjectId(), project.getPlocation(),
+				project.getPmanagerEmail());
 		userFeignClient.projectDeletedUserDetail(projectDetail);
 		projectRepository.deleteById(id);
 	}
 
 	@Override
-	@HystrixCommand(fallbackMethod="getFallbackTask")
+	@HystrixCommand(fallbackMethod = "getFallbackTask")
 	public CreateTasksResponseModel createTask(CreateTasksRequestModel taskDetail) {
 		System.out.println(taskDetail.toString());
-		ResponseEntity< ?> tDto =  projectFeignClient.createTask(taskDetail);
+		ResponseEntity<?> tDto = projectFeignClient.createTask(taskDetail);
 		ModelMapper model = new ModelMapper();
 		model.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		CreateTasksResponseModel tmodel = model.map(tDto.getBody(),CreateTasksResponseModel.class);
+		CreateTasksResponseModel tmodel = model.map(tDto.getBody(), CreateTasksResponseModel.class);
 		return tmodel;
 	}
-	
+
 	@Override
-	@HystrixCommand(fallbackMethod="getFallbackAllTask")
+	@HystrixCommand(fallbackMethod = "getFallbackAllTask")
 	public List<?> getAllTasks() {
-		List<?> tDto =  projectFeignClient.getAllTasks();
+		List<?> tDto = projectFeignClient.getAllTasks();
 		return tDto;
 	}
-	
+
 	@Override
 	public Project getByEmail(String email) {
 		System.out.println(projectRepository.findByPmanagerEmail(email).toString());
 		return projectRepository.findByPmanagerEmail(email);
 	}
-	
+
 	public CreateTasksResponseModel getFallbackTask(CreateTasksRequestModel taskDetail) {
 		return new CreateTasksResponseModel("Task Server Down");
 	}
@@ -125,12 +129,17 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public ProjectDto updateProject(Project pDto) {
+	public ProjectDto updateProject(Project project) {
 		ModelMapper model = new ModelMapper();
 		model.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		System.out.println(pDto.toString());
-		projectRepository.save(pDto);
-		ProjectDto proDto = model.map(pDto, ProjectDto.class);
+		System.out.println(project.toString());
+		projectRepository.save(project);
+		ProjectIdRequestModel projectDetail = new ProjectIdRequestModel(project.getProjectId(), project.getPlocation(),
+				project.getPmanagerEmail());
+		
+		rabbitMqService.sendMessage(projectDetail);
+		
+		ProjectDto proDto = model.map(project, ProjectDto.class);
 		return proDto;
 	}
 

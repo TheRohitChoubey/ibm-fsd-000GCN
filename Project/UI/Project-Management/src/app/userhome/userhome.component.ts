@@ -39,6 +39,7 @@ export class UserhomeComponent implements OnInit {
     }
 
     this.userTask = {
+      taskId : 0,
       taskName: "",
       startDate: "",
       endDate: "",

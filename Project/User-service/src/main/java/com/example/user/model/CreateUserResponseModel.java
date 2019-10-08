@@ -8,7 +8,6 @@ public class CreateUserResponseModel {
 	private String availability;
 	private String email;
 	private String udomain;
-	private String previous_project;
 	private String userType;
 	private Long projectid;
 	private Long taskId;
@@ -20,7 +19,7 @@ public class CreateUserResponseModel {
 	}
 
 	public CreateUserResponseModel(String username, String password, String ulocation, String availability, String email,
-			String udomain, String previous_project, String userType, Long projectid, Long taskId) {
+			String udomain, String userType, Long projectid, Long taskId) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -28,14 +27,12 @@ public class CreateUserResponseModel {
 		this.availability = availability;
 		this.email = email;
 		this.udomain = udomain;
-		this.previous_project = previous_project;
 		this.userType = userType;
 		this.projectid = projectid;
 		this.taskId = taskId;
 	}
 	
-	public CreateUserResponseModel(String username, String password, String ulocation, String availability, String email,
-			 String udomain, String previous_project, String userType, Long projectid, Long taskId,
+	public CreateUserResponseModel(String username, String password, String ulocation, String availability, String email, String udomain, String userType, Long projectid, Long taskId,
 			String uAssigndate) {
 		super();
 		this.username = username;
@@ -44,7 +41,6 @@ public class CreateUserResponseModel {
 		this.availability = availability;
 		this.email = email;
 		this.udomain = udomain;
-		this.previous_project = previous_project;
 		this.userType = userType;
 		this.projectid = projectid;
 		this.taskId = taskId;
@@ -52,7 +48,7 @@ public class CreateUserResponseModel {
 	}
 
 	public CreateUserResponseModel(String username, String password, String ulocation, String availability, String email,
-		 String udomain, String previous_project, String userType, Long projectid, Long taskId,
+			 String udomain, String userType, Long projectid, Long taskId,
 			String uStatus, String uAssigndate) {
 		super();
 		this.username = username;
@@ -61,7 +57,6 @@ public class CreateUserResponseModel {
 		this.availability = availability;
 		this.email = email;
 		this.udomain = udomain;
-		this.previous_project = previous_project;
 		this.userType = userType;
 		this.projectid = projectid;
 		this.taskId = taskId;
@@ -107,14 +102,6 @@ public class CreateUserResponseModel {
 
 	public void setUdomain(String udomain) {
 		this.udomain = udomain;
-	}
-
-	public String getPrevious_project() {
-		return previous_project;
-	}
-
-	public void setPrevious_project(String previous_project) {
-		this.previous_project = previous_project;
 	}
 
 	public Long getProjectid() {
@@ -169,7 +156,7 @@ public class CreateUserResponseModel {
 	public String toString() {
 		return "CreateUserResponseModel [username=" + username + ", password=" + password + ", ulocation="
 				+ ulocation + ", availability=" + availability + ", email=" + email + ", udomain="
-				+ udomain + ", previous_project=" + previous_project + ", userType=" + userType + ", projectid="
+				+ udomain + ", userType=" + userType + ", projectid="
 				+ projectid + ", taskId=" + taskId + ", uStatus=" + uStatus + ", uAssigndate=" + uAssigndate + "]";
 	}
 	

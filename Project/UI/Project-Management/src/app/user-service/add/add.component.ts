@@ -17,7 +17,6 @@ export class AddComponent implements OnInit {
       ulocation: new FormControl("",[Validators.required]),
       udomain: new FormControl("",[Validators.required]),
       email: new FormControl("",[Validators.email]),
-      previous_project: new FormControl("",[Validators.required]),
       userType: new FormControl("",[Validators.required]),
       password: new FormControl("",[Validators.minLength(6)]),
       availability: new FormControl("",[Validators.required])
@@ -39,7 +38,6 @@ export class AddComponent implements OnInit {
     let ulocation = this.newAddUserForm.value.ulocation.city;
     let udomain = this.newAddUserForm.value.udomain;
     let email = this.newAddUserForm.value.email;
-    let previous_project = this.newAddUserForm.value.previous_project;
     let userType = this.newAddUserForm.value.userType.type;
     let password = this.newAddUserForm.value.password;
     let availability = this.newAddUserForm.value.availability.status;
@@ -51,7 +49,6 @@ export class AddComponent implements OnInit {
       availability: availability,
       email: email,
       udomain: udomain,
-      previous_project: previous_project,
       userType: userType,
     })
 

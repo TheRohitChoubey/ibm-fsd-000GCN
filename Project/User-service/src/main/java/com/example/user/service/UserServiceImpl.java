@@ -9,6 +9,7 @@ import javax.mail.internet.MimeMessage;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.omg.CORBA.UserException;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -24,6 +25,7 @@ import com.example.user.shared.UserDto;
 
 @Service
 public class UserServiceImpl implements UserService {
+	private static final String QUEUE="projectDetail-queue";
 	@Autowired
 	private Environment env;
 	private UserRepository userRepository;
@@ -209,22 +211,32 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean updateAssignedProjectId(ProjectIdRequestModel projectDetail) {
+	//@RabbitListener(queues = QUEUE)
+	public void updateAssignedProjectId(ProjectIdRequestModel projectDetail) {
+		System.out.println(projectDetail.toString());
+		User user = userRepository.findByProjectidAndUserType(projectDetail.getProjectId(),"manager");
+		
+		if(user != null) {
+			System.out.println(user.toString());
+			user.setAvailability("yes");
+			user.setProjectid(null);
+			userRepository.save(user);
+		}
 		User userDetail = userRepository.findByEmail(projectDetail.getPmanagerEmail());
+		if(userDetail == null) {
+			System.out.println("Null");
+		}
+		System.out.println(userDetail.toString());
 		userDetail.setAvailability("no");
 		userDetail.setUlocation(projectDetail.getPlocation());
 		userDetail.setProjectid(projectDetail.getProjectId());
-		
-
+		userRepository.save(userDetail);
 		try {
 			this.sendMail(userDetail.getEmail(), "Project Manager Assigned ", this.getProjectManagerBody(userDetail,projectDetail));
 		} catch (MessagingException e) {
-			return true;
+			
 		}
 		
-		userRepository.save(userDetail);
-		
-		return true;
 	}
 	
 	public String getProjectManagerBody(User user,ProjectIdRequestModel projectDetail) {
@@ -298,13 +310,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean updateDeletedProjectId(ProjectIdRequestModel projectDetail) {
-		User userDetail = userRepository.findByEmail(projectDetail.getPmanagerEmail());
-		userDetail.setAvailability("yes");
-		userDetail.setUlocation(projectDetail.getPlocation());
-		userDetail.setProjectid(null);
-		userRepository.save(userDetail);
+		List<User> userDetail = userRepository.findByProjectid(projectDetail.getProjectId());
 		
-		return false;
+		for(int i=0; i<userDetail.size(); i++) {
+			userDetail.get(i).setAvailability("yes");
+			userDetail.get(i).setUlocation(projectDetail.getPlocation());
+			userDetail.get(i).setProjectid(null);
+			userDetail.get(i).setTaskId(null);
+			userRepository.save(userDetail.get(i));
+		}
+		return true;
 	}
 
 	@Override

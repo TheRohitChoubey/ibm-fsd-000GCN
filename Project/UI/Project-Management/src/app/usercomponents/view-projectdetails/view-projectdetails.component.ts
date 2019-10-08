@@ -24,7 +24,6 @@ export class ViewProjectdetailsComponent implements OnInit {
       availability: "",
       email: "",
       udomain: "",
-      previous_project: "",
       userType: "",
       projectid: "",
       taskId: ""
@@ -37,7 +36,6 @@ export class ViewProjectdetailsComponent implements OnInit {
       availability: "",
       email: "",
       udomain: "",
-      previous_project: "",
       userType: "",
       projectid: "",
       taskId: ""

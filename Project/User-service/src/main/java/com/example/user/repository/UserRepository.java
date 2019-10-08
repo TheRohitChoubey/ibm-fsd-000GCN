@@ -30,4 +30,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	List<User> findByProjectid(Long projectId);
 	
 	List<User> findByUserTypeOrUserType(String role1,String role2);
+	
+	User findByProjectidAndUserType(Long id, String role);
 }

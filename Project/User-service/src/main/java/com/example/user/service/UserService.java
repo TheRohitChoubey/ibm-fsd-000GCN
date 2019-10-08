@@ -19,7 +19,7 @@ public interface UserService {
 	public List<User> getByRole(String urole);
 	public List<User> getAllUser();
 	public void deleteUser(String email);
-	public boolean updateAssignedProjectId(ProjectIdRequestModel projectDetail);
+	public void updateAssignedProjectId(ProjectIdRequestModel projectDetail);
 	public boolean updateDeletedProjectId(ProjectIdRequestModel projectDetail);
 	public void updateAssignedtaskId(CreateTeamsRequestModel teamDetail);
 	public void updateDeletedTaskId(Long taskId);
