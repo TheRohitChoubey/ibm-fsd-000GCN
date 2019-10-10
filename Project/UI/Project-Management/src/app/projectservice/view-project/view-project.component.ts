@@ -83,7 +83,6 @@ export class ViewProjectComponent implements OnInit {
           }
         }).then(response => response.json())
           .then(response => {
-            this.freeManager = [];
             this.freeManager = response;
             console.log(this.freeManager);
             this.pmanagerEmail = [];

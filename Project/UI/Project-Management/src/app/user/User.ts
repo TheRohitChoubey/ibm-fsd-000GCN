@@ -8,4 +8,5 @@ export interface User {
     userType: String,
     projectid: String,
     taskId: String
+    uStatus : number
 }

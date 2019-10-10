@@ -26,7 +26,8 @@ export class ViewTasksComponent implements OnInit {
       previous_project: "",
       userType: "",
       projectid: "",
-      taskId: ""
+      taskId: "",
+      uStatus : ""
     }
   }
 

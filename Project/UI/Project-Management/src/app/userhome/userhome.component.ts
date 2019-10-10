@@ -15,6 +15,8 @@ export class UserhomeComponent implements OnInit {
   userRecord: User
   userTask: Tasks
   userProject: Project
+  completed:number
+  notCompleted:number
   constructor(private userService: UserService) {
     this.userRecord = {
       username: "",
@@ -26,7 +28,8 @@ export class UserhomeComponent implements OnInit {
       previous_project: "",
       userType: "",
       projectid: "",
-      taskId: ""
+      taskId: "",
+      uStatus : ""
     }
 
     this.userProject = {
@@ -51,7 +54,7 @@ export class UserhomeComponent implements OnInit {
 
   public doughnutLables = ['Task-Completed', 'Reamaining-Task'];
   public doughnutChartType = 'doughnut';
-  public doughnutData = [40, 60];
+  public doughnutData = [, ];
 
 
   ngOnInit() {
@@ -80,7 +83,9 @@ export class UserhomeComponent implements OnInit {
           .then(res => {
             this.userProject = res;
             console.log(this.userProject);
-
+            this.completed=parseInt(this.userRecord.uStatus);
+            this.notCompleted=100-this.completed;
+            this.doughnutData=[this.completed,this.notCompleted];
             fetch(taskUrl + `/taskById/${this.userRecord.taskId}`, {
               method: "GET",
               headers: {
@@ -95,6 +100,27 @@ export class UserhomeComponent implements OnInit {
 
           })
       })
+  }
+
+  update(){
+
+    const _baseUrl = `http://b4ibm21.iiht.tech:8001/`;
+  
+    fetch(_baseUrl + `/update/${this.userRecord.email}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(this.userRecord)
+    }).then(res => res.json())
+      .then(data => {
+  
+        alert("Profile-Updated");
+  
+      })
+    document.getElementById("close").click();
+    document.location.reload();
+  
   }
 
   updateStatus() {
@@ -114,7 +140,10 @@ export class UserhomeComponent implements OnInit {
       .then(res => res.json())
       .then(res => {
         console.log(res);
-      })
+        alert("Task Status updated succesfully");
+      });
+      document.getElementById("closeStatus").click();
+      document.location.reload();
 
   }
 

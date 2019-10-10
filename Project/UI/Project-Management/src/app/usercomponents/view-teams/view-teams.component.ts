@@ -25,7 +25,8 @@ export class ViewTeamsComponent implements OnInit {
       udomain: "",
       userType: "",
       projectid: "",
-      taskId: ""
+      taskId: "",
+      uStatus : 0
     } 
   }
 

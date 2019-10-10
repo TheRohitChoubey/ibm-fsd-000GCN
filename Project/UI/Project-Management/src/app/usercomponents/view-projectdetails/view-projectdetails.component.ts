@@ -26,7 +26,8 @@ export class ViewProjectdetailsComponent implements OnInit {
       udomain: "",
       userType: "",
       projectid: "",
-      taskId: ""
+      taskId: "",
+      uStatus : 0
     }
 
     this.manager = {
@@ -38,7 +39,9 @@ export class ViewProjectdetailsComponent implements OnInit {
       udomain: "",
       userType: "",
       projectid: "",
-      taskId: ""
+      taskId: "",
+      uStatus : 0
+      
     }
 
     this.projects = {

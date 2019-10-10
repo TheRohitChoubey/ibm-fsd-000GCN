@@ -49,12 +49,13 @@ public class UserServiceImpl implements UserService {
 	public UserDto createNewUser(UserDto userDetail) {
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		String password = userDetail.getPassword();
 		userDetail.setPassword(bcrypt.encode(userDetail.getPassword()));
 		User userEntity = mapper.map(userDetail, User.class);
 		userRepository.save(userEntity);
 		
 		try {
-			this.sendMail(userEntity.getEmail(), "User Registered ", this.getbody(userEntity));
+			this.sendMail(userEntity.getEmail(), "User Registered ", this.getbody(userEntity,password));
 		} catch (MessagingException e) {
 			UserDto uDto = mapper.map(userEntity, UserDto.class);
 			return uDto;
@@ -129,7 +130,7 @@ public class UserServiceImpl implements UserService {
 		mailSender.send(mail);
 	}
 
-	public String getbody(User user) {
+	public String getbody(User user,String password) {
 
 		return "<!DOCTYPE html>\n" + 
 				"<html xmlns:th=\"http://www.thymeleaf.org\">\n" + 
@@ -185,7 +186,7 @@ public class UserServiceImpl implements UserService {
 				"			<tr>\n" + 
 				"			<td>"+user.getUsername()+"</td>\n" + 
 				"			<td>"+user.getEmail()+"</td>\n" + 
-				"			<td>"+user.getPassword()+"</td>\n" + 
+				"			<td>"+password+"</td>\n" + 
 				"			<td>"+user.getUlocation()+"</td>\n" + 
 				"			<td>"+user.getUserType()+"</td>\n" + 
 				"			\n" + 
@@ -211,7 +212,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	//@RabbitListener(queues = QUEUE)
+	@RabbitListener(queues = QUEUE)
 	public void updateAssignedProjectId(ProjectIdRequestModel projectDetail) {
 		System.out.println(projectDetail.toString());
 		User user = userRepository.findByProjectidAndUserType(projectDetail.getProjectId(),"manager");

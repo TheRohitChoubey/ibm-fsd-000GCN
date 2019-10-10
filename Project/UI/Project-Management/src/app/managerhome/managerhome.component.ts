@@ -30,7 +30,8 @@ export class ManagerhomeComponent implements OnInit {
       previous_project: "",
       userType: "",
       projectid: "",
-      taskId: ""
+      taskId: "",
+      uStatus : ""
     }
 
     this.project = {
@@ -86,6 +87,7 @@ export class ManagerhomeComponent implements OnInit {
             }
 
             const taskurl = `http://b4ibm21.iiht.tech:8021`;
+         
             fetch(taskurl + `/getAllTasks/${this.project.projectId}`, {
               method: "GET",
               headers: {
@@ -125,22 +127,7 @@ export class ManagerhomeComponent implements OnInit {
 
     this.doughnutData = [this.completedCount, this.ongoingCount, this.stuck];
 
-    // pie chart
-
-    for (let i = 0; i < this.tasks.length; i++) {
-      this.pieLabels.push(this.tasks[i].taskName);
-      fetch(`http://b4ibmjava21.iiht.tech:8001/getAllTeam/${this.tasks[i].taskId}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }).then(res => res.json())
-        .then(res => {
-          let dummyteam: User[]
-          dummyteam = res;
-          this.pieData.push(dummyteam.length);
-        })
-    }
+   
 
 
   }

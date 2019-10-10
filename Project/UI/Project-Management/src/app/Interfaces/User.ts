@@ -8,5 +8,6 @@ export interface User {
     previous_project: string,
     userType: string,
     projectid: string,
-    taskId: string
+    taskId: string,
+    uStatus : string
 }

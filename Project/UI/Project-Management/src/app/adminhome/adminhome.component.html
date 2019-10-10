@@ -1,199 +1,193 @@
 <div class="container-fluid image">
-    <div class="row">
-      <div class="col-3">
+  <div class="row">
+    <div class="col-3">
       <div class="sidebar-container">
-          <div class="sidebar-img">
-              <img src="https://icon-library.net/images/letters-icon/letters-icon-24.jpg" style="width: 140px; height: 140px; 
+        <div class="sidebar-img">
+          <img src="https://icon-library.net/images/letters-icon/letters-icon-24.jpg" style="width: 140px; height: 140px; 
               border-radius: 50%; margin-left: 27px; margin-top: 3px;">
-            </div>
-      <div class="sidebar-logo">
-        Admin-{{admin}}
-      </div>
-      <ul class="sidebar-navigation">
-        
-        <li><a>
+        </div>
+        <div class="sidebar-logo">
+          Admin-{{admin}}
+        </div>
+        <ul class="sidebar-navigation">
+
+          <li><a>
               <i class="fa fa-home" aria-hidden="true"></i> Home
-              </a>
+            </a>
           </li>
           <li>
-              <a [routerLink]="['/userService/add']">
-                <i class="fa fa-tachometer" aria-hidden="true"></i>Add-User
-              </a>
-            </li>
+            <a [routerLink]="['/userService/add']">
+              <i class="fa fa-tachometer" aria-hidden="true"></i>Add-User
+            </a>
+          </li>
           <li>
-            <a  [routerLink]="['/projectService/add']">
+            <a [routerLink]="['/projectService/add']">
               <i class="fa fa-home" aria-hidden="true"></i> Add-Project
             </a>
           </li>
-        <li>
-          <a  [routerLink]="['/projectService/view']">
-            <i class="fa fa-home" aria-hidden="true"></i> Project-List
-        </a>
-        </li>
-      
-        <li>
-          <a [routerLink]="['/userService/view']">
-            <i class="fa fa-users" aria-hidden="true"></i>User-List
-          </a>
-        </li>
           <li>
-              <a [routerLink]="['/home']">
-                <i class="fa fa-users" aria-hidden="true"></i>LogOut
-              </a>
-            </li>
-      </ul>
-      </div>
-      </div>
-      <div class="col-9">
-<div class="row">
-<div class="col-4">
+            <a [routerLink]="['/projectService/view']">
+              <i class="fa fa-home" aria-hidden="true"></i> Project-List
+            </a>
+          </li>
 
-    <div class="card">
-        <div class="card-header bg-info"><h4 class="text-center text-white">Pie-Chart</h4></div>
-        <div class="card-body"> <canvas baseChart
-          [data]="pieData"
-          [labels]="pieLabels"
-          [chartType]="pieChartType"></canvas>
-        
-      
-      </div></div>
-        <div class="card-footer"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#pieModal" >View-Large</button></div>
-      </div>
-   
-<div class="col-3"></div>
-<div class="col-4 d">
-
-    <div class="card">
-        <div class="card-header bg-primary"><h4 class="text-center text-white"> Doughnut-Chart</h4></div>
-        <div class="card-body"> <canvas baseChart
-          [data]="doughnutData"
-          [labels]="doughnutLables"
-          [chartType]="doughnutChartType">
-        </canvas>
-       </div>
-        <div class="card-footer"><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#doughnutModal" >View-Large</button></div>
-      </div>
- 
-</div>
-<br>
-<br>
-</div>
-<div class="row">
-  <div class="col-4 b">
-
-      <div class="card">
-          <div class="card-header bg-danger"><h4 class="  text-white text-center">Bar-Chart</h4></div>
-          <div class="card-body"><canvas baseChart
-            [datasets]="barData"
-            [labels]="barLables"
-            [options]="barOptions"
-            [legend]="barLegends"
-            [chartType]="barChartType">
-          </canvas></div>
-          <div class="card-footer"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#barModal" >View-Large</button></div>
-        </div>  
-</div>
-<div class="col-2"></div>
-
-<div class="col-5 last">
- <h2 class="text-white text-center rr">“The best executive is the one who has sense enough to pick good men to do what he wants done, and self-restraint to keep from meddling with them while they do it.” – Theodore Roosevelt</h2>
- 
-</div>
-</div>
-
-
+          <li>
+            <a [routerLink]="['/userService/view']">
+              <i class="fa fa-users" aria-hidden="true"></i>User-List
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/home']">
+              <i class="fa fa-users" aria-hidden="true"></i>LogOut
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
+    <div class="col-9">
+      <div class="row">
+        <div class="col-4">
+
+          <div class="card">
+            <div class="card-header bg-info">
+              <h4 class="text-center text-white">Pie-Chart</h4>
+            </div>
+            <div class="card-body"> <canvas baseChart [data]="pieData" [labels]="pieLabels"
+                [chartType]="pieChartType"></canvas>
+
+
+            </div>
+          </div>
+          <div class="card-footer"><button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+              data-target="#pieModal">View-Large</button></div>
+        </div>
+
+        <div class="col-3"></div>
+        <!--
+        <div class="col-4 d">
+
+          <div class="card">
+            <div class="card-header bg-primary">
+              <h4 class="text-center text-white"> Doughnut-Chart</h4>
+            </div>
+            <div class="card-body"> <canvas baseChart [data]="doughnutData" [labels]="doughnutLables"
+                [chartType]="doughnutChartType">
+              </canvas>
+            </div>
+            <div class="card-footer"><button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                data-target="#doughnutModal">View-Large</button></div>
+          </div>
+
+        </div>
+        -->
+        <br>
+        <br>
+      </div>
+      <div class="row">
+        <div class="col-4 b">
+          <!--
+          <div class="card">
+            <div class="card-header bg-danger">
+              <h4 class="  text-white text-center">Bar-Chart</h4>
+            </div>
+            <div class="card-body"><canvas baseChart [datasets]="barData" [labels]="barLables" [options]="barOptions"
+                [legend]="barLegends" [chartType]="barChartType">
+              </canvas></div>
+            <div class="card-footer"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                data-target="#barModal">View-Large</button></div>
+          </div>
+          -->
+        </div>
+        <div class="col-2"></div>
+
+        <div class="col-5 last">
+          <h2 class="text-white text-center rr">“The best executive is the one who has sense enough to pick good men to
+            do what he wants done, and self-restraint to keep from meddling with them while they do it.” – Theodore
+            Roosevelt</h2>
+
+        </div>
+      </div>
+
+
     </div>
+  </div>
+</div>
 
 
-    <!-- The Modal -->
+<!-- The Modal -->
 <div class="modal" id="pieModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-  
-        <!-- Modal Header -->
-        <div class="modal-header bg-info">
-          <h3 class="text-center text-white">Pie-Chart</h3>
-         
-        </div>
-  
-        <!-- Modal body -->
-        <div class="modal-body">
-            <canvas id="chart" baseChart
-            [data]="pieData"
-            [labels]="pieLabels"
-            [chartType]="pieChartType"></canvas>
-        </div>
-  
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-info" data-dismiss="modal">Go-Back</button>
-        </div>
-  
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header bg-info">
+        <h3 class="text-center text-white">Pie-Chart</h3>
+
       </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <canvas id="chart" baseChart [data]="pieData" [labels]="pieLabels" [chartType]="pieChartType"></canvas>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Go-Back</button>
+      </div>
+
     </div>
   </div>
+</div>
 
-  <!-- The Modal -->
+<!-- The Modal -->
 <div class="modal" id="doughnutModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-  
-        <!-- Modal Header -->
-        <div class="modal-header bg-primary">
-          <h4 class="modal-title text-center text-white">Doughnut-Chart</h4>
-        
-        </div>
-  
-        <!-- Modal body -->
-        <div class="modal-body">
-            <canvas baseChart
-            [data]="doughnutData"
-            [labels]="doughnutLables"
-            [chartType]="doughnutChartType">
-          </canvas>
-        </div>
-  
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Go-Back</button>
-        </div>
-  
-      </div>
-    </div>
-  </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-  <!-- The Modal -->
-<div class="modal" id="barModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-  
-        <!-- Modal Header -->
-        <div class="modal-header bg-danger">
-          <h4 class="modal-title text-white text-center">Bar-Chart</h4>
-        
-        </div>
-  
-        <!-- Modal body -->
-        <div class="modal-body">
-            <canvas baseChart
-            [datasets]="barData"
-            [labels]="barLables"
-            [options]="barOptions"
-            [legend]="barLegends"
-            [chartType]="barChartType">
-          </canvas>
-        </div>
-  
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Go-Back</button>
-        </div>
-  
+      <!-- Modal Header -->
+      <div class="modal-header bg-primary">
+        <h4 class="modal-title text-center text-white">Doughnut-Chart</h4>
+
       </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <canvas baseChart [data]="doughnutData" [labels]="doughnutLables" [chartType]="doughnutChartType">
+        </canvas>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Go-Back</button>
+      </div>
+
     </div>
   </div>
-  
-  
-  
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="barModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header bg-danger">
+        <h4 class="modal-title text-white text-center">Bar-Chart</h4>
+
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <canvas baseChart [datasets]="barData" [labels]="barLables" [options]="barOptions" [legend]="barLegends"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Go-Back</button>
+      </div>
+
+    </div>
+  </div>
+</div>
