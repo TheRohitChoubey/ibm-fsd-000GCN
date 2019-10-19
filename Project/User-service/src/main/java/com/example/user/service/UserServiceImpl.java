@@ -25,16 +25,15 @@ import com.example.user.shared.UserDto;
 
 @Service
 public class UserServiceImpl implements UserService {
-	private static final String QUEUE="projectDetail-queue";
+	private static final String QUEUE = "projectDetail-queue";
 	@Autowired
 	private Environment env;
 	private UserRepository userRepository;
-	
+
 	private BCryptPasswordEncoder bcrypt;
 	@Autowired
 	private JavaMailSender mailSender;
 
-	
 	@Autowired
 	public UserServiceImpl(Environment env, UserRepository userRepository, BCryptPasswordEncoder bcrypt,
 			JavaMailSender mailSender) {
@@ -53,9 +52,9 @@ public class UserServiceImpl implements UserService {
 		userDetail.setPassword(bcrypt.encode(userDetail.getPassword()));
 		User userEntity = mapper.map(userDetail, User.class);
 		userRepository.save(userEntity);
-		
+
 		try {
-			this.sendMail(userEntity.getEmail(), "User Registered ", this.getbody(userEntity,password));
+			this.sendMail(userEntity.getEmail(), "User Registered ", this.getbody(userEntity, password));
 		} catch (MessagingException e) {
 			UserDto uDto = mapper.map(userEntity, UserDto.class);
 			return uDto;
@@ -73,7 +72,6 @@ public class UserServiceImpl implements UserService {
 		UserDto uDto = mapper.map(userEntity, UserDto.class);
 		return uDto;
 	}
-
 
 	@Override
 	public List<User> findByusername(String username) {
@@ -102,11 +100,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findEmailAndPassword(String email, String password) {
 		User user = userRepository.findByEmail(email);
-		if(user == null) {
+		if (user == null) {
 			return user;
 		}
 		boolean check = bcrypt.matches(password, user.getPassword());
-		if(check == false) {
+		if (check == false) {
 			return null;
 		}
 		return user;
@@ -130,78 +128,39 @@ public class UserServiceImpl implements UserService {
 		mailSender.send(mail);
 	}
 
-	public String getbody(User user,String password) {
+	public String getbody(User user, String password) {
 
-		return "<!DOCTYPE html>\n" + 
-				"<html xmlns:th=\"http://www.thymeleaf.org\">\n" + 
-				"<head>\n" + 
-				"<meta charset=\"ISO-8859-1\">\n" + 
-				"<title>Sign-Form</title>\n" + 
-				"<!-- Latest compiled and minified CSS -->\n" + 
-				"<link rel=\"stylesheet\"\n" + 
-				"	href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">\n" + 
-				"\n" + 
-				"<!-- jQuery library -->\n" + 
-				"<script\n" + 
-				"	src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>\n" + 
-				"\n" + 
-				"<!-- Popper JS -->\n" + 
-				"<script\n" + 
-				"	src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\"></script>\n" + 
-				"\n" + 
-				"<!-- Latest compiled JavaScript -->\n" + 
-				"<script\n" + 
-				"	src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"></script>\n" + 
-				"	<style>\n" + 
-				"	h2{\n" + 
-				"	color: green;\n" + 
-				"	}\n" + 
-				"	</style>\n" + 
-				"</head>\n" + 
-				"<body>\n" + 
-				"\n" + 
-				"	<div class=\"container\">\n" + 
-				"		<div class=\"row\">\n" + 
-				"			<h2>You have been added into portal</h2>\n" + 
-				"		</div>\n" + 
-				"		<br>\n" + 
-				"		<br>\n" + 
-				"		<hr>\n" + 
-				"		<div class=\"row\">\n" + 
-				"	<img src=\"https://contenthub-static.grammarly.com/blog/wp-content/uploads/2019/04/thumbnail-7075f02d50b2e1b87acaac02e0592003-760x400.jpeg\">\n" + 
-				"		</div>\n" + 
-				"		<br> <br>\n" + 
-				"		<hr>\n" + 
-				"		<table class=\"table table-light\">\n" + 
-				"			<thead class=\" table  table-dark\">\n" + 
-				"				<tr>\n" + 
-				"					<th>User Name</th>\n" + 
-				"					<th>Email</th>\n" + 
-				"					<th>Password</th>\n" + 
-				"					<th>Location</th>\n" + 
-				"					<th>User type</th>\n" + 
-				"				</tr>\n" + 
-				"			</thead>	\n" + 
-				"			<tbody class=\"table-light\">\n" + 
-				"			<tr>\n" + 
-				"			<td>"+user.getUsername()+"</td>\n" + 
-				"			<td>"+user.getEmail()+"</td>\n" + 
-				"			<td>"+password+"</td>\n" + 
-				"			<td>"+user.getUlocation()+"</td>\n" + 
-				"			<td>"+user.getUserType()+"</td>\n" + 
-				"			\n" + 
-				"			</tr>\n" + 
-				"		</tbody>\n" + 
-				"			\n" + 
-				"	</table>\n" + 
-				"	</div>\n" + 
-				"</body>\n" + 
-				"</html> ";
+		return "<!DOCTYPE html>\n" + "<html xmlns:th=\"http://www.thymeleaf.org\">\n" + "<head>\n"
+				+ "<meta charset=\"ISO-8859-1\">\n" + "<title>Sign-Form</title>\n"
+				+ "<!-- Latest compiled and minified CSS -->\n" + "<link rel=\"stylesheet\"\n"
+				+ "	href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">\n" + "\n"
+				+ "<!-- jQuery library -->\n" + "<script\n"
+				+ "	src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>\n" + "\n"
+				+ "<!-- Popper JS -->\n" + "<script\n"
+				+ "	src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\"></script>\n"
+				+ "\n" + "<!-- Latest compiled JavaScript -->\n" + "<script\n"
+				+ "	src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"></script>\n"
+				+ "	<style>\n" + "	h2{\n" + "	color: green;\n" + "	}\n" + "	</style>\n" + "</head>\n"
+				+ "<body>\n" + "\n" + "	<div class=\"container\">\n" + "		<div class=\"row\">\n"
+				+ "			<h2>You have been added into portal</h2>\n" + "		</div>\n" + "		<br>\n"
+				+ "		<br>\n" + "		<hr>\n" + "		<div class=\"row\">\n"
+				+ "	<img src=\"https://contenthub-static.grammarly.com/blog/wp-content/uploads/2019/04/thumbnail-7075f02d50b2e1b87acaac02e0592003-760x400.jpeg\">\n"
+				+ "		</div>\n" + "		<br> <br>\n" + "		<hr>\n"
+				+ "		<table class=\"table table-light\">\n" + "			<thead class=\" table  table-dark\">\n"
+				+ "				<tr>\n" + "					<th>User Name</th>\n"
+				+ "					<th>Email</th>\n" + "					<th>Password</th>\n"
+				+ "					<th>Location</th>\n" + "					<th>User type</th>\n"
+				+ "				</tr>\n" + "			</thead>	\n" + "			<tbody class=\"table-light\">\n"
+				+ "			<tr>\n" + "			<td>" + user.getUsername() + "</td>\n" + "			<td>"
+				+ user.getEmail() + "</td>\n" + "			<td>" + password + "</td>\n" + "			<td>"
+				+ user.getUlocation() + "</td>\n" + "			<td>" + user.getUserType() + "</td>\n" + "			\n"
+				+ "			</tr>\n" + "		</tbody>\n" + "			\n" + "	</table>\n" + "	</div>\n" + "</body>\n"
+				+ "</html> ";
 	}
 
 	@Override
 	public List<User> getAllUser() {
-		
+
 		return userRepository.findByUserTypeOrUserType("manager", "user");
 	}
 
@@ -215,105 +174,102 @@ public class UserServiceImpl implements UserService {
 	@RabbitListener(queues = QUEUE)
 	public void updateAssignedProjectId(ProjectIdRequestModel projectDetail) {
 		System.out.println(projectDetail.toString());
-		User user = userRepository.findByProjectidAndUserType(projectDetail.getProjectId(),"manager");
-		
-		if(user != null) {
+		User user = userRepository.findByProjectidAndUserType(projectDetail.getProjectId(), "manager");
+
+		if (user != null) {
 			System.out.println(user.toString());
 			user.setAvailability("yes");
 			user.setProjectid(null);
 			userRepository.save(user);
-		}
-		User userDetail = userRepository.findByEmail(projectDetail.getPmanagerEmail());
-		if(userDetail == null) {
-			System.out.println("Null");
-		}
-		System.out.println(userDetail.toString());
-		userDetail.setAvailability("no");
-		userDetail.setUlocation(projectDetail.getPlocation());
-		userDetail.setProjectid(projectDetail.getProjectId());
-		userRepository.save(userDetail);
-		try {
-			this.sendMail(userDetail.getEmail(), "Project Manager Assigned ", this.getProjectManagerBody(userDetail,projectDetail));
-		} catch (MessagingException e) {
-			
-		}
-		
-	}
-	
-	public String getProjectManagerBody(User user,ProjectIdRequestModel projectDetail) {
+			try {
+				this.sendMail(user.getEmail(), "Project Manager Removed ",
+						this.getProjectManagerDeleteBody(user, projectDetail));
+			} catch (MessagingException e) {
 
-		return "<!DOCTYPE html>\n" + 
-				"<html xmlns:th=\"http://www.thymeleaf.org\">\n" + 
-				"<head>\n" + 
-				"<meta charset=\"ISO-8859-1\">\n" + 
-				"<title>Sign-Form</title>\n" + 
-				"<!-- Latest compiled and minified CSS -->\n" + 
-				"<link rel=\"stylesheet\"\n" + 
-				"	href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">\n" + 
-				"\n" + 
-				"<!-- jQuery library -->\n" + 
-				"<script\n" + 
-				"	src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>\n" + 
-				"\n" + 
-				"<!-- Popper JS -->\n" + 
-				"<script\n" + 
-				"	src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\"></script>\n" + 
-				"\n" + 
-				"<!-- Latest compiled JavaScript -->\n" + 
-				"<script\n" + 
-				"	src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"></script>\n" + 
-				"	<style>\n" + 
-				"	h2{\n" + 
-				"	color: green;\n" + 
-				"	}\n" + 
-				"	</style>\n" + 
-				"</head>\n" + 
-				"<body>\n" + 
-				"\n" + 
-				"	<div class=\"container\">\n" + 
-				"		<div class=\"row\">\n" + 
-				"			<h2>You have been added into portal</h2>\n" + 
-				"		</div>\n" + 
-				"		<br>\n" + 
-				"		<br>\n" + 
-				"		<hr>\n" + 
-				"		<div class=\"row\">\n" + 
-				"	<img src=\"https://contenthub-static.grammarly.com/blog/wp-content/uploads/2019/04/thumbnail-7075f02d50b2e1b87acaac02e0592003-760x400.jpeg\">\n" + 
-				"		</div>\n" + 
-				"		<br> <br>\n" + 
-				"		<hr>\n" + 
-				"		<table class=\"table table-light\">\n" + 
-				"			<thead class=\" table  table-dark\">\n" + 
-				"				<tr>\n" + 
-				"					<th>User Name</th>\n" + 
-				"					<th>Email</th>\n" + 
-				"					<th>Project Id</th>\n" + 
-				"					<th>Project Location</th>\n" + 
-				"					<th>User type</th>\n" + 
-				"				</tr>\n" + 
-				"			</thead>	\n" + 
-				"			<tbody class=\"table-light\">\n" + 
-				"			<tr>\n" + 
-				"			<td>"+user.getUsername()+"</td>\n" + 
-				"			<td>"+user.getEmail()+"</td>\n" + 
-				"			<td>"+projectDetail.getProjectId()+"</td>\n" + 
-				"			<td>"+projectDetail.getPlocation()+"</td>\n" + 
-				"			<td>"+user.getUserType()+"</td>\n" + 
-				"			\n" + 
-				"			</tr>\n" + 
-				"		</tbody>\n" + 
-				"			\n" + 
-				"	</table>\n" + 
-				"	</div>\n" + 
-				"</body>\n" + 
-				"</html> ";
+			}
+		}
+		if (projectDetail != null) {
+			User userDetail = userRepository.findByEmail(projectDetail.getPmanagerEmail());
+			if (userDetail != null) {
+				System.out.println(userDetail.toString());
+				userDetail.setAvailability("no");
+				userDetail.setUlocation(projectDetail.getPlocation());
+				userDetail.setProjectid(projectDetail.getProjectId());
+				userRepository.save(userDetail);
+				try {
+					this.sendMail(userDetail.getEmail(), "Project Manager Assigned ",
+							this.getProjectManagerBody(userDetail, projectDetail));
+				} catch (MessagingException e) {
+
+				}
+			}
+		}
+
+	}
+
+	public String getProjectManagerBody(User user, ProjectIdRequestModel projectDetail) {
+
+		return "<!DOCTYPE html>\n" + "<html xmlns:th=\"http://www.thymeleaf.org\">\n" + "<head>\n"
+				+ "<meta charset=\"ISO-8859-1\">\n" + "<title>Sign-Form</title>\n"
+				+ "<!-- Latest compiled and minified CSS -->\n" + "<link rel=\"stylesheet\"\n"
+				+ "	href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">\n" + "\n"
+				+ "<!-- jQuery library -->\n" + "<script\n"
+				+ "	src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>\n" + "\n"
+				+ "<!-- Popper JS -->\n" + "<script\n"
+				+ "	src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\"></script>\n"
+				+ "\n" + "<!-- Latest compiled JavaScript -->\n" + "<script\n"
+				+ "	src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"></script>\n"
+				+ "	<style>\n" + "	h2{\n" + "	color: green;\n" + "	}\n" + "	</style>\n" + "</head>\n"
+				+ "<body>\n" + "\n" + "	<div class=\"container\">\n" + "		<div class=\"row\">\n"
+				+ "			<h2>You have been assigned a project</h2>\n" + "		</div>\n" + "		<br>\n"
+				+ "		<br>\n" + "		<hr>\n" + "		<div class=\"row\">\n"
+				+ "	<img src=\"https://contenthub-static.grammarly.com/blog/wp-content/uploads/2019/04/thumbnail-7075f02d50b2e1b87acaac02e0592003-760x400.jpeg\">\n"
+				+ "		</div>\n" + "		<br> <br>\n" + "		<hr>\n"
+				+ "		<table class=\"table table-light\">\n" + "			<thead class=\" table  table-dark\">\n"
+				+ "				<tr>\n" + "					<th>User Name</th>\n"
+				+ "					<th>Email</th>\n" + "					<th>Project Id</th>\n"
+				+ "					<th>Project Location</th>\n" + "					<th>User type</th>\n"
+				+ "				</tr>\n" + "			</thead>	\n" + "			<tbody class=\"table-light\">\n"
+				+ "			<tr>\n" + "			<td>" + user.getUsername() + "</td>\n" + "			<td>"
+				+ user.getEmail() + "</td>\n" + "			<td>" + projectDetail.getProjectId() + "</td>\n"
+				+ "			<td>" + projectDetail.getPlocation() + "</td>\n" + "			<td>" + user.getUserType()
+				+ "</td>\n" + "			\n" + "			</tr>\n" + "		</tbody>\n" + "			\n" + "	</table>\n"
+				+ "	</div>\n" + "</body>\n" + "</html> ";
+	}
+
+	public String getProjectManagerDeleteBody(User user, ProjectIdRequestModel projectDetail) {
+
+		return "<!DOCTYPE html>\n" + "<html xmlns:th=\"http://www.thymeleaf.org\">\n" + "<head>\n"
+				+ "<meta charset=\"ISO-8859-1\">\n" + "<title>Sign-Form</title>\n"
+				+ "<!-- Latest compiled and minified CSS -->\n" + "<link rel=\"stylesheet\"\n"
+				+ "	href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">\n" + "\n"
+				+ "<!-- jQuery library -->\n" + "<script\n"
+				+ "	src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>\n" + "\n"
+				+ "<!-- Popper JS -->\n" + "<script\n"
+				+ "	src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\"></script>\n"
+				+ "\n" + "<!-- Latest compiled JavaScript -->\n" + "<script\n"
+				+ "	src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"></script>\n"
+				+ "	<style>\n" + "	h2{\n" + "	color: green;\n" + "	}\n" + "	</style>\n" + "</head>\n"
+				+ "<body>\n" + "\n" + "	<div class=\"container\">\n" + "		<div class=\"row\">\n"
+				+ "			<h2>You have been removed from a project</h2>\n" + "		</div>\n" + "		<br>\n"
+				+ "		<br>\n" + "		<hr>\n" + "		<div class=\"row\">\n" + "	\n" + "		</div>\n"
+				+ "		<br> <br>\n" + "		<hr>\n" + "		<table class=\"table table-light\">\n"
+				+ "			<thead class=\" table  table-dark\">\n" + "				<tr>\n"
+				+ "					<th>User Name</th>\n" + "					<th>Email</th>\n"
+				+ "					<th>Project Id</th>\n" + "					<th>Project Location</th>\n"
+				+ "					<th>User type</th>\n" + "				</tr>\n" + "			</thead>	\n"
+				+ "			<tbody class=\"table-light\">\n" + "			<tr>\n" + "			<td>"
+				+ user.getUsername() + "</td>\n" + "			<td>" + user.getEmail() + "</td>\n" + "			<td>"
+				+ projectDetail.getProjectId() + "</td>\n" + "			<td>" + projectDetail.getPlocation() + "</td>\n"
+				+ "			<td>" + user.getUserType() + "</td>\n" + "			\n" + "			</tr>\n"
+				+ "		</tbody>\n" + "			\n" + "	</table>\n" + "	</div>\n" + "</body>\n" + "</html> ";
 	}
 
 	@Override
 	public boolean updateDeletedProjectId(ProjectIdRequestModel projectDetail) {
 		List<User> userDetail = userRepository.findByProjectid(projectDetail.getProjectId());
-		
-		for(int i=0; i<userDetail.size(); i++) {
+
+		for (int i = 0; i < userDetail.size(); i++) {
 			userDetail.get(i).setAvailability("yes");
 			userDetail.get(i).setUlocation(projectDetail.getPlocation());
 			userDetail.get(i).setProjectid(null);
@@ -326,11 +282,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateDeletedTaskId(Long taskId) {
 		List<User> userDetail = userRepository.findByTaskId(taskId);
-		for(int i=0; i<userDetail.size(); i++) {
+		for (int i = 0; i < userDetail.size(); i++) {
 			userDetail.get(i).setTaskId(null);
 			userDetail.get(i).setAvailability("yes");
 		}
-		
+
 		userRepository.saveAll(userDetail);
 	}
 
@@ -342,7 +298,7 @@ public class UserServiceImpl implements UserService {
 		userDetail.setTaskId(teamDetail.getTaskId());
 		userDetail.setProjectid(teamDetail.getProjectId());
 		userRepository.save(userDetail);
-		
+
 	}
 
 	@Override
@@ -360,10 +316,11 @@ public class UserServiceImpl implements UserService {
 		userRepository.save(userDetail);
 		return true;
 	}
-	
+
 	@Override
 	public List<User> getUserFromPojectIdTaskId(PRojectIdTaskIDModel teamDetail) {
-		List<User> user = userRepository.findAllByProjectidAndTaskIdIn(teamDetail.getProjectId(),teamDetail.getTaskIDs());
+		List<User> user = userRepository.findAllByProjectidAndTaskIdIn(teamDetail.getProjectId(),
+				teamDetail.getTaskIDs());
 		System.out.println(user.toString());
 		return user;
 	}
@@ -381,7 +338,5 @@ public class UserServiceImpl implements UserService {
 		userRepository.findByProjectid(projectId);
 		return false;
 	}
-	
 
-	
 }
