@@ -1,0 +1,105 @@
+<div class="image">
+    <header>
+        <nav class="navbar navbar-dark bg-dark  navbar-expand-lg">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user']">
+                        <h5>Home</h5>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user/depositMoney']">
+                        <h5>Deposit Money</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user/depositOtherMoney']">
+                        <h5>Deposit-Others</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user/withdrawMoney']">
+                        <h5>WithdDraw</h5>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/user/history']">
+                        <h5>History</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user/logout']">
+                        <h5>Log Out</h5>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Check Balance</button>
+</div>
+
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="to">
+        <th mat-header-cell *matHeaderCellDef> To</th>
+        <td mat-cell *matCellDef="let element">
+            <div *ngIf="(element.to != email); then fromBlock"></div>
+            <ng-template #fromBlock>
+                {{element.to}}
+            </ng-template>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="from">
+        <th mat-header-cell *matHeaderCellDef> From</th>
+        <td mat-cell *matCellDef="let element">
+            <div *ngIf="(element.from != email); then fromBlock"></div>
+            <ng-template #fromBlock>
+                {{element.from}}
+            </ng-template>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let element"> {{element.amount|absolute}} </td>
+    </ng-container>
+    <ng-container matColumnDef="transactiontype">
+        <th mat-header-cell *matHeaderCellDef> Transaction Type </th>
+        <td mat-cell *matCellDef="let element">{{element.type}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Account Info</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Current Balance ={{userData.amount}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

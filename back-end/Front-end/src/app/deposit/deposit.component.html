@@ -1,0 +1,124 @@
+<div class="image">
+    <header>
+        <nav class="navbar navbar-dark bg-dark  navbar-expand-lg">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user']">
+                        <h5>Home</h5>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/user/depositMoney']">
+                        <h5>Deposit Money</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user/depositOtherMoney']">
+                        <h5>Deposit-Others</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user/withdrawMoney']">
+                        <h5>WithdDraw</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user/history']">
+                        <h5>History</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user/logout']">
+                        <h5>Log Out</h5>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="card border-primary">
+        <h6 class="card-header h2">Deposited in Self-Account</h6>
+        <div class="card-body bg-primary text-success">
+            <div class="form-group">
+                <form [formGroup]="depositForm" (ngSubmit)="submit()" novalidate>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="inputEmail4" class="text-white">Enter Amount ... </label>
+                            <input type="number" formControlName="amount" class="form-control" placeholder="Amount"
+                                min=0>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-success btn-lg" value="Deposit" />
+                    <button id="openModal" type="button" class="btn btn-info btn-lg" [hidden]="true" data-toggle="modal" data-target="#myModal">Check Balance</button>
+    
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+    
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Account Info</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Current Balance ={{userData.amount}}</p>
+                </div>
+                <div class="modal-footer">
+                    <a class="nav-link" data-dismiss="modal" [routerLink]="['/user']">
+                        <h5>Return to Home</h5>
+                    </a>
+                    <a class="nav-link" data-dismiss="modal" [routerLink]="['/user/depositMoney']">
+                        <h5>Transfer More</h5>
+                    </a>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+    <img src="https://www.shareicon.net/download/2017/01/06/868314_identity_512x512.png" alt="" srcset=""
+      style="position:relative ; z-index: -1; display: inline-block">
+      <div style="left:40%; top:40%; display:inline-block; position:absolute;">
+            <span id="spinner">
+                    <div class="spinner-grow text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                          <div class="spinner-grow text-secondary" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                          <div class="spinner-grow text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                          <div class="spinner-grow text-danger" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                          <div class="spinner-grow text-warning" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                          <div class="spinner-grow text-info" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                          <div class="spinner-grow text-light" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                          <div class="spinner-grow text-dark" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                        </span>
+      </div>
+
+      

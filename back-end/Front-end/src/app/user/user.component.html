@@ -1,0 +1,134 @@
+<div class="image">
+    <header>
+        <nav class="navbar navbar-dark bg-dark  navbar-expand-lg">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/user']">
+                        <h5>Home</h5>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user/depositMoney']">
+                        <h5>Deposit Money</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user/depositOtherMoney']">
+                        <h5>Deposit-Others</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user/withdrawMoney']">
+                        <h5>WithdDraw</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user/history']">
+                        <h5>History</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/user/logout']">
+                        <h5>Log Out</h5>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="col-9">
+        <div class="row">
+            <br>
+            <br>
+        </div>
+        <div class="row">
+            <table class="table table-hover table-striped table-light">
+
+                <tbody class="table table-light">
+                    <div class="bg-danger" style="border-radius: 50px;"><br>
+                        <h3 class="text-center text-white">User Details</h3>
+                        <br>
+                    </div>
+                    <div class="row"><br><br>
+                    </div>
+                    <tr *ngIf="userData.email">
+
+                        <div class="row tbody">
+                            <td class="col-4">
+                                <div class="row">
+                            <td>
+                                <h5>&nbsp;&nbsp;&nbsp;&nbsp;Account no :</h5>
+                            </td>
+                            <td>
+                                <p class="text-center"> 00111{{userData._id}}</p>
+                            </td>
+                        </div>
+                        </td>
+                        <td class="col-4">
+                            <div class="row">
+                        <td>
+                            <h5>Name :</h5>
+                        </td>
+                        <td>
+                            <p class="text-center"> {{userData.name}}</p>
+                        </td>
+        </div>
+        <div class="row">
+            <td>
+                <h5>Email:</h5>
+            </td>
+            <td>
+                <p class="text-center"> {{userData.email}}</p>
+            </td>
+        </div>
+        </td>
+        <td class="col-4">
+            <div class="row">
+        <td>
+            <h5>Current Balance:</h5>
+        </td>
+        <td>
+            <p class="text-center"> {{userData.amount}}</p>
+        </td>
+    </div>
+    </td>
+</div>
+<div class="row bg-info" style="border-radius: 50px;">
+    <br><br>
+</div>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<img src="https://www.shareicon.net/download/2017/01/06/868314_identity_512x512.png" alt="" srcset=""
+style="position:relative ; z-index: -1; display: inline-block">
+<div style="left:40%; top:40%; display:inline-block; position:absolute;">
+      <span id="spinner">
+              <div class="spinner-grow text-primary" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-secondary" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-success" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-danger" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-warning" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-info" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-light" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-dark" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </span>
+</div>
