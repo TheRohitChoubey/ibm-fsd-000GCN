@@ -1,0 +1,121 @@
+<div class="image">
+    <header>
+        <nav class="navbar navbar-dark bg-dark  navbar-expand-lg">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/login']">
+                        <h5>Login</h5>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/signup']">
+                        <h5>Signup</h5>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+<div class="card border-primary">
+    <h2 class="card-header h2">Register</h2>
+    <h6 class="card-header h6">Enter your details here...</h6>
+    <div class="card-body  text-success">
+        <div class="form-group">
+            <form [formGroup]="registerForm" (ngSubmit)="submit()">
+                <div class="row">
+                    <div class="form-group" [ngClass]="{'has-error' : registerForm.get('email').errors&&
+                    (registerForm.get('email').touched|| registerForm.get('password').dirty) }">
+                        <label class="text-success">Email</label>
+                        <input type="email" formControlName="email" class="form-control" placeholder="Enter your Email">
+                        <span class="help-block" *ngIf="registerForm.get('email').errors&&
+                        (registerForm.get('email').touched || registerForm.get('email').dirty) ">
+                            <span class="text-danger" *ngIf="registerForm.get('email').errors.required ">
+                                Email is required
+                            </span>
+                            <span class="text-danger" *ngIf="registerForm.get('email').errors.email ">
+                                Email type is required
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group" [ngClass]="{'has-error' : registerForm.get('password').errors&&
+                    (registerForm.get('password').touched || registerForm.get('password').dirty) }">
+                        <label class="text-success">Password</label>
+                        <input type="password" formControlName="password" class="form-control" placeholder="Enter your Password">
+                        <span class="help-block" *ngIf="registerForm.get('password').errors&&
+                        (registerForm.get('password').touched || registerForm.get('password').dirty) ">
+                            <span class="text-danger" *ngIf="registerForm.get('password').errors.required ">
+                                Password is required
+                            </span>
+                            <span class="text-danger" *ngIf="registerForm.get('password').errors.minlength ">
+                                Minimum length should be 8 characters
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group" [ngClass]="{'has-error' : registerForm.get('confirmPassword').errors&&
+                    (registerForm.get('confirmPassword').touched || registerForm.get('confirmPassword').dirty)}">
+                        <label class="text-success">Confirm Password</label>
+                        <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Enter your Password">
+                        <span class="help-block" appConfigEqualValidator="password" *ngIf="registerForm.get('confirmPassword').errors&&
+                        (registerForm.get('confirmPassword').touched || registerForm.get('confirmPassword').dirty) ">
+                            <span class="text-danger" *ngIf="registerForm.get('confirmPassword').errors.required ">
+                                Password is required
+                            </span>
+                            <span class="text-danger" *ngIf="registerForm.get('confirmPassword').errors.minlength ">
+                                Minimum length should be 6 characters
+                            </span>
+                            <span class="text-danger" *ngIf="registerForm.get('confirmPassword').touched && confirmPassword.errors?.notEqual 
+                            && !registerForm.get('confirmPassword').errors?.required">
+                                    Password and confirm Password field not matching
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group" [ngClass]="{'has-error' : registerForm.get('name').errors&&
+                    (registerForm.get('name').touched || registerForm.get('name').dirty) }">
+                        <label class="text-success">Name</label>
+                        <input type="text" formControlName="name" class="form-control" placeholder="Enter your Name">
+                        <span class="help-block" *ngIf="registerForm.get('name').errors&&
+                        (registerForm.get('name').touched || registerForm.get('name').dirty) ">
+                            <span class="text-danger" *ngIf="registerForm.get('name').errors.required ">
+                                Name is required
+                            </span>
+                            <span class="text-danger" *ngIf="registerForm.get('name').errors.minlength ">
+                                Minimum length should be 3 characters
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group" [ngClass]="{'has-error' : registerForm.get('amount').errors&&
+                    (registerForm.get('amount').touched || registerForm.get('amount').dirty) }">
+                        <label class="text-success">Amount</label>
+                        <input type="text" formControlName="amount" class="form-control" placeholder="Enter your amount">
+                        <span class="help-block" *ngIf="registerForm.get('amount').errors&&
+                        (registerForm.get('amount').touched || registerForm.get('amount').dirty) ">
+                            <span class="text-danger" *ngIf="registerForm.get('amount').errors.required ">
+                                Amount is required
+                            </span>
+                            <span class="text-danger" *ngIf="registerForm.get('amount').errors.min ">
+                                Minimum zero balance can be entered
+                            </span>
+                            <span class="text-danger" *ngIf="registerForm.get('amount').errors.max ">
+                                Maximum 50000 balance can be entered
+                            </span>
+                            <span class="text-danger" *ngIf="registerForm.get('amount').errors.pattern ">
+                                Only positive numeric value can be entered
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <input type="submit" [disabled]="!registerForm.valid" class="btn btn-success btn-lg" value="Register" />
+            </form>
+        </div>
+    </div>
+</div>
+
+</div>
